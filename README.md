@@ -2,7 +2,7 @@
 
 Welcome to Wazi, a technology preview of new capabilities for Z Open Development, which utilizes and extends the [Zowe Open Mainframe](https://zowe.org) project for mainframe development.
 
-This document and tutorial is maintained in public on [github.com/ibm](https://github.com/IBM/wazi-tutorial). Please, visit  us there for any updates to this document and the sample application. In the tutorial below you will also learn how to use Git to pull in the latest versions directly into your Docker image. Also make sure to frequently visit our [Wazi Community Landing page](https://pages.github.com/IBM/wazi-about) with videos, blog post, and feedback links.
+This document and tutorial is maintained in public on [github.com/ibm](https://github.com/IBM/wazi-tutorial). Please, visit  us there for any updates to this document and the sample application. In the tutorial below you will also learn how to use Git to pull in the latest versions directly into your Docker image. Also make sure to frequently visit our [Wazi Community Landing page](https://ibm.github.io/wazi-about) with videos, blog post, and feedback links.
 
 Wazi contains a Web IDE entirely in the browser and is provided to you via an easy to use Docker image ([download it from here](https://epwt-www.mybluemix.net/software/support/trial/cst/programwebsite.wss?siteId=491&tabId=902&w=tw5nkes&p=8nuiscmr)) that runs on any platform that can run Docker, including laptops. That Docker image contains all the required prerequisites and runs the editor's Web server. The IDE experience is based on the popular [Theia](https://theia-ide.org) open source project, which provides an extensible framework for developing multi-language IDEs for the cloud and desktop using state-of-the-art web technologies.
 
