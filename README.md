@@ -105,22 +105,6 @@ The parameter `-it` made it an interactive command that will now scroll status m
 
 Once the container is up you will be able to open a browser at `http://localhost:3000`. Here you then see the Wazi editor with a predefined example project that is directly available in the workspace that got opened.
 
-Once you have completed the tutorial and want to specify a local directory with your COBOL files to be used instead, you can use the following command that uses shared folders.
-
-On Linux or Mac, you can start such a container directly from the folder with your examples, making that local directory the virtual workspace folder by using this command:
-
-```bash
-docker run -it -p 3000:3000 -v "$(pwd):/home/project:cached" ibmcom/wazi:tp1
-```
-
-On Windows you have to specify the absolute path to the directory, such as
-
-```bash
-docker run -it -p 3000:3000 -v "C:\Users\user1\projects\COBOL:/home/project:cached" ibmcom/wazi:tp1
-```
-
-On Windows, Docker will then prompt you for permissions by asking you to supply a username and password of a local Windows user that has full write access to this directory.
-
 ## Stopping and Starting the Wazi Docker container
 
 Running the run command from above a second time will create a new container instance. To stop and start the container you created above, or to stop and start your session with it and reuse your settings and file changes you need to the following commands:
@@ -138,6 +122,45 @@ docker start -i 3edcea8dc079
 
 assuming your id is 3edcea8dc079. Replace that value with your actual id. If your container is stopped the `docker ps` command will not show any information. Use the command `docker ps -a` to show all containers including the ones currently not running.
 
+## Using your own folder as a workspace
+
+Once you have completed the tutorial and want to specify a local directory with your COBOL files to be used instead, you can use the following command that uses shared folders.
+
+On Linux or Mac, you can start such a container directly from the folder with your examples, making that local directory the virtual workspace folder by using this command:
+
+```bash
+docker run -it -p 3000:3000 -v "$(pwd):/home/project:cached" ibmcom/wazi:tp1
+```
+
+On Windows you have to specify the absolute path to the directory, such as
+
+```bash
+docker run -it -p 3000:3000 -v "C:\Users\user1\projects\COBOL:/home/project:cached" ibmcom/wazi:tp1
+```
+
+On Windows, Docker will then prompt you for permissions by asking you to supply a username and password of a local Windows user that has full write access to this directory.
+
+## Making changes to an existing container
+
+If you want to make changes to your existing docker container, such as create more top-level workspace directories, which require root access you can use command line options.
+
+Assuming that your docker container is running, to start a root bash from your host's terminal, first run this command to find your container's docker id.
+```bash
+docker ps
+```
+Then use that id in this command (i.e. replace f48dfb04c3da with your container's id):
+```
+docker exec -u 0 -it f48dfb04c3da bash
+```
+
+The you can run operations as root. For example, to create more project folders:
+
+```bash
+cd /home
+mkdir myproj
+chown wazi:wazi myproj
+```
+Then you could use in Wazi the menu `File > Open Workspace` to switch to that `myproj` directory as you new workspace.
 
 # Wazi Tutorial
 
