@@ -69,11 +69,11 @@ The following details the steps required for installing the Docker Desktop clien
 
 ## Install Docker
 
-To install Docker you need to download a Docker Desktop client or have access to a Docker Enterprise host. If you are new to Docker, you might want to read [Docker's Getting Started](https://docs.docker.com/get-started/) documentation first to get an introduction and learn about the potential and flexibility achieved when deploying software in this way.
+To install Docker you need to download a Docker Desktop client or have access to a Docker Enterprise host. If you are new to Docker, you might want to read the [Docker Documentation's Get Started](https://docs.docker.com/get-started) pages first to get an introduction and learn about the potential and flexibility achieved when deploying software in this way.
 
-- To get the freely available Docker Desktop Community Edition for your laptop or desktop computer go to https://hub.docker.com/
-- Register for an account and download Docker for your platform
-- Follow the installation wizard to setup Docker on your machine
+- To get the freely available Docker Desktop Community Edition for your laptop or desktop computer go to the [Get Started with Docker downloads](https://www.docker.com/get-started) page and click the Download button for your platform.
+- Register for an account and download Docker.
+- Follow the installation wizard to setup Docker on your machine.
   - On Windows: when prompted to use Windows or Linux containers select Linux. If you already installed previously, switch by right-clicking the Docker icon in the Windows Taskbar and select `Switch to Linux containers..` and confirm.
 
 ## Download and start the Docker image
