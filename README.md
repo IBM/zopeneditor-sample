@@ -1,4 +1,5 @@
 # Welcome to the Wazi Technology Preview
+_(Updated January 24th, 2019 for Wazi 0.1.1. See [What's New](#whats-new) below for details.)_
 
 Welcome to Wazi, a technology preview of new capabilities for Z Open Development, which utilizes and extends the [Zowe Open Mainframe](https://zowe.org) project for mainframe development.
 
@@ -37,12 +38,12 @@ To learn more about Zowe visit this [Blog post](https://developer.ibm.com/code/2
 
 ## Key capabilities of Wazi
 
-Wazi is an exploration of technology to evaluate new DevOps user-experiences with z/OS developers. Just like Zowe, it targets developers of all generations combining the "Old" with the "New" by providing access to trusted tools and interfaces in new experiences and deployment models. Here are some of those new experiences and added-value capabilities in Wazi that we would like your feedback on:
+Wazi is an exploration of technologies and capabilities to evaluate new DevOps user-experiences with z/OS developers. Just like Zowe, it targets developers of all generations combining the "Old" with the "New" by providing access to trusted tools and interfaces in new experiences and deployment models. Here are some of those new experiences and added-value capabilities in Wazi that we would like your feedback on:
 
 - **Zero-client install experience using the Web**: what if your editor with your settings and your application files would just be there on any machine that you just have logged on to. By navigating to a URL in a browser you would be able to get there and see everything the way you left it in your previous session. No installation required, but still a full modern editing experience with all the language-specific features and technology integrations that you would expect from an IDE? The editor and files could be hosted in your organization's protected private-cloud or using Docker and virtual drives, plus you would be able to open your z/OS resources directly in the editor as well. All changes you make can optionally be saved automatically back to its source to make sure you do not lose anything if the connection is lost.
 - **An editor that speaks COBOL**: even though your editor would run on the Web and in your browser it would be just as fast and responsive as a local IDE with all the tools you expect for working with COBOL. Plus there would be many news tools that you have seen in other modern IDEs for other languages. Some of such tools that Wazi provides for COBOL are outline view, syntax highlighting, code completion, code templates, find all references, peek definition, search and rename refactoring across multiple program files, and many other capabilities you want from a modern language-sensitive editor.
-- **Boost productivity and control with a modern SCM**: even if your organization does not standardize on an SCM, using one such as Git locally in a workspace will give you a boost in productivity. You can snapshot work at any point in time, go back or branch into alternative explorations, merge your or your colleagues' branches back in, or just revert back to any earlier state of your code in a flash. Use side-by-side views and "blame" annotations to explore exactly what changed between snapshots when and how it looked before. See exactly for each line when it last changed and by whom. Explore the entire history of all changes in a chronological history viewer.
-- **Directly interact with your z/OS system**: if you have Zowe configured then you can load and edit your files directly from z/OS or download them into your local workspace, add them to git to control your changes, and then later upload the changed files into the same or new dataset to compile and run our application. Do all this from within Wazi with simple drag-and-drop as well as command line interactions from a Terminal that integrates right below your editor giving you one central view to everything.
+- **Boost productivity and control with a modern SCM**: even if your organization does not standardize on an SCM, using one such as Git locally in a workspace will give you a boost in productivity. You can snapshot work at any point in time, go back or branch into alternative explorations, merge your or your colleagues' branches back in, or just revert back to any earlier state of your code in a flash. Use side-by-side views and "blame" annotations to explore exactly what changed between snapshots, when and how it looked before. See exactly for each line when it last changed and by whom. Explore the entire history of all changes for specific file or all files in your workspace in a chronological history viewer.
+- **Directly interact with your z/OS system**: if you have Zowe configured then you can load and edit your files directly from z/OS or download them into your local workspace, add them to Git to control your changes, and then later upload the changed files into the same or new datasets to compile and run our application. Do all this from within Wazi with simple drag-and-drop, as well as command line interactions using a Terminal that integrates right below your editor, giving you one central view to everything.
 
 ## Goals and Limitations of this Technology Preview
 
@@ -52,15 +53,30 @@ This technology preview of Wazi is a first snapshot of our ongoing work of creat
 - *Single-user support*: Even though the Web-technology used for Wazi will eventually be used for multi-user support, in which users can share workspaces and directly collaborate on programs, this release is limited to supporting a single-user at the time for each Docker container. Multiple users can start separate Docker containers using different ports. They could also share program files via Git as well. If multiple users access and modify files directly on MVS using Zowe then the concurrent access will be controlled as in many Web-applications, where the second user saving updates will be told about using an outdated version and being asked to reload. Make sure you copy you changes before doing so. We want to provide a better user-experience for these types of scenarios in the future.
 - *Supported browser*: This early version requires a recent release of a modern Web browser. We recommend Google Chrome, Mozilla Firefox, or MacOS Safari.  Microsoft Edge is currently not supported (see this [Theia Issue](https://github.com/theia-ide/theia/issues/1716) for details), but we want to add it or its already announced successor in the future. There is no plan to support Internet Explorer. Support for mobile platforms is also not available, yet, but something we would like to support in the future as well.
 - *Incomplete features*: there are a couple of features that we have only been implemented partially at this point and which will be completed or enhanced in the short term. Please, provide us with feedback on how you want these to be completed:
-  - *Limited drag-and-drop*: at this point we only have a drag-and-drop operation of a single file from the Files explorer over to an MVS Partitioned Dataset in the Remote Systems explorer to upload that file as a dataset member. Dragging files from MVS to a local directory is missing, but you can accomplish this at the moment via the built-in Zowe Command Line Interface (CLI) as we will show in the tutorial.
-  - *Limited MVS support*: This technology preview and its Remote Systems explorer focuses on Partitioned Datasets. Other dataset formats such as Physical Sequential or Partitioned Dataset Extended to store COBOL files need to be accessed via the Zowe CLI at the moment.
-  - *Remote Systems explorer refresh*: The Remote Systems explorer does not always refresh correctly when its contents changed or other users and tools made changes from the outside. Use the Refresh icon frequently to reload the entire tree to see missing updates or incorrect lists of members. Sometimes you just need to refresh twice or reload the browser page.
-  - *Only one Zowe Connection*: Currently, you should only create one Zowe connection to a z/OS host in the user preferences. The Remote Systems Explorer is designed to work with an entire array of different connections, but a defect currently prevents this from working correctly.
+  - *Limited drag-and-drop*: At this point we only provide a limited set of drag-and-drop operations. You can either drag a single file from the Files explorer over to an MVS Partitioned Dataset in the Remote Systems explorer to upload that file as a dataset member, or you can drag one dataset member or dataset from the Remote Systems to the Files explorer.
+  - *Limited MVS support*: This technology preview and its Remote Systems explorer focuses on Partitioned Datasets. Other dataset formats such as Physical Sequential or Partitioned Dataset Extended to store COBOL files need to be accessed via the Zowe CLI at the moment. Some datasets can be opened a text files if they contain valid content.
   - *Compile and Run*: all these operations need to be executed via the Zowe CLI as no UI operations are available, yet.
   - *Debug*: although you see the Debug menu included into the IDE, it is not hooked up to z/OS, yet. We plan to add that in the future.
   - *No support for COBOL Libraries*: We do support a visual presentation of included copybooks by showing their contents in  rich hovers inside program files. This is done by providing a list of locations in the Preferences editor. The ability to define named libraries is currently missing.
   - *Copybook file changes not refreshed in the browser*: When you edit a copybook the rich hovers in other open program files will not be refreshed immediately. Close and open the program file to accomplish that or reload the entire browser.
-  - *No LSP support for Copybooks and JCL*: When you open copybooks or JCL file, i.e. files with a .cpy or .jcl extension, syntax highlighting will be enabled, but no additional Language Server capabilities will be available for these files, yet. This means you will see no contents in the Outline view, Ctrl+Space will only show code templates, but no syntactical completions, many context menu options will be disabled, etc. As copybooks are incomplete COBOL programs we will need to add special support for them in the future.
+  - *No LSP support for Copybooks and JCL*: When you open copybooks or JCL file, i.e. files with a .cpy or .jcl extension, syntax highlighting will be enabled, but no additional Language Server capabilities will be available for these files, yet. This means you will see no contents in the Outline view, Ctrl+Space will only show code templates, but no syntactical completions, many context menu options will be disabled, etc.
+
+# What's New
+
+In this minor hotfix release 0.1.1 of the Technology Preview 1 we added and fixed the following items:
+
+- Expanded drag-and-drop support: You can now drag items from the Remote Systems explorer to your local workspace. Either drag a dataset member or an entire dataset over to the Files view to copy these as files.
+- You can now open non-partitioned datasets in the editor as well. Please, limit this use case to datasets with text content only.
+- Partitioned datasets without members now show an `Empty Dataset` label.
+- The Remote Systems view can now be toggled, i.e. closed and reopened.
+- Improved loading animation for MVS operations: when you upload and download files the icon in the Remote Systems explorer animates correctly letting you know that an operation is in progress.
+- Added simple MVS name validations in dialogs.
+- Added new more readable file icons for COBOL and JCL.
+- Added additional Outline view icons.
+- Fixed various bugs in presenting and ordering MVS datasets and members correctly.
+- Fixed the sample JCL to work on more system configurations.
+- Fixed the link in the Help menu for the Wazi Community.
+- Updated this tutorial with additional steps explaining the new features as well as refinements of the previous steps.
 
 
 # Installation of the Docker image
@@ -182,8 +198,8 @@ This tutorial provides a complete end-to-end walk-through of the COBOL developme
 1. [Create a Zowe connection to z/OS](#create-a-zowe-connection-to-zos)
 1. [Navigate MVS with Wazi's Remote Systems Explorer](#navigate-mvs-with-wazis-remote-systems-explorer)
 1. [Define property groups to map MVS datasets](#define-property-groups-to-map-mvs-datasets)
-1. [Use the Wazi Terminal and Zowe CLI to interact with z/OS](#use-the-wazi-terminal-and-zowe-cli-to-interact-with-zos)
-1. [Edit and Submit JCL to compile, link, and run jobs](#edit-and-submit-jcl-to-compile-link-and-run-jobs)
+1. [Use the Wazi Terminal and Zowe CLI to interact with z/OS](#use-the-wazi-terminal-and-zowe-cli-to-interact-with-z%2Fos)
+1. [Edit and Submit JCL to compile, link, and run jobs](#edit-and-submit-jcl-to-compile%2C-link%2C-and-run-jobs)
 
 
 ## Explore the GUI
@@ -223,7 +239,7 @@ To get up and running in Wazi, you (as Deb) start exploring editor preferences f
 - Select the the `File > Settings > Open Preferences` menu.
 	- In the editor panel, a list of preference groups is displayed, along with editor tabs for both the User and Workspace Preferences. Switch these tabs respectively in the steps below to decide in which scope you want to add a preference. Selecting a preference on the left will insert it into the selected JSON editor tab on the right. Every preference option has a default that gets displayed in a hover together with a description. Adding a preference into the workspace or user preference editor means that you want to change the default to a new value.
     - Workspace preferences, as the name suggests are specific to the current workspace and stored inside the `.theia` directory at the root of that workspace. If you share the workspace with other users via Git then these should be shared as well as they are intended to be the same for all users. Here you would set preferences that should apply regardless of who makes the edits, such as the Tab size, or pathnames for copybooks etc.
-    - User preferences, are for the current user and apply across different workspaces. These will be stored for the user in their home directory and not shared. Examples, for typical user preferences are related to accessibility such font sizes, editor behavior for code completion, but also z/OS host connections that include usernames and passwords, etc.
+    - User preferences, are for the current user and apply across different workspaces. These will be stored for the user in their home directory and not shared. Examples, for typical user preferences are related to accessibility such font sizes, editor behavior for code completion, but also z/OS host connections that include usernames and passwords, etc. Note, that workspace preferences override any user preference setting you define in both places.
 - Select the Workspace Preferences tab to see that the example workspace of the Wazi Docker image comes with a few preferences out of the box. These include the `"editor.autoSave"` setting, as well as a `"cobol.property-groups"` that defines the location of copybooks for the example programs.
 - Explore some of the Editor Settings to customize your workspace if needed:
 	- Expand the **Editor** preference group.
@@ -384,7 +400,7 @@ Deb can use Theia's SCM views to review the entire timeline of all the Commit ma
 - Switch to the `master` branch using the branch icon at the bottom of the page in the colored status bar and the selection list appearing at the top.
 - Observe that your commit vanished from the list as it does not exist in this branch until your merge your commits into the master branch.
 - Switch back to the `update-report` branch to see your commit again in the history view.
-- Also switch to the `tutorial-complete` branch to examine another set of changes.
+- Also switch to the `tutorial-complete` branch to examine another set of changes. This branch contains a fully modified final version of the files that you can execute later.
 
 
 ## Prepare to work with Zowe
@@ -425,7 +441,7 @@ Now you are connected to Zowe and can start exploring your datasets, create new 
 - Connect to Zowe server by expanding the node in the explorer that has the name of your connection created above.
 - Review the list of any existing datasets shown.
 - Create a new dataset using the right-click context menu of the first `MVS Files` child node below your connection name and select `Create Dataset`
-  - Provide a name such as `USER1.SAMPLE.COBOL` and click Ok.
+  - Provide a name such as `USER1.SAMPLE.COBOL` (using your actual user name instead of USER1) and click Ok.
   - You will see a message at the top of the screen indicating whether or not the action was successful.
   - The dataset was created with the parameters defined in the User Preferences.
   - To change those values for creating your next dataset, simply edit the User Preferences, and save the file.
@@ -451,7 +467,7 @@ Now you are connected to Zowe and can start exploring your datasets, create new 
 
 You see that the same file was listed different for the two datasets. Also opening them in the editor showed two different results. The first was opened in a fully enabled COBOL editor and the second only in a text editor. The reason is that Wazi follows two rules for identifying dataset members as COBOL or COPYBOOKs and the adds visual extensions to the display.
 
-- Rule 1: The dataset ends with `.COBOL` or `.COPYBOOK`. By default Wazi will assume that all members in such datasets are COBOL or COPYBOOKs, respectively.
+- Rule 1: The dataset ends with `.COBOL`, `.COBCOPY`, `.JCL`. By default Wazi will assume that all members in such datasets are COBOL, COPYBOOKs or JCL, respectively.
 - Rule 2: The datasets are listed in a mapping Property Group in the preferences. The next section will explain the details behind that rule.
 
 ## Define property groups to map MVS datasets
@@ -531,8 +547,8 @@ Zowe CLI provides various capabilities for interacting with z/OS that includes i
 
 Zowe CLI requires its own connection that is separate from the connection we defined in the User Preferences for the Remote Systems view. In the CLI a connection is called a Profile.
 
-- Create a profile with this command using your hostname, username and password.
-  - `zowe profiles create zosmf-profile zoweCLI --host host.company.com --user username --pass password --reject-unauthorized false`
+- Create a profile with this command using your hostname, z/OSMF port, username and password.
+  - `zowe profiles create zosmf-profile zoweCLI --host host.company.com --port 443 --user username --pass password --reject-unauthorized false`
 - Once created test this profile with
   - `zowe zosmf check status`
 
@@ -568,7 +584,7 @@ To use the `ALLOCATE.jcl` you need to adjust it for your username first:
 
 Now you can execute the JCL with the ZOWE CLI:
 - `zowe jobs submit local-file "ALLOCATE.jcl"`
-- Verify creation of the datasets by refreshing your Remote Systems view
+- Verify creation of these datasets (using your username instead) by refreshing your Remote Systems view
 	- HLQ.SAMPLE.COBOL
 	- HLQ.SAMPLE.COPYLIB
 	- HLQ.SAMPLE.OBJ
@@ -586,7 +602,13 @@ Once the datasets are created, upload the sample files to the appropriate datase
     - `zowe files ul ftds "SAMPLE.CUSTFILE" "USER1.SAMPLE.CUSTFILE"`
     - `zowe files ul ftds "SAMPLE.TRANFILE" "USER1.SAMPLE.TRANFILE"`
 
-Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps you need to adjust the dataset names again.
+Once uploaded, click on the COBOL dataset members to open them in the editor. You see that the extension `.cbl` was added to the member based on the property group settings we defined earlier. Based on those settings the editor is now using COBOL syntax highlight as well as provided all the other language server features that we had explored earlier. Making changes and saving will write back to the MVS dataset member directly.
+
+Although not relevant for execution of the program, note, that you can also drag and drop in the other direction. To try it out,
+- Drag and drop the dataset `USER1.SAMPLE.COBOL` from the right Remote Systems explorer into the Files explorer.
+- Once, the operation finises, you will see a new folder hierarchy, such as `USER1 > SAMPLE > COBOL` being created with the two COBOL programs inside.
+
+Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps for our program you need to adjust the dataset names again.
 
 - Click `RUN.jcl` in the File view to open it in the JCL editor.
 - Perform the same Find-Replace operation described above replacing `HLQ.` with your TSO username.
@@ -595,12 +617,15 @@ Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps yo
 - You can verify the completion of the job
   	- `zowe jobs ls js` or, if you prefer, use the Zowe JES Explorer
 - You will see a response showing your job id.
-- Refresh the Remote Systems View again to locate the datasets created by the `RUN.jcl` file.
-
-Now you can use Zowe CLI commands to verify the results and output in the editor.
-
 - Check the job status with this command replacing the job id with yours:
   - `zowe jobs view jsbj JOB03772`
+- Refresh the Remote Systems View again to locate the datasets created by the `RUN.jcl` file.
+
+If the job succeeded you can now examine the results directly from the Remote Systems explorer:
+- Click the `USER1.SAMPLE.CUSTOUT` and `USER1.SAMPLE.CUSTRPT` dataset.
+- They will be opened in the editor as text files that you can inspect.
+
+Alternatively, you can use Zowe CLI commands to download the files as well:
 - Get the contents of `SAMPLE.CUSTOUT` and `SAMPLE.CUSTRPT` using your username:
   - `zowe files download ds "USER1.SAMPLE.CUSTOUT"`
   - `zowe files download ds "USER1.SAMPLE.CUSTRPT"`
@@ -621,8 +646,11 @@ We assembled a couple of survey questions that we would like you to answer as we
 
 These are the question in the [Online Survey](https://ibm.biz/wazisurvey). If you prefer to send these answer by email, copy-paste them from here:
 
+- What is your current job title or job responsibility?
+
 - How did you learn about the Wazi Technology Preview?
   - [ ] Email
+  - [ ] Feedback menu in Wazi
   - [ ] Newsletter
   - [ ] Blog
   - [ ] Linkedin
@@ -630,31 +658,38 @@ These are the question in the [Online Survey](https://ibm.biz/wazisurvey). If yo
   - [ ] Other:
 
 - How would rate your overall experience with Wazi?\
-  Scale 1 - 5. 1 being poor, 5 being good.
+  Scale 1 - 5. 1 Very Difficult, 5 Very Easy.
 
-- What aspects of Wazi do you like?
+- What aspects of Wazi do you find is valuable to you? (Select all that apply)
   - [ ] No Client install
   - [ ] Zowe Integration
   - [ ] Browser based code editing
   - [ ] Modern SCM Integration
   - [ ] Building on Theia
+  - [ ] Building on open source
   - [ ] COBOL language server
   - [ ] Refactoring features
   - [ ] Command line integration
-  - [ ] Overall Ease of Use
+  - [ ] Overall ease of use
   - [ ] Other:
 
-- What aspects of Wazi could be improved?
+- Based on your first experience with Wazi, what aspects of Wazi could be improved?
 
 - How would you rate your initial “up and running” experience?\
-  Scale 1 - 5. 1 being poor, 5 being good.
+  Scale 1 - 5. 1 Very Difficult, 5 Very Easy.
 
 - Was the tutorial helpful in your Wazi evaluation?
   - [ ] Did not use it
   - [ ] I used some of it as a reference
   - [ ] It helped a lot
 
-- What editors/IDEs do you currently use for zOS application maintenance and support?
+- What editors/IDEs do you currently use for zOS application maintenance and support? (Select all that apply)
+  - [ ] ISPF
+  - [ ] RDFz
+  - [ ] IDz
+  - [ ] ADDI
+  - [ ] VS Code
+  - [ ] Other:
 
  - How does the Wazi Tech Preview compare to your current editor?
    - [ ] Better
@@ -672,7 +707,10 @@ These are the question in the [Online Survey](https://ibm.biz/wazisurvey). If yo
   - [ ] Peek Definition
   - [ ] Change all Occurrences
   - [ ] Syntax checking
+  - [ ] Other
 
-- What other general editing features would like to to see added?
+- What other general editing features would you use? (Please list all you can think of)
 
 - Is there any other feedback you would like to share with us?
+
+- Can we contact you in the future to get your feedback on the design of our future solutions or products? If yes, please provide your contact details.

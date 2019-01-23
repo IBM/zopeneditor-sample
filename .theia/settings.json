@@ -11,12 +11,17 @@ Preference file for workspace scope
 Please refer to the documentation online (https://github.com/theia-ide/theia/blob/master/packages/preferences/README.md) to learn how preferences work in Theia
 */
 {
-  "editor.autoSave": "off",
-  "cobol.property-groups": [
-    {
-      "name": "SAM-Copybooks",
-      "type": "local",
-      "syslib": ["/home/project"]
-    }
-  ]
+    "editor.autoSave": "off",
+    "application.confirmExit": "always",
+    "preview.openByDefault": true,
+    "zowe.keybinding": "ISPF",
+    "cobol.property-groups": [
+        {
+            "name": "SAM-Copybooks",
+            "type": "local",
+            "syslib": [
+                "/home/project"
+            ]
+        }
+    ]
 }
