@@ -1,5 +1,5 @@
 # Welcome to the Wazi Technology Preview
-_(Updated January 24th, 2019 for Wazi 0.1.1. See [What's New](#whats-new) below for details.)_
+_(Updated January 24th, 2019 for Wazi 0.1.1. See [What's New](#what's-new) below for details.)_
 
 Welcome to Wazi, a technology preview of new capabilities for Z Open Development, which utilizes and extends the [Zowe Open Mainframe](https://zowe.org) project for mainframe development.
 
@@ -18,6 +18,7 @@ This document contains the following sections:
 1. [What is Zowe](#what-is-zowe)
 1. [Wazi's Key Capabilities](#key-capabilities-of-wazi)
 1. [Goals and Limitations](#goals-and-limitations-of-this-technology-preview)
+1. [What's New](#what's-new)
 1. [Installation](#installation-of-the-docker-image)
 1. [Wazi Tutorial](#wazi-tutorial)
 1. [Evaluation Survey](#evaluation-and-feedback-survey)
@@ -108,13 +109,13 @@ $ set USE_LOCAL_GIT=true
 Then load the image you downloaded from ibm.com with the following command. This only has to be done once until you receive a new version as this image can be instantiated multiple times into different containers.
 
 ```bash
-docker load --input wazi-tp1.tar.gz
+docker load --input wazi-tp1i1.tar.gz
 ```
 
 Then finally this is the command to start the docker image creating a fresh new container:
 
 ```bash
-docker run -it -p 3000:3000 ibmcom/wazi:tp1
+docker run -it -p 3000:3000 ibmcom/wazi:tp1i1
 ```
 
 The parameter `-it` made it an interactive command that will now scroll status messages in the terminal window you ran it in. You can stop the Docker container later by simply typing `Ctrl+C`. You can also start the container in the background by leaving the parameter out. The you stop the container with the stop command described further below.
@@ -145,13 +146,13 @@ Once you have completed the tutorial and want to specify a local directory with 
 On Linux or Mac, you can start such a container directly from the folder with your examples, making that local directory the virtual workspace folder by using this command:
 
 ```bash
-docker run -it -p 3000:3000 -v "$(pwd):/home/project:cached" ibmcom/wazi:tp1
+docker run -it -p 3000:3000 -v "$(pwd):/home/project:cached" ibmcom/wazi:tp1i1
 ```
 
 On Windows you have to specify the absolute path to the directory, such as
 
 ```bash
-docker run -it -p 3000:3000 -v "C:\Users\user1\projects\COBOL:/home/project:cached" ibmcom/wazi:tp1
+docker run -it -p 3000:3000 -v "C:\Users\user1\projects\COBOL:/home/project:cached" ibmcom/wazi:tp1i1
 ```
 
 On Windows, Docker will then prompt you for permissions by asking you to supply a username and password of a local Windows user that has full write access to this directory.
@@ -624,6 +625,8 @@ Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps fo
 If the job succeeded you can now examine the results directly from the Remote Systems explorer:
 - Click the `USER1.SAMPLE.CUSTOUT` and `USER1.SAMPLE.CUSTRPT` dataset.
 - They will be opened in the editor as text files that you can inspect.
+- Drag these datasets (one at the time) from the right over to the `project` folder in the File explorer and drop.
+- They will be downloaded and placed into a folder hierarchy such as `USER1 > SAMPLE`.
 
 Alternatively, you can use Zowe CLI commands to download the files as well:
 - Get the contents of `SAMPLE.CUSTOUT` and `SAMPLE.CUSTRPT` using your username:
@@ -653,6 +656,7 @@ These are the question in the [Online Survey](https://ibm.biz/wazisurvey). If yo
   - [ ] Feedback menu in Wazi
   - [ ] Newsletter
   - [ ] Blog
+  - [ ] A conference presentation or lab
   - [ ] Linkedin
   - [ ] IBM.com
   - [ ] Other:
