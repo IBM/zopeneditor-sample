@@ -1,7 +1,7 @@
       ****************************************************************
       * LICENSED MATERIALS - PROPERTY OF IBM
       * "RESTRICTED MATERIALS OF IBM"
-      * (C) COPYRIGHT IBM CORPORATION 2018. ALL RIGHTS RESERVED
+      * (C) COPYRIGHT IBM CORPORATION 2018, 2019. ALL RIGHTS RESERVED
       * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
       * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
       * CONTRACT WITH IBM CORPORATION
@@ -108,6 +108,7 @@
            05  INCR-CUST-ID            PIC 9(5)  VALUE 0.
            05  START-CUST-ID           PIC 9(5)  VALUE 0.
            05  MAX-CUST-ID             PIC 9(5)  VALUE 0.
+           05  SAM2                    PIC X(8)  VALUE 'SAM2'.
       *
       * some additional comments
       * some more additional comments
@@ -280,7 +281,7 @@
       *
       *        Subroutine SAM2 will apply an update to a customer record
       *
-               CALL 'SAM2' USING CUST-REC, TRANSACTION-RECORD,
+               CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
                                       WS-TRAN-OK, WS-TRAN-MSG
                IF WS-TRAN-OK NOT = 'Y'
                    MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
@@ -451,7 +452,7 @@
            IF TRAN-COMMENT = '*'
                MOVE SPACES TO RPT-TRAN-MSG1
            ELSE
-               MOVE '       Transaction processed: ' to rpt-tran-msg1
+               MOVE '       Transaction processed: ' to RPT-TRAN-MSG1
            END-IF.
            WRITE REPORT-RECORD FROM RPT-TRAN-DETAIL1.
 

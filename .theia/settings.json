@@ -14,13 +14,12 @@ Please refer to the documentation online (https://github.com/theia-ide/theia/blo
     "editor.autoSave": "off",
     "application.confirmExit": "always",
     "preview.openByDefault": true,
-    "zowe.keybinding": "ISPF",
     "cobol.property-groups": [
         {
             "name": "SAM-Copybooks",
             "type": "local",
             "syslib": [
-                "/home/project"
+                "/home/project/COPYBOOK"
             ]
         }
     ]

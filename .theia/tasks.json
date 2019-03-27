@@ -1,0 +1,17 @@
+{
+    "tasks": [
+        {
+            "label": "Start IBM Compiled Language Debugger Adapter",
+            "type": "shell",
+            "cwd": "${workspaceFolder}",
+            "command": "/home/wazi/node_modules/@ibm/debug-z/adapter/pdt-daas",
+            "args": [
+                "-data",
+                "/home/debug",
+                "-trace=true",
+                "-port=8001",
+                "-logDir=/home/debug"
+            ]
+        }
+    ]
+}

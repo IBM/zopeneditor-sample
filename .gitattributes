@@ -1,0 +1,15 @@
+*.cpy zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.cbl zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.jcl zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.bms zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.pli zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.mfs zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.bnd zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.lnk zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.rex zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.txt zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.groovy zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.sh zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.properties zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.rexx zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.config zos-working-tree-encoding=ibm-1047 git-encoding=utf-8

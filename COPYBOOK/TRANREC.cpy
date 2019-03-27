@@ -32,8 +32,7 @@
                    15  TRAN-UPDATE-NUM-HH     PIC 99.
                    15  FILLER                 PIC X(27).
        05  CRUNCH-PARMS   REDEFINES TRAN-PARMS.
-           10  CRUNCH-IO-LOOPS        PIC 9(5).
+           10  CRUNCH-KEY             PIC X(6).
            10  FILLER                 PIC X.
            10  CRUNCH-CPU-LOOPS       PIC 9(9).
-           10  FILLER                 PIC X(55).
-
+           10  FILLER                 PIC X(57).

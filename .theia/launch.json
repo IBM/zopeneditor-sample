@@ -1,1 +1,20 @@
-{}
+{
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "type": "z",
+        "name": "Launch session for IBM Compiled Language Debugger",
+        "request": "launch",
+        "debugServer": 8001,
+        "sessionId": "*"
+    },
+    {
+        "type": "z",
+        "name": "List parked IBM Compiled Language Debugger sessions",
+        "request": "attach",
+        "debugServer": 8001,
+        "user": "*",
+        "allSessions": true
+    }
+    ]
+}
