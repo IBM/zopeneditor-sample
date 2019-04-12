@@ -35,7 +35,7 @@ This document contains the following sections:
 Here are the prerequisites for installation:
 
 - *Visual Studio Code*: In order to install Wazi for VS Code, you must install [Microsoft Visual Studio Code](https://code.visualstudio.com/download). See the [VS Code documentation](https://code.visualstudio.com/docs/setup/setup-overview) for installation and configuration instructions.
-- *IBM JAVA 8*: The COBOL language server included in this extension has been implemented in Java. Therefore you need to install and configure a Java 8 Runtime in order to start it. As a result of this installation you must have Java 8 in the path so that VS Code will see it.
+- *IBM JAVA 8 - 64 bit*: The COBOL language server included in this extension has been implemented in Java. Therefore you need to install and configure a Java 8 Runtime - 64 bit in order to start it. As a result of this installation you must have Java 8 in the path so that VS Code will see it.
   - The preferred Java SDK to use is [IBM Java 8](https://developer.ibm.com/javasdk/downloads/sdk8).
   - Alternatively, you can use [Oracle Java SDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 - *Git*: To be able to perform some of the tutorial steps that involve Git we assume that you have it installed and available in your system path so that VS Code can see it. On Macs Git comes out of the box, for Linux you can install it with your distribution's package manager, and for Windows we recommend getting it directly from <https://git-scm.com>.
@@ -357,7 +357,7 @@ To use the `ALLOCATE.jcl` you need to adjust it for your username first:
 - Save the file.
 - Now you can execute the JCL with the ZOWE CLI:
   - `zowe jobs submit local-file "ALLOCATE.jcl"`
-- Verify creation of these datasets (using your username instead) by refreshing your Remote Systems view
+- Verify creation of these datasets (using your username instead) by refreshing your Datasets view
 
 ```ascii
 HLQ.SAMPLE.COBOL
@@ -371,9 +371,10 @@ HLQ.SAMPLE.SYSDEBUG
 
 Once the datasets are created, upload the sample files to the appropriate datasets. Replace the username with your name.
 
-- For the COBOL and COPYBOOK PDS members, simply use `Create New Member` method to move files from your workspace to the MVS dataset:
+- For the COBOL and COPYBOOK PDS members, simply use `Create New Member` option by doing right click on the Dataset to create files in MVS dataset:
   - Create `SAM1` and `SAM2` members to `USER1.SAMPLE.COBOL` \
   - Create `CUSTCOPY`, `SAM2PARM`, `TRANREC` members to `USER1.SAMPLE.COPYLIB`
+* Also You need to manually copy the editor window contents of the local files and paste into the newly created Members of MVS Datasets.(_Note: No Drag & Dropp Support to upload files in MVS Datasets from Local File system nut may be in future deliverables_)
 - For sequential files, use this Zowe CLI upload command:
   - `zowe files ul ftds "SAMPLE.CUSTFILE" "USER1.SAMPLE.CUSTFILE"`
   - `zowe files ul ftds "SAMPLE.TRANFILE" "USER1.SAMPLE.TRANFILE"`

@@ -134,6 +134,14 @@ cd ~/.ssh
 ln -s ~/.profile rc
 ```
 
+You also need to make the Rocket bash the default shell and link the `.profile` also to the required `.bashrc` file.
+
+```bash
+cd ~
+tsocmd "ALTUSER USER OMVS(PROGRAM(/var/rocket/bin/bash))"
+ln -s .profile .bashrc
+```
+
 ## Push your workspace Git repository to the host
 
 Now we need to create a place in USS to which to push the Git repository for building as well as a place for creating build logs.

@@ -734,6 +734,9 @@ Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps fo
 - Click `RUN.jcl` in the File view to open it in the JCL editor.
 - Perform the same modification to the `HLQ` symbolic, replacing `TSOUSER` with the same value used previously.
 - You may or may not need to modify the other symbolics depending on the compile and link libraries your host system uses.
+- If you are using the public Zowe Tutorial system, then you need to change the following:
+  - Line 31, change the line that sets the CMPLIB to `SET CMPLLIB='IGY620.SIGYCOMP'          *COMPILER LIBRARY`
+  - Line 138, 140, 159, 164: the `UNIT` values need to be changed from `SYSDA` and `DISK` to `SYSALLDA` in all cases.
 - The `SPACE1` and `SPACE2` symbolics should be fine as set, but you may change these if necessary.
 - Save the file.
 - Submit the job using Zowe CLI:
