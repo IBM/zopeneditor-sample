@@ -1,6 +1,6 @@
 # Welcome to the Wazi Technology Preview 2
 
-_(Updated March 27th, 2019 for the second Wazi Technology Preview, v0.2.0. See [What's New](#what's-new) below for details.)_
+_(Updated April 16th, 2019 for the second Wazi Technology Preview, v0.2.0. See [What's New](#what's-new) below for details.)_
 
 Welcome to Wazi, a technology preview of new capabilities for Z Open Development, which utilizes and extends the [Zowe Open Mainframe](https://zowe.org) project for mainframe development.
 
@@ -736,7 +736,6 @@ Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps fo
 - You may or may not need to modify the other symbolics depending on the compile and link libraries your host system uses.
 - If you are using the public Zowe Tutorial system, then you need to change the following:
   - Line 31, change the line that sets the CMPLIB to `SET CMPLLIB='IGY620.SIGYCOMP'          *COMPILER LIBRARY`
-  - Line 138, 140, 159, 164: the `UNIT` values need to be changed from `SYSDA` and `DISK` to `SYSALLDA` in all cases.
 - The `SPACE1` and `SPACE2` symbolics should be fine as set, but you may change these if necessary.
 - Save the file.
 - Submit the job using Zowe CLI:
