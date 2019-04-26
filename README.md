@@ -1,6 +1,6 @@
 # Welcome to the Wazi Technology Preview 2
 
-_(Updated April 16th, 2019 for the second Wazi Technology Preview, v0.2.0. See [What's New](#what's-new) below for details.)_
+_(Updated April 26th, 2019 for the second Wazi Technology Preview ifix 1, v0.2.1. See [What's New](#what's-new) below for details.)_
 
 Welcome to Wazi, a technology preview of new capabilities for Z Open Development, which utilizes and extends the [Zowe Open Mainframe](https://zowe.org) project for mainframe development.
 
@@ -74,6 +74,10 @@ This technology preview of Wazi is a first snapshot of our ongoing work of creat
 
 # What's New
 
+## Technology Preview 2, ifix 1
+
+- Smaller bug fixes around memory leaks and managing USS Favorites
+
 ## Technology Preview 2
 
 - Dependency Based Build integration: we are providing sample build scripts and a usage scenario for utilizing IBM's Dependency Base Build directly from Wazi. Details are covered in separate [README-DBB.md](./README-DBB.md) file.
@@ -123,13 +127,13 @@ To install Docker you need to download a Docker Desktop client or have access to
 Once your Docker environment is up and running you can use the following command in a command line Window such as Terminal on Mac or CMD on Windows to start the Wazi container. Load the image you downloaded from ibm.com with the following command. This only has to be done once until you receive a new version as this image can be instantiated multiple times into different containers.
 
 ```bash
-docker load --input wazi-tp2.tar.gz
+docker load --input wazi-tp2i1.tar.gz
 ```
 
 Then finally this is the command to start the docker image creating a fresh new container:
 
 ```bash
-docker run -it -p 3000:3000 -p 8001:8001 ibmcom/wazi:tp2
+docker run -it -p 3000:3000 -p 8001:8001 ibmcom/wazi:tp2i1
 ```
 
 The parameter `-it` made it an interactive command that will now scroll status messages in the terminal window you ran it in. You can stop the Docker container later by simply typing `Ctrl+C`. You can also start the container in the background by leaving the parameter out. The you stop the container with the stop command described further below.
@@ -170,13 +174,13 @@ Once you have completed the tutorial and want to specify a local directory with 
 On Linux or Mac, you can start such a container directly from the folder with your examples, making that local directory the virtual workspace folder by using this command:
 
 ```bash
-docker run -it -p 3000:3000 -p 8001:8001 -v "$(pwd):/home/project:cached" ibmcom/wazi:tp2
+docker run -it -p 3000:3000 -p 8001:8001 -v "$(pwd):/home/project:cached" ibmcom/wazi:tp2i1
 ```
 
 On Windows you have to specify the absolute path to the directory, such as
 
 ```bash
-docker run -it -p 3000:3000 -p 8001:8001 -v "C:\Users\user1\projects\COBOL:/home/project:cached" ibmcom/wazi:tp2
+docker run -it -p 3000:3000 -p 8001:8001 -v "C:\Users\user1\projects\COBOL:/home/project:cached" ibmcom/wazi:tp2i1
 ```
 
 On Windows, Docker will then prompt you for permissions by asking you to supply a username and password of a local Windows user that has full write access to this directory.
