@@ -1,6 +1,8 @@
 # Welcome to the Wazi for VS Code Technology Preview
 
-This extension provides a fully functional [language server](https://langserver.org/) for COBOL that together with core editor capabilities enables COBOL developer to utilize features such as
+_(Updated May 20th, 2019 for the second Wazi Technology Preview ifix 1, v0.2.1. See [What's New](#whats-new) below for details.)_
+
+This extension provides a fully functional [language server](https://langserver.org/) for COBOL that together with core editing capabilities enables COBOL developers to utilize features such as
 
 - syntax highlighting
 - outline view
@@ -30,6 +32,12 @@ This document contains the following sections:
 1. [Wazi for Visual Studio Code Tutorial](#wazi-for-visual-studio-code-tutorial)
 1. [Evaluation Survey](#evaluation-and-feedback-survey)
 
+## What's New
+
+### Technology Preview 2, ifix 1
+
+- Fixed resolution algorithm for including copybooks from multiple different locations and added support for relative path names.
+
 ## Prerequisites
 
 Here are the prerequisites for installation:
@@ -47,9 +55,9 @@ Note: If you do not have access to a z/OS system with Zowe 1.0.1 installed then 
 
 Make sure that you have installed and configure the prerequisites above.
 
-This extension is provided by IBM only as a download from ibm.com. It is not available in the VS Code Marketplace. The downloaded file is called `ibm-wazi-vscode-0.2.0.vsix`. To install this extension file there are two alternative methods:
+This extension is provided by IBM only as a download from ibm.com. It is not available in the VS Code Marketplace. The downloaded file is called `ibm-wazi-vscode-0.2.1.vsix`. To install this extension file there are two alternative methods:
 
-1. Use the VS Code Command Line providing the path to the `.vsix` file :
+1. Use the VS Code Command Line providing the path to the `.vsix` file:
 
     ```bash
     code myExtensionFolder\myExtension.vsix
@@ -65,7 +73,7 @@ This extension is provided by IBM only as a download from ibm.com. It is not ava
 
 ## Limitations
 
-- *No COPYBOOK resolving on MVS data sets*: When you open a member from Zowe files (Datasets Explorer View), i.e.: From a Dataset HLQ.SAMPLE.COBOL, you have opened a SAM1.CBL File. If your file contains COPYBOOK Statement such as (COPY CUSTCOPY or COPY CUSTCOPY IN MYFILE). In this release, we have not yet included a feature for resolving Copybooks located in MVS. So the rich hover on copybook inclusions does not yet work for MVS.
+- *No COPYBOOK resolving on MVS data sets*: When you open a member from Zowe files (Data Sets Explorer View), i.e. from a data set HLQ.SAMPLE.COBOL, you have opened a SAM1.CBL File. If your file contains COPYBOOK Statement such as (COPY CUSTCOPY or COPY CUSTCOPY IN MYFILE). In this release, we have not yet included a feature for resolving Copybooks located in MVS. So the rich hover on copybook inclusions does not yet work for MVS.
 
 # Wazi for Visual Studio Code Tutorial
 
@@ -127,15 +135,17 @@ To get up and running in Wazi, you start exploring editor preferences first. To 
   - Review the `tabSize` value and set for the workspace preferences.
   - Select `quickSuggestions` and `False` - this will allow you to control if code suggestions and snippets are activated in addition to manual code completion requests.
   - Save the settings.
-- For this tutorial we also need to provide so-called COBOL property groups that define how the COBOL editor should look for component files, such as included Copybooks, when editing a COBOL program. To do that add the follow JSON snippet into the existing JSON file for user preferences replacing the path with your actual home directory.
+- For this tutorial we also need to provide so-called COBOL property groups that define how the COBOL editor should look for component files, such as included Copybooks, when editing a COBOL program. To do that add the follow JSON snippet into the existing JSON settings file for the VS Code User Settings replacing the path with the location of your actual VS Code workspace directory.
 
 ```json
 "wazi.cobol.propertygroup": [
   {
     "name": "my-copybooks",
     "locations": [
-      "/Users/user/projects/SAM/",
-      "/Users/user/projects/SAM/COPYBOOK"
+      "COPYBOOK",
+      "C:\\Users\\user1\\Dev\\wazi-sample\\CPYB2",
+      "C:/Users/user1/Dev/wazi-sample/COPYBOOK",
+      "/Users/user1/projects/SAM/COPYBOOK"
     ],
     "cobolDatasets": ["ZOWE.SAMPLE.COBOL"],
     "libraries": [{
@@ -146,10 +156,8 @@ To get up and running in Wazi, you start exploring editor preferences first. To 
 ]
 ```
 
-- In Locations you can provide the actual directory path to resolve Copybooks. You can provide multiple paths to resolve copybooks in different folders.
-
-- In CobolDatasets, You can add the datasetNames to be considered as a CobolDatasets. Means Members of all defined datasets in the CobolDatasets will be considered as a COBOL Files. In above Example, When you open any Member under "ZOWE.SAMPLE.COBOL", It will be considered as a COBOL File.
-- Once you save you will see that also the following preference was added automatically.
+- For the `locations` property you provide an array of directory path names to find Copybooks. You can provide multiple paths to resolve copybooks in different folders. You can specify a path relative to your VS Code workspace (currently only one workspace folder is supported) or an absolute path on your development machine. The example above shows first a relative path and then two different ways of specifying Windows path names with Entries 2 and 3, as well as a Unix/Mac pathname that could be used in Entry 4. For this tutorial you only need the first entry. The other three were just added for illustration.
+- With the `cobolDatasets` property you can specify names of data sets names that should be considered containing COBOL programs or copybooks. This means that when you open members of these data sets using the Zowe VS Code extension in the editor that they shall be considered COBOL files. In the example above, when you open any member of `ZOWE.SAMPLE.COBOL` in MVS, it will be opened the contents of the member in a COBOL editor. To accomplish such a mapping in VS Code you will see that once you save the property into your settings file that that also the following entry was added automatically, which VS Code will use to map the file to the COBOL editor.
 
 ```json
 "files.associations": {
@@ -157,8 +165,7 @@ To get up and running in Wazi, you start exploring editor preferences first. To 
 }
 ```
 
-- This setting was created based on the `"cobolDatasets"` setting above. These file associations are used for mapping MVS data set members, provided by the Zowe Extension discussed further below, to the COBOL language.
-- Alternatively, you could have specified an array of associations yourself, not using the `"cobolDataset"` entry. For example,
+- Alternatively, you could directly specify an array of associations yourself instead of using the `"cobolDataset"` property above. For example,
 
 ```json
 "files.associations": {
@@ -170,7 +177,7 @@ To get up and running in Wazi, you start exploring editor preferences first. To 
 }
 ```
 
-- This setting will now recognise any file names that include strings such as `.COBOL, .COB, .COPYBOOK, .COBCOY, .COPY` as COBOL files.
+- Such a setting will now be used to recognise any file names, including data set and member names, which contain strings such as `.COBOL, .COB, .COPYBOOK, .COBCOY, .COPY` as COBOL files.
 
 - Libraries setting is basically used when in the cobol program you have statements such as `COPY <COPYBOOK_NAME> IN <LIBRARY_NAME>` or `COPY <COPYBOOK_NAME> OF <LIBRARY_NAME>` which finds a library name in the libraries setting of Cobol Property Group and it will look into the folder path that you've provided in locations for that library name to resolve the copybook. You can provide multiple libraries within the Cobol-Property-Group.
 
@@ -258,7 +265,7 @@ You have not committed you file changes to the Git SCM and you can review these 
 
 ## Configure the Zowe CLI with a zOSMF profile
 
-Let's assume that you have now finished your first set of edits in he local workspace. You now want to connect to your z/OS host's MVS to create new datasets and upload the modified files.
+Let's assume that you have now finished your first set of edits in he local workspace. You now want to connect to your z/OS host's MVS to create new data sets and upload the modified files.
 
 This is an optional exercise assuming that you have a z/OS host with Zowe available to you. See the [Prerequisites](#prerequisites) section above for how to request a trial account with IBM.
 
@@ -283,30 +290,30 @@ zowe zosmf check status
 
 ## Navigate data sets with the Zowe explorer
 
-Now you are connected to Zowe and can start exploring your datasets in the visual explorer, as well as create new ones, drag over files, etc.
+Now you are connected to Zowe and can start exploring your data sets in the visual explorer, as well as create new ones, drag over files, etc.
 
 - If not already visible open (right-click one of those grep dividers and select the checkbox `Data Sets`) and expand the Data Sets view in the Explorer activity group.
 - Connect to Zowe server by expanding the node in the explorer that has the name of your connection profile created above.
 - Review the list of any existing zosmf profiles shown.
 - Default profile will be added in the favorites section of the menu.
-- Create a new dataset using the right side of the menu of the first `ZOSMF Profile` name and select first icon with `Create New Dataset`
+- Create a new data set using the right side of the menu of the first `ZOSMF Profile` name and select first icon with `Create New Dataset`
   - Select one option from a menu such as `Data Set Binary`, `Data Set C`, `Data Set Classic`, `Data Set Partitioned`, `Data Set Sequential`.
   - Provide a name such as `USER1.SAMPLE.COBOL` (using your actual user name instead of USER1) and click Ok.
-  - You will see a NEW Dataset is appeared in the Explorer View.
-  - The dataset was created with the parameters defined in the User Preferences.
-- Now you can create a new dataset member with
-  - Right-click on the PDS dataset and select `Create New Member`.
+  - You will see a new Dataset is appeared in the Explorer View.
+  - The data set was created with the parameters defined in the User Preferences.
+- Now you can create a new data set member with
+  - Right-click on the PDS data set and select `Create New Member`.
   - Provide a name for the new member and hit Enter.
   - Expand the PDS to see the new member.
-- Delete a Dataset or Dataset Member
-  - right-click on dataset or member to delete.
+- Delete a data set or data set Member
+  - right-click on the data set or member to delete.
   - Select `Delete PDS` or `Delete Member`, respectively.
-- Rule 1: The dataset ends with `.COBOL`, `.COBCOPY`, `.COPYBOOK`. By default Wazi for VS Code will assume that all members in such datasets are COBOL, COPYBOOKs or COBCOPY, respectively.
-- Rule 2: The datasets are listed in a mapping `files.associations` in the preferences. The next section will explain the details behind that rule.
+- Rule 1: The data set ends with `.COBOL`, `.COBCOPY`, `.COPYBOOK`. By default Wazi for VS Code will assume that all members in such data sets are COBOL, COPYBOOKs or COBCOPY, respectively.
+- Rule 2: The data sets are listed in a mapping `files.associations` in the preferences. The next section will explain the details behind that rule.
 
 ## Use the Terminal and Zowe CLI to interact with z/OS
 
-The Datasets explorer view showed you your datasets and members and allowed you to directly open, edit, and save your programs against MVS. In this technology preview other capabilities, such as right-clicking a JCL to execute it, are still missing. However, by integrating with the Zowe Command Line Interface (CLI) users such as Deb can still use Wazi for VS Code to compile and run her application.
+The Data Sets explorer view showed you your data sets and members and allowed you to directly open, edit, and save your programs against MVS. In this technology preview other capabilities, such as right-clicking a JCL to execute it, are still missing. However, by integrating with the Zowe Command Line Interface (CLI) users such as Deb can still use Wazi for VS Code to compile and run her application.
 
 The way to use any command line operations in Wazi, including Git and other file-based operations, is the Terminal window, which is provided by the underlying Theia platform. You see the Terminal menu in the menu bar.
 
@@ -327,14 +334,14 @@ Zowe CLI requires its own connection that is separate from the connection we def
 - Once created test this profile with
   - `zowe zosmf check status`
 
-Now you are ready to explore some of the commands available. Let's assume you created your profile for the user `USER1` and you have created a dataset with your COBOL programs earlier called `USER1.SAMPLE.COBOL`. If not adjust the command examples accordingly. Then you can run these commands on your MVS datasets:
+Now you are ready to explore some of the commands available. Let's assume you created your profile for the user `USER1` and you have created a data set with your COBOL programs earlier called `USER1.SAMPLE.COBOL`. If not adjust the command examples accordingly. Then you can run these commands on your MVS data sets:
 
-- List your datasets and members:
+- List your data sets and members:
   - `zowe files ls ds USER1`
   - `zowe files ls all-members USER1.SAMPLE.COBOL`
 - Download members
   - `zowe files download ds "USER1.SAMPLE.COBOL(SAM1)"`\
-    _(You will new folders appear on left with the names based on your dataset that contains the file SAM1. You can rename it to add a `.cbl` extension to edit it in the COBOL editor and the later use drag-and-drop or the command line to upload it again.)_
+    _(You will new folders appear on left with the names based on your data set that contains the file SAM1. You can rename it to add a `.cbl` extension to edit it in the COBOL editor and the later use drag-and-drop or the command line to upload it again.)_
 - Check on the status of your jobs
   - `zowe jobs ls js | grep ACTIVE`\
     _(You can see here an example how Zowe CLI command can be used in combination with other Linux commands as well as scripts. This example returns the complete list of jobs and pipes that list into the Linux `grep` command to filter it down to show only the active jobs. This kind of capability enables user now to define all kinds of batch jobs and automation for remotely interacting with z/OS.)_
@@ -345,19 +352,19 @@ Now that Deb has finished all her coding changes, she wants to test her changes.
 
 To make sure you have a working set of file we recommend that you switch your local workspace to the `tutorial-complete` Git branch (via the branch icon at the bottom left) that has the final updated set of programs and support files.
 
-Next, you will need to allocate the datasets on z/OS that will be used for this example. We provided you with a JCL file to allocate the necessary files. Alternatively, you could also use your own existing PDS datasets, or create new datasets in the Datasets view or Zowe CLI commands.
+Next, you will need to allocate the data sets on z/OS that will be used for this example. We provided you with a JCL file to allocate the necessary files. Alternatively, you could also use your own existing PDS data sets, or create new data sets in the data sets view or Zowe CLI commands.
 
 To use the `ALLOCATE.jcl` you need to adjust it for your username first:
 
 - Click on the `ALLOCATE.jcl` file to open it in Wazi for VS Code's editor.\
   _Note: No language support for JCl right now, but it's in our future deliverables._
-- Review the file. It creates datasets in the format `HLQ.SAMPLE.*`.
+- Review the file. It creates data sets in the format `HLQ.SAMPLE.*`.
 - Modify the value for the symbolic `HLQ` to the high level qualifier you wish to use for this tutorial.
   - Replace `TSOUSER` with the desired value
 - Save the file.
 - Now you can execute the JCL with the ZOWE CLI:
-  - `zowe jobs submit local-file "ALLOCATE.jcl"`
-- Verify creation of these datasets (using your username instead) by refreshing your Datasets view
+  - `zowe jobs submit local-file "JCL/ALLOCATE.jcl"`
+- Verify creation of these data sets (using your username instead) by refreshing your data sets view
 
 ```ascii
 HLQ.SAMPLE.COBOL
@@ -369,19 +376,19 @@ HLQ.SAMPLE.TRANFILE
 HLQ.SAMPLE.SYSDEBUG
 ```
 
-Once the datasets are created, upload the sample files to the appropriate datasets. Replace the username with your name.
+Once the data sets are created, upload the sample files to the appropriate data sets. Replace the username with your name.
 
-- For the COBOL and COPYBOOK PDS members, simply use `Create New Member` option by doing right click on the Dataset to create files in MVS dataset:
+- For the COBOL and COPYBOOK PDS members, simply use `Create New Member` option by doing right click on the data set to create files in MVS data set:
   - Create `SAM1` and `SAM2` members to `USER1.SAMPLE.COBOL` \
   - Create `CUSTCOPY`, `SAM2PARM`, `TRANREC` members to `USER1.SAMPLE.COPYLIB`
-* Also You need to manually copy the editor window contents of the local files and paste into the newly created Members of MVS Datasets.(_Note: No Drag & Dropp Support to upload files in MVS Datasets from Local File system nut may be in future deliverables_)
+  - You also need to manually copy the editor window contents of the local files and paste into the newly created Members of MVS data sets.(_Note: No Drag & Dropp Support to upload files in MVS data sets from Local File system nut may be in future deliverables_)
 - For sequential files, use this Zowe CLI upload command:
-  - `zowe files ul ftds "SAMPLE.CUSTFILE" "USER1.SAMPLE.CUSTFILE"`
-  - `zowe files ul ftds "SAMPLE.TRANFILE" "USER1.SAMPLE.TRANFILE"`
+  - `zowe files ul ftds "RESOURCES/SAMPLE.CUSTFILE" "USER1.SAMPLE.CUSTFILE"`
+  - `zowe files ul ftds "RESOURCES/SAMPLE.TRANFILE" "USER1.SAMPLE.TRANFILE"`
 
-Once uploaded, click on the COBOL dataset members to open them in the editor. You see that the extension recognises file as COBOL based on the files.associations preferences we defined earlier. Based on those settings the editor is now using COBOL syntax highlight as well as provided all the other language server features that we had explored earlier. Making changes and saving will write back to the MVS dataset member directly.
+Once uploaded, click on the COBOL data set members to open them in the editor. You see that the extension recognises file as COBOL based on the files.associations preferences we defined earlier. Based on those settings the editor is now using COBOL syntax highlight as well as provided all the other language server features that we had explored earlier. Making changes and saving will write back to the MVS data set member directly.
 
-Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps for our program you need to adjust the dataset names again.
+Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps for our program you need to adjust the data set names again.
 
 - Click `RUN.jcl` in the File view to open it in the editor.
 - Perform the same modification to the `HLQ` symbolic, replacing `TSOUSER` with the same value used previously.
@@ -389,17 +396,17 @@ Before executing the `RUN.jcl` that contains the COMPILE, LINK, and RUN steps fo
 - The `SPACE1` and `SPACE2` symbolics should be fine as set, but you may change these if necessary.
 - Save the file.
 - Submit the job using Zowe CLI:
-  - `zowe jobs submit local-file "RUN.jcl"`
+  - `zowe jobs submit local-file "JCL/RUN.jcl"`
 - You can verify the completion of the job
   - `zowe jobs ls js` or, if you prefer, use the Zowe JES Explorer
 - You will see a response showing your job id.
 - Check the job status with this command replacing the job id with yours:
   - `zowe jobs view jsbj JOB03772`
-- Refresh the Remote Systems View again to locate the datasets created by the `RUN.jcl` file.
+- Refresh the Remote Systems View again to locate the data sets created by the `RUN.jcl` file.
 
-If the job succeeded you can now examine the results directly from the Datasets explorer:
+If the job succeeded you can now examine the results directly from the data sets explorer:
 
-- Click the `USER1.SAMPLE.CUSTOUT` and `USER1.SAMPLE.CUSTRPT` dataset.
+- Click the `USER1.SAMPLE.CUSTOUT` and `USER1.SAMPLE.CUSTRPT` data set.
 - They will be opened in the editor as text files that you can inspect.
 - you can use Zowe CLI commands to download the files as well:
 - Get the contents of `SAMPLE.CUSTOUT` and `SAMPLE.CUSTRPT` using your username:
