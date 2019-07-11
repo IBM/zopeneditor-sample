@@ -437,6 +437,8 @@ Before using Zowe CLI, you must create a profile and connect to z/OS. Follow the
     zowe profiles create zosmf-profile zoweCLI --host host.company.com --port 443 --user USER1 --pass password --reject-unauthorized false
     ```
 
+**Note**, after you create or add a Zowe profile you need to reload the browser windows to make the profile appear in the graphical Zowe tree views provided by the Zowe VS Code extension plugin.
+
 1. Test this profile with this command:
 
     ```bash
@@ -736,22 +738,22 @@ ln -s ~/.profile rc
 
 #### Running the DBB-setup task
 
-A pre-filled *setup task* is provided to run a Dependency Based Build. You can view it by expanding the `.theia` node in the file explorer and clicking the `tasks.json` file to open it in the editor.
+A pre-filled *setup task* is provided to initialize Dependency Based Build. You can view it by expanding the `.theia` node in the file explorer and clicking the `tasks.json` file to open it in the editor.
 
-Remove the comment symbols or copy the task example from the comments section and paste it. Then enter the paths, replacing `${input:...}` with the required data under the `Setup for Dependency Based Build` task in the `args` section:
+You need to provide in `args` section values related to your tso user, fully qualified machine name, the path relative to your USS home directory for the project files to use, and the git url of the repository to clone. Have a look at the `dbb-setup.sh` to see now each of these parameters is used.
 
 ```bash
 {
         "label": "Setup for Dependency Based Build",
-        "type": "shell",
-        "cwd": "${workspaceFolder}",
-        "command": "./dbb-setup.sh",
-        "args": [
-            "${input:user}",
-            "${input:zos-machine}",
-            "${input:project}",
-            "git@github.com:IBM/dbb.git"
-        ]
+            "type": "shell",
+            "cwd": "${workspaceFolder}",
+            "command": "./dbb-setup.sh",
+            "args": [
+                "userID",
+                "host.machine.com",
+                "projectsParent/projectName",
+                "git@github.com:IBM/dbb.git"
+            ]
     }
 ```
 
@@ -793,17 +795,27 @@ git push zos master
 
 A pre-filled *build task* is provided to run a Dependency Based Build task. You can view it by expanding the `.theia` node in the file explorer and clicking the `tasks.json` to open it in the editor.
 
-Enter the paths, replacing `${input:...}` with the required data under the `Start a Dependency Based Build` task in the `args` section:
+Look at the `dbb-branch-build.ssh` to see how each parameter is used. Enter the paths, replacing each example value with the required data under the `Start a Dependency Based Build` task in the `args` section:
 
 ```bash
-"${input:user}@${input:zos-machine}",
-"/u/${input:user}/zAppBuild/dbb-branch-build.sh",
-"${input:git-branch}",
-"/u/${input:user}/zAppBuild",
-"${input:user}",
-"/u/${input:user}/projects",
-"${input:project}",
-"/u/${input:user}/projects/${input:project}/logs"
+{
+    "label": "Start a Dependency Based Build",
+    "type": "shell",
+    "cwd": "${workspaceFolder}",
+    "command": "ssh",
+    "args": [
+        "user@host.machine.com",
+        "cd /u/userID/path/to/zAppBuild",
+        "./dbb-branch-build.sh",
+        "master",
+        "/u/userID/path/to/zAppBuild",
+        "HLQ",
+        "/u/userID/path/to/projectParentFolder",
+        "project",
+        "/u/userID/path/to/projectLogsFolder"
+    ],
+    "problemMatcher": []
+}
 ```
 
 Follow these steps to run the build:
