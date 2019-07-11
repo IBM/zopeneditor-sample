@@ -1,25 +1,22 @@
 /*******************************************************************************
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corporation 2018. All Rights Reserved.
+ * (C) Copyright IBM Corporation 2019. All Rights Reserved.
  *
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/*
-Preference file for workspace scope
-Please refer to the documentation online (https://github.com/theia-ide/theia/blob/master/packages/preferences/README.md) to learn how preferences work in Theia
-*/
 {
     "editor.autoSave": "off",
     "application.confirmExit": "always",
     "preview.openByDefault": true,
-    "cobol.property-groups": [
+    "zde.propertygroups": [
         {
             "name": "SAM-Copybooks",
             "type": "local",
             "syslib": [
-                "/home/project/COPYBOOK"
+                "COPYBOOK",
+                "INCLUDES"
             ]
         }
     ]

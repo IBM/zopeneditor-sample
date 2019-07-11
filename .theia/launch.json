@@ -1,20 +1,33 @@
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corporation 2019. All Rights Reserved.
+ *
+ * Note to U.S. Government Users Restricted Rights:
+ * Use, duplication or disclosure restricted by GSA ADP Schedule
+ * Contract with IBM Corp.
+*******************************************************************************/
 {
-    "version": "0.2.0",
-    "configurations": [
-    {
-        "type": "z",
-        "name": "Launch session for IBM Compiled Language Debugger",
-        "request": "launch",
-        "debugServer": 8001,
-        "sessionId": "*"
-    },
-    {
-        "type": "z",
-        "name": "List parked IBM Compiled Language Debugger sessions",
-        "request": "attach",
-        "debugServer": 8001,
-        "user": "*",
-        "allSessions": true
-    }
-    ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "zDebug",
+			"request": "attach",
+			"name": "List parked IBM Compiled Language Debugger sessions",
+			"allSessions": true,
+			"port": 8002,
+			"ignoreCertificateErrors": true,
+			"secure": true,
+			"host": "cloud.provisioning.zos.ibm.com"
+		},
+		{
+			"type": "zDebug",
+			"request": "launch",
+			"name": "Connect to parked IBM Compiled Language Debugger session",
+			"sessionId": "*",
+			"port": 8002,
+			"ignoreCertificateErrors": true,
+			"secure": true,
+			"host": "cloud.provisioning.zos.ibm.com"
+		}
+	]
 }

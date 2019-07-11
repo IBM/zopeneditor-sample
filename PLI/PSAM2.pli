@@ -1,0 +1,85 @@
+ PSAM2: PROCEDURE(CUSTFILE_RECORD,
+                  CUSTOMER_BALANCE_STATS);
+ /****************************************************************
+  * LICENSED MATERIALS - PROPERTY OF IBM
+  * "RESTRICTED MATERIALS OF IBM"
+  * (C) COPYRIGHT IBM CORPORATION 2019. ALL RIGHTS RESERVED
+  * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+  * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+  * CONTRACT WITH IBM CORPORATION
+  ****************************************************************
+  * PROGRAM:  PSAM2    (PLI FOR MVS AND VM)
+  *
+  * AUTHOR :  DOUG STOUT
+  *           IBM PD TOOLS
+  *
+  * SUBROUTINE - CALLED BY PSAM1
+  * COLLECTS STATISTICS FOR CUSTOMER RECORDS
+  *
+  ****************************************************************/
+
+   DCL DUMP_FINDER CHAR(30) INIT('*STORAGE FOR PROGRAM PSAM2***');
+
+   /***************************************************/
+   /* CUSTOMER RECORD (PASSED FROM CALLING PROGRAM)   */
+   /***************************************************/
+      %INCLUDE CUSTPLI;
+
+   /***********************************************************/
+   /* STATISTICS ACCUMULATORS (PASSED FROM CALLING PROGRAM)   */
+   /***********************************************************/
+      %INCLUDE BALSTATS;
+
+   /********************/
+   /* GENERAL DECLARES */
+   /********************/
+
+   DCL PROGRAM_STATUS        CHAR(30);
+
+   /*****************************************************
+    * PSAM2 PROGRAM ROUTINE                             *
+    *****************************************************/
+
+  /*  ALLOCATE PROGRAM_STATUS; */
+   PROGRAM_STATUS = 'PROGRAM STARTED';
+
+   IF ( BALANCE_FIRST_TIME_SW ) THEN DO;
+     PROGRAM_STATUS = 'ZEROING STATS VARIABLES';
+     BALANCE_COUNT  = 0;
+     BALANCE_TOTAL  = 0;
+     BALANCE_MIN    = 0;
+     BALANCE_MAX    = 0;
+     BALANCE_RANGE  = 0;
+     BALANCE_AVG    = 0;
+     BALANCE_FIRST_TIME_SW = 0;
+   END;
+
+   PROGRAM_STATUS = 'CALCULATING BALANCE STATS';
+            /* INCREMENT RECORD COUNT */
+   BALANCE_COUNT = BALANCE_COUNT + 1;
+            /* ADD THIS CUSTOMER'S BALANCE TO THE GRAND TOTAL */
+   BALANCE_TOTAL = BALANCE_TOTAL + ACCT_BALANCE;
+            /* CALCULATE AVERAGE */
+   BALANCE_AVG = BALANCE_TOTAL / BALANCE_COUNT;
+   BALANCE_AVG = BALANCE_TOTAL / BALANCE_COUNT;
+   IF ( BALANCE_FIRST_TIME_SW ) THEN DO;
+     BALANCE_MIN = ACCT_BALANCE;
+     BALANCE_MAX = ACCT_BALANCE;
+     BALANCE_FIRST_TIME_SW = 0;
+   END;
+   IF ( ACCT_BALANCE < BALANCE_MIN ) THEN
+     BALANCE_MIN = ACCT_BALANCE;
+   IF ( ACCT_BALANCE > BALANCE_MAX ) THEN
+     BALANCE_MAX = ACCT_BALANCE;
+
+             /* CALCULATE RANGE   */
+   BALANCE_RANGE = BALANCE_MAX - BALANCE_MIN;
+
+   PROGRAM_STATUS = 'PROGRAM ENDING';
+  /* FREE PROGRAM_STATUS; */
+
+   RETURN;
+
+ PROGRAM_END:
+ END PSAM2;
+

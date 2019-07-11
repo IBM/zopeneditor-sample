@@ -1,17 +1,108 @@
-{
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corporation 2019. All Rights Reserved.
+ *
+ * Note to U.S. Government Users Restricted Rights:
+ * Use, duplication or disclosure restricted by GSA ADP Schedule
+ * Contract with IBM Corp.
+ *******************************************************************************/
+/* Sample task for running the setup for a dependecy based build. */
+/* See the dbb-setup.sh for details.  Comment out and replace placeholders. */
+/*
+ {
+    "tasks": [
+    {
+        "label": "Setup for Dependency Based Build",
+        "type": "shell",
+        "cwd": "${workspaceFolder}",
+        "command": "./dbb-setup.sh",
+        "args": [
+            "userID",
+            "host.machine.com",
+            "projectsParent/projectName",
+            "git@github.com:IBM/dbb.git"
+        ]
+    }]
+  }
+*/
+/* Sample task for runnin a dependency based build. */
+/* See the dbb-branch-build.sh for details. Comment out and replace placeholders. */
+/*
+"tasks": [
+    {
+        "label": "Start a Dependency Based Build",
+        "type": "shell",
+        "cwd": "${workspaceFolder}",
+        "command": "ssh",
+        "args": [
+            "user@host.machine.com",
+            "cd /u/userID/path/to/zAppBuild",
+            "./dbb-branch-build.sh",
+            "master",
+            "/u/userID/path/to/zAppBuild",
+            "HLQ",
+            "/u/userID/path/to/projectParentFolder",
+            "project",
+            "/u/userID/path/to/projectLogsFolder"
+        ],
+        "problemMatcher": []
+    }] 
+*/
+/* Another sample task for running Dependendency Based Builds if using VS Code with full parameter support */
+/*
     "tasks": [
         {
-            "label": "Start IBM Compiled Language Debugger Adapter",
+            "label": "Setup for Dependency Based Build",
             "type": "shell",
             "cwd": "${workspaceFolder}",
-            "command": "/home/wazi/node_modules/@ibm/debug-z/adapter/pdt-daas",
+            "command": "./myscript.sh",
+                "args":[
+                    "${input:user}",
+                    "${input:zos-machine}",
+                    "${input:project}",
+                    "git@github.com:IBM/dbb.git"
+                ]
+        },
+        {
+            "label": "Start a Dependency Based Build",
+            "type": "shell",
+            "command": "ssh",
             "args": [
-                "-data",
-                "/home/debug",
-                "-trace=true",
-                "-port=8001",
-                "-logDir=/home/debug"
-            ]
+                "${input:user}@${input:zos-machine}",
+                "/u/${input:user}/zAppBuild/dbb-branch-build.sh",
+                "${input:git-branch}",
+                "/u/${input:user}/zAppBuild",
+                "${input:user}",
+                "/u/${input:user}/projects",
+                "${input:project}",
+                "/u/${input:user}/projects/${input:project}/logs"
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "user",
+            "description": "The User ID/HQL to use (lower case):",
+            "default": "user1",
+            "type": "promptString"
+        },
+        {
+            "id": "zos-machine",
+            "description": "The z/OS USS machine to run the build on:",
+            "type": "promptString"
+        },
+        {
+            "id": "project",
+            "description": "Select the project to build:",
+            "default": "SAM",
+            "type": "promptString"
+        },
+        {
+            "id": "git-branch",
+            "description": "Git branch to build:",
+            "default": "master",
+            "type": "promptString"
         }
     ]
-}
+    */

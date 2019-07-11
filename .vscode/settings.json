@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.COBOL*": "cobol",
-        "*.COB*": "cobol",
-        "*.COBCOPY*": "cobol",
-        "*.COPYBOOK*": "cobol",
-        "*.COPY*": "cobol"
-    }
-}
