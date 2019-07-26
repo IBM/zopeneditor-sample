@@ -42,9 +42,12 @@ fi
 # Then stage and commit the changes added to project directory
 ssh $USER@$HOST PROJ=$PROJECT_DIR CLONE=$CLONE_URL '
 ZAPP_DIR=$((find '$(pwd -P)' -name "zAppBuild") 2>&1)
-if [[ $ZAPP_DIR == " " ]]; then
+if [[ $ZAPP_DIR != *zAppBuild* ]] || [[ $ZAPP_DIR == " " ]]; then
+	chmod 600 ~/.ssh/id_rsa
+	chmod 700 ~/.ssh/
 	OUTPUT=$(git clone "${CLONE}")
 	echo $OUTPUT
+    sleep 20
     ZAPP_DIR=$((find "$(pwd -P)" -name "zAppBuild") 2>&1)
 	if [[ "$OUTPUT" == *error* ]]; then
 		echo 'There is a Git error. Aborting...'
@@ -76,6 +79,7 @@ git pull zos master
 # Gather infor for "Start a Dependency Based Build" task.
 OUTPUT=$(ssh $USER@$HOST 'find "$(pwd -P)" -name "zAppBuild"')
 PROJ_PARENT=$(ssh $USER@$HOST 'cd '"${PROJECT_DIR}"'; cd ..; pwd')
+PROJ=$PROJECT_DIR
 if [[ $PROJECT_DIR == *"/"* ]]; then
     INDEX=$(echo `expr index "$PROJECT_DIR" /`)
     PROJ=${PROJECT_DIR}

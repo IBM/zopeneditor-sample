@@ -6,7 +6,7 @@
 2. [Known issues and limitations](#known-issues-and-limitations)
 3. [Setting preferences](#setting-preferences)
 4. [Creating Git branches](#creating-git-branches)
-5. [Searching for COBOL and PL/I components](#searching-for-cobol-and-pli-components)
+5. [Searching for COBOL and PL/I components](#searching-for-cobol-and-pl%2Fi-components)
 6. [Making code changes](#making-code-changes)
 7. [Review your code using COBOL Metrics](#review-your-code-using-cobol-metrics)
 8. [Committing changes into Git branches](#committing-changes-into-git-branches)
@@ -15,6 +15,7 @@
 11. [Submitting JCL to compile, link, and run jobs](#submitting-jcl-to-compile%2C-link%2C-and-run-jobs)
 12. [Debugging applications with Debugger](#debugging-applications-with-debugger)
 13. [Running IBM® Dependency Based Build](#running-ibm-dependency-based-build)
+
 
 ## Overview
 
@@ -62,7 +63,7 @@ Get familiar with some of the key user interface capabilities and views that are
 
 6. Problems: Displays errors of files. You can open the Problems view via View menu or by clicking the error and warning icons in the editor status bar at the bottom.
 
-7. Terminal: Provides a command line interface that you can use to type any shell command, including advanced Git commands and Zowe Command Line operations to interact with z/OS. You can open the terminal through the Terminal menu or ``Ctrl+` ``.
+7. Terminal: Provides a command line interface that you can use to type any shell command, including advanced Git commands and Zowe Command Line operations to interact with z/OS. You can open the terminal through the Terminal menu or ``Ctrl+` `` (Windows and Mac).
 
 8. Edit and Selection: Provides essential operations for editing.
 
@@ -72,7 +73,7 @@ Get familiar with some of the key user interface capabilities and views that are
 
 ## Exploring the sample files
 
-A set of sample files is provided within the IDE to help you explore the editor features. You can open the directory using the `File > Open..` menu. You find the sample in the docker container under `projects > sample`. Select the `sample` folder to open it. Then click the file `README.md` to see this document.
+A set of sample files is provided within the IDE to help you explore the editor features. You can open the directory using the `File > Open...` menu. You find the sample in the docker container under `projects > sample`. Select the `sample` folder to open it. Then click the file `README.md` to see this document.
 
 The sample application consists of the following files:
 
@@ -121,9 +122,11 @@ The IDE has the following known issues and limitations now:
 
 ## Setting preferences
 
+Before using the IDE, you can set preferences that control the characteristics of your environment.
+
 ### Setting workspace preferences and user preferences
 
-You can set your workspace preferences and user preferences by clicking `File > Settings > Preferences`, both of which are represented in JSON format.
+You can set your workspace preferences and user preferences by clicking `File > Settings > Open Preferences`, both of which are represented in JSON format.
 
 - Workspace preferences: Apply to the current workspace and stored inside the `.theia` directory at the root of that workspace. If you share the workspace with other users through Git, the settings can be shared if the settings are intended to be the same for all users. You would set preferences that should apply regardless of who makes the edits, such as the Tab size, and path names for includes and other preferences.
 
@@ -163,17 +166,15 @@ Property groups are required to define how the COBOL and PL/I editors look for c
       "libraries": [
         {
           "name": "MYLIB",
-            "locations": []
+          "locations": []
         }
       ]
     }
  ]
-]
+
 ```
 
 For the `syslib` property, you provide an array of directory path names to find includes. You can provide multiple paths to resolve includes in different folders. You can specify a path relative to your IDE workspace (only one workspace folder is supported now) or an absolute path on your development machine.
-
-In the example above, a relative path is provided first. Two different ways of specifying Windows path names are provided in entries 2 and 3. A Unix/Mac path name that might be used is provided in Entry 4.
 
 Libraries setting is used when you have statements such as `COPY <COPYBOOK_NAME> IN <LIBRARY_NAME>` or when you find a library name in the libraries setting of the Property Group in the COBOL or PL/I program. The setting looks into the folder path that you provided in locations for that library name to resolve the copybook or include. You can provide multiple libraries within the `zde.propertygroups`.
 
@@ -238,10 +239,10 @@ Using this setting, you can navigate to the path specified, and see a downloaded
 To manage your codes for parallel development, you can create a new branch using the integrated Git. To create a new Git branch:
 
 1. Select the branch icon at the lower left of the browser page in the colored status bar. A drop-down box at the top of the browser page appears with various options.
-1. Select the branch icon at the bottom again and then `Create new branch..`.
+1. Select the branch icon at the bottom again and then `Create new branch...`.
 1. Enter the name of the new branch.
 
-**Next step**: [Searching for Cobol and PL/I Components](#Searching-for-cobol-and-pli-components)
+**Next step**: [Searching for Cobol and PL/I Components](#searching-for-cobol-and-pl%2Fi-components)
 
 [Back to top](#table-of-contents)
 
@@ -259,7 +260,7 @@ Take the sample files as an example. To search for components that generate and 
 
 3. Optional: Perform a second search for the `CRUNCH` transaction to determine the affected components.
 
-**Next step**: [Making code changes](#Making-code-changes)
+**Next step**: [Making code changes](#making-code-changes)
 
 [Back to top](#table-of-contents)
 
@@ -279,17 +280,17 @@ The IDE's editor supports COBOL and PL/I editing. Select the program or copybook
   - Expand and collapse sections such as Division Headings, Section Headings, and Variable Group Names in the Outline View.
   - Recognize includes, procedures, loops quickly via the icons located by the various items.
   - Go to a wanted location in the code by clicking that section header in the view.
-  - Searching for identifiers within the outline by pressing `CTRL+SHIFT+O` on Windows, or `CMD+SHIFT+O` on a Mac within the Editor window.
+  - Searching for identifiers within the outline by pressing `Ctrl+Shift+O` (Windows) or `Cmd+Shift+O` (Mac) within the Editor window.
 
-  When you move your cursor over the program, outline nodes are automatically selected. To turn on or off the capabilities of this view, click `...` on the upper right corner of Outline view and you can find multiple options to organize your outline view such as `Follow on Cursor`, `Filter by Type`, and `Sort by Name`, `Position and Type`.
+  When you move your cursor over the program, outline nodes are automatically selected.
 - Code completion
 
-  When you start typing a command, a selection list of commands and code snippets are displayed automatically or by typing `Ctrl+Space` depending on your preferences settings.
+  When you start typing a command, a selection list of commands and code snippets are displayed automatically or by typing `Ctrl+Space` (Windows and Mac) depending on your preferences settings.
 
   This feature also works for variable names defined in the program.
 - Cursor hover
 
-  To preview the contents of a copybook, move your mouse cursor over the copybook name in a COPY statement. To open the copybook in a separate editor, press `Ctrl+Click`.
+  To preview the contents of a copybook, move your mouse cursor over the copybook name in a COPY statement. To open the copybook in a separate editor, press `Ctrl+Click` (Windows) or `Cmd+Click` (Mac).
 
   To see the working storage definition or DCL definition and the parent group of a variable name, move your mouse cursor over to the variable name.
 
@@ -297,21 +298,19 @@ The IDE's editor supports COBOL and PL/I editing. Select the program or copybook
 
   When you double-click a variable name to highlight the entire name and then right-click it, you can see the following available actions:
 
-  - `Change All Occurrences (CtrlCmd+F2)`\
+  - `Change All Occurrences: Ctrl+F2 (Windows) or Cmd+F2 (Mac)`\
     When you type the new name, all occurrences are changed simultaneously.
 
     **NOTE**: In the scroll bar on the right side of the editor, each occurrence is noted with a location bar.
-  - `Find All References (Shift+Alt/Option+F12)`\
-    A Results References view is displayed on left side of the screen. Click any result to go to that location in the file.
-  - `Peek References (Shift+F12)`\
-    A Results References view is displayed on left side of the screen. Click any result to go to that location in the file.
-  - `Go to Definition (F12)`\
-    Go to the location where the variable is defined. It opens the copybook or include if applicable.
-  - `Go to Symbol (CtrlCmd+Shift+O)`\
+  - `Find All References: Shift+F12 (Windows and Mac)`\
+    A Results References view is displayed underneath the variable. Click any result to go to that location in the file.
+  - `Go to Definition: Ctrl+F12 (Windows) or Cmd+F12 (Mac)`\
+    Go to the location where the variable is defined. It opens the copybook or include if applicable. If using the keyboard shortcut, the variable should only be clicked once before the shortcut keys are pressed.
+  - `Go to Symbol: Ctrl+Shift+O (Windows) or Cmd+Shift+O (Mac)`\
     When you enter object name in search bar or scroll through items to select object, the cursor is moved to that location.
-  - `Peek Definition (CtrlCmd+F12)`\
-    Open a codelens box showing where the variable was defined in the code.
-  - `Rename Symbol (F2)`\
+  - `Peek Definition: Alt+F12 (Windows) or Option+F12 (Mac)`\
+    Open a codelens box showing where the variable was defined in the code. If using the keyboard shortcut, the variable should only be clicked once before the shortcut keys are pressed.
+  - `Rename Symbol: F2 (Windows and Mac)`\
     Rename the selected symbol, and the changes are done in the whole program and copybook or include if it is attached to that symbol.
 - Syntax checking
 
@@ -323,9 +322,9 @@ The IDE's editor supports COBOL and PL/I editing. Select the program or copybook
 
 - Undo and Redo
 
-  You can undo your changes by pressing `Ctrl+Z`. Redo your changes by pressing `Ctrl+Shift+Z`.
+  You can undo your changes by pressing `Ctrl+Z` (Windows) or `Cmd+Z` (Mac). Redo your changes by pressing `Ctrl+Shift+Z` (Windows) or `Cmd+Shift+Z` (Mac).
 
-**Next step**: [Review your code using COBOL Metrics](#Review-your-code-using-cobol-metrics)
+**Next step**: [Review your code using COBOL Metrics](#review-your-code-using-cobol-metrics)
 
 [Back to top](#table-of-contents)
 
@@ -333,14 +332,16 @@ The IDE's editor supports COBOL and PL/I editing. Select the program or copybook
 
 The IDE's COBOL language server provides you with all the editing capabilities discussed above and can also utilize its knowledge about COBOL to provide you with statistical counters for COBOL language elements such as Operators and Operands, as well as use those to compute various complexity metrics, such as [Halstead metrics](https://en.wikipedia.org/wiki/Halstead_complexity_measures) (also see [[1]](https://www.verifysoft.com/en_halstead_metrics.html), [[2]](https://www.geeksforgeeks.org/software-engineering-halsteads-software-metrics/), [[3]](https://www.tutorialspoint.com/software_engineering/software_design_complexity.htm)). You can use these metrics to assess the complexity of your COBOL programs as well as set thresholds for various quality metrics that you do not want violate.
 
-To view COBOL program metrics (for example, for `COBOL/SAM1.cbl`), right-click your COBOL program and select `Program Metrics` from the context menu. This will open the metrics view on the right side of the editor. You can scroll through the list to review the metrics that are available. To learn about each metric, click the `(i)` to access a tooltip.
+When you open a COBOL program file (for example, `COBOL/SAM1.cbl`) and click inside the editor, you will see some metrics-related annotations for that file in the editor's status bar at the bottom.
+
+To view all of the file's COBOL program metrics, click on the `View All Metrics` link in the status bar. This will open the metrics view on the right side of the editor. You can also open this view by right-clicking inside your open COBOL program and selecting `Program Metrics` from the context menu. The metrics view shows a table of available metrics that you can scroll through to review. To learn about each metric, click the `(i)` icon to access a tooltip.
 
 The table is interactive, reacting to your edits as values get recomputed every time you save and showing you change deltas. For example,
 
 - In `SAM1.cbl`, go to Line 243 and cut out the entire `IF` block until Line 270 and save.
 - Check the table again as the `Your Change` column was updated, showing relative changes for each metric that was impacted. For example, as nested `IF-ELSE` statements were removed, the `Cyclomatic Complexity` of the program went down by 5. You can see how many other metrics were also updated. The IDE presents these changes relative to the time you opened the editor. If you close and reopen it the numbers will be reset.
 - As the code that branches out to other paragraphs was cut out, you can see red squiggles and errors in the Problems view telling you about `Unreachable Code` as no other code calls these paragraphs now.
-- Go back into the editor and press `Ctrl+z` (or `Command+z` on Mac) to restore the code you cut out to get back to a consistent state.
+- Go back into the editor and press `Ctrl+Z` (Windows) or `Cmd+Z` (Mac) to restore the code you cut out to get back to a consistent state.
 
 You can also set thresholds for your metrics either in your personal User Preferences or in Workspace Preferences if you want to share these with your team. Follow these steps to set thresholds for your metrics:
 
@@ -379,7 +380,7 @@ If you go back to the `SAM1.cbl` editor and review the metrics table, you can no
 - Messages about threshold violations are displayed on the far right of the table. For example, for `SAM1`, the Cyclomatic complexity is 29 and therefore larger than the threshold. The comments percentage is smaller than 15% and therefore also shown as a violation.
 - If you open the `SAM2.cbl` program, both metrics are in the acceptable range.
 
-**Next step**: [Committing changes into Git branches](#Committing-changes-into-Git-branches)
+**Next step**: [Committing changes into Git branches](#committing-changes-into-git-branches)
 
 [Back to top](#table-of-contents)
 
@@ -389,7 +390,7 @@ After making code changes and refinements, you can commit changed files to the G
 
 To commit changed files:
 
-1. Open the Git view by clicking `View > Git` or pressing `Ctrl+Shift+G`, which lists all the files that you added or modified.
+1. Open the Git view by clicking `View > Git`, or pressing `Ctrl+Shift+G` (Windows) or `Cmd+Shift+G` (Mac), which lists all the files that you added or modified.
 2. To review changes to a changed file that is marked by the `M`, double-click the file to open a diff editor view.
 3. Take one of the following actions:
 
@@ -416,7 +417,7 @@ Shows your data sets and members and allows you to directly open, edit, and save
 
 Lets you interact with Git and perform file-based operations.
 
-To open the Terminal window, click `Terminal > New Terminal` or type ``(Ctrl+`)``. The terminal is opened at the bottom below the editor and inside the working directory that contains all the files that are shown in the Files view. You can execute Linux command on your files.
+To open the Terminal window, click `Terminal > New Terminal` or type ``Ctrl+` ``. The terminal is opened at the bottom below the editor and inside the working directory that contains all the files that are shown in the Files view. You can execute Linux command on your files.
 
 Commonly used commands:
 
@@ -437,9 +438,9 @@ Before using Zowe CLI, you must create a profile and connect to z/OS. Follow the
     zowe profiles create zosmf-profile zoweCLI --host host.company.com --port 443 --user USER1 --pass password --reject-unauthorized false
     ```
 
-**Note**, after you create or add a Zowe profile you need to reload the browser windows to make the profile appear in the graphical Zowe tree views provided by the Zowe VS Code extension plugin.
+   **Note**: After you create or add a Zowe profile, you need to reload the browser windows to make the profile appear in the graphical Zowe tree views provided by the Zowe VS Code extension plugin.
 
-1. Test this profile with this command:
+2. Test this profile with this command:
 
     ```bash
     zowe zosmf check status
@@ -489,7 +490,7 @@ A list of existing zosmf profiles is shown.
 
 The data set is created with the parameters defined in the User Preferences. To create a new date set, take the following steps:
 
-1. Click the menu of the first `ZOSMF Profile` name, and select `Create New Dataset`.
+1. Hover over the first `ZOSMF Profile` name and select the `Create New Dataset` icon.
 
 2. Select one option from a menu such as `Data Set Binary`, `Data Set C`, `Data Set Classic`, `Data Set Partitioned`, `Data Set Sequential`.
 
@@ -515,6 +516,7 @@ To delete a data set or data set member, take the following steps:
 
   1. Right-click the data set or member to delete.
   2. Select `Delete PDS` or `Delete Member`.
+  3. Select `Yes` to confirm.
 
 [Back to top](#table-of-contents)
 
@@ -562,7 +564,7 @@ After you complete coding changes, you can test your changes.  To test your chan
 
       ```ascii
       HLQ.SAMPLE.COBOL
-      HLQ.SAMPLE.COPYLIB
+      HLQ.SAMPLE.COBCOPY
       HLQ.SAMPLE.OBJ
       HLQ.SAMPLE.LOAD
       HLQ.SAMPLE.CUSTFILE
@@ -575,7 +577,7 @@ After you complete coding changes, you can test your changes.  To test your chan
    For COBOL and COPYBOOK PDS members, right-click the data set and select `Create New Member` to create files in MVS data set. You need to create the members as follows:
 
      - Create `SAM1` and `SAM2` members to `USER1.SAMPLE.COBOL`.
-     - Create `CUSTCOPY`, `SAM2PARM`, `TRANREC` members to `USER1.SAMPLE.COPYLIB`.
+     - Create `CUSTCOPY`, `SAM2PARM`, `TRANREC` members to `USER1.SAMPLE.COBCOPY`.
      - Manually copy the contents of the local files in the editor and paste into the newly created Members of MVS data sets.
 
      **Limitation**: Drag and drop support to upload files in MVS data sets from the local file system is unavailable now.
@@ -624,7 +626,7 @@ After you complete coding changes, you can test your changes.  To test your chan
 
 ## Debugging applications with Debugger
 
-Before debugging applications, follow the instructions in [Submitting JCL to compile, link, and run jobs](#Submitting-JCL-to-compile,-link,-and-run-jobs) to allocate the sample data sets, copy the sample files into those data sets, and customize the sample JCL for your system.
+Before debugging applications, follow the instructions in [Submitting JCL to compile, link, and run jobs](#submitting-jcl-to-compile%2C-link%2C-and-run-jobs) to allocate the sample data sets, copy the sample files into those data sets, and customize the sample JCL for your system.
 
 To build the sample application with debug options and start it under control of the debugger, follow these steps:
 
@@ -632,7 +634,7 @@ To build the sample application with debug options and start it under control of
 
 2. Launch your sample application under control of the IBM z/OS Debugger backend by submitting `DEBUG.jcl` or `DEBUGPLI.JCL`.
 
-3. Open the `Debug` view by clicking `View > Debug`, or  pressing `Ctrl+Shift+D`.
+3. Open the `Debug` view by clicking `View > Debug`, or  pressing `Ctrl+Shift+D` (Windows) or `Cmd+Shift+D` (Mac).
 
 4. Open the `launch.json` file by clicking `Debug > Open Configuration`, and update the `host` attribute in the `Connect to parked IBM Compiled Language Debugger session` to contain your z/OS host name.
 
@@ -702,7 +704,7 @@ export PATH=/bin:${DBB_HOME}/bin:${JAVA_HOME}/bin:${ROCKET}/bin::$PATH
 
 You need to configure password-less shh authentication, which will enable you to perform many Git operations such as `git push` form the IDE Git user-interface view. If you cannot do this you need to execute such Git operations from the command line entering the TSO password every time.
 
-In the IDE's terminal perform the following. Accept the default location for the key and when prompted for a "passphrase" type return for an empty one. Remember to replace user with your TSO username and host.machine.com with the ip or address of your z/OS host:
+In the IDE's terminal perform the following. Accept the default location for the key and when prompted for a "passphrase" type return for an empty one. Remember to replace user with your TSO username and `host.machine.com` with the ip or address of your z/OS host:
 
 ```bash
 $ cd ~
@@ -729,12 +731,22 @@ ssh 'user@host.machine.com'
 
 This should lead you right into the USS prompt without asking for a password anymore. If this did not work then check out the troubleshooting section of the second blog post above. Often it is related to permission not set correctly on the z/OS host's `~/.ssh` directory and files.
 
-Finally, to allow the IDE sample build scripts to access Git repositories located in your USS profile directories, you need to configure ssh for non-login shells to use the same environment variables as specified earlier in the .profile file. An easy way to accomplish that is by providing a symbolic link inside your `.ssh` directory back to the `.profile` file. So in the z/OS USS shell execute these commands:
+Working with a docker image the profile itself has to have a specific set of permissions to allow password less ssh and to run the `Start a Dependency Based Build` task.  In the z/OS USS shell execute these commands:
+
+```bash
+cd /u
+chmod 755 user
+```
+
+To allow the IDE sample build scripts to access Git repositories located in your USS profile directories, you need to configure ssh for non-login shells to use the same environment variables as specified earlier in the .profile file. An easy way to accomplish that is by providing a symbolic link inside your `.ssh` directory back to the `.profile` file. So in the z/OS USS shell execute these commands:
 
 ```bash
 cd ~/.ssh
 ln -s ~/.profile rc
+ssh-keyscan github.com >> ~/.ssh/known_hosts
 ```
+
+Finally, make sure the ssh key generated above is added to SSH Keys on your Github account to be able to clone public repositories on z/OS.
 
 #### Running the DBB-setup task
 
@@ -805,8 +817,7 @@ Look at the `dbb-branch-build.ssh` to see how each parameter is used. Enter the 
     "command": "ssh",
     "args": [
         "user@host.machine.com",
-        "cd /u/userID/path/to/zAppBuild",
-        "./dbb-branch-build.sh",
+        "/u/userID/path/to/zAppBuild/dbb-branch-build.sh",
         "master",
         "/u/userID/path/to/zAppBuild",
         "HLQ",
@@ -833,7 +844,7 @@ When the build succeeds, you can see messages such as `Build State: CLEAN` and `
 You can see a URL to a build report within the build output, for example, \
 `** Build result created for BuildGroup:SAM-master BuildLabel:build.20190612.010858.008 at https://host:9443/dbb/rest/buildResult/2521`
 
-To view the build report, open the URL in a browser by pressing `Ctrl` and clicking it, and log in to the DBB server.
+To view the build report, open the URL in a browser by pressing `Ctrl+Click` (Windows) or `Cmd+Click` (Mac), and log in to the DBB server.
 You can see each file that was compiled when you select the `view` link in the build report. To see all the dependencies that were required to build a program such as `COBOL\SAM1`, click `Show Dependencies`.
 
 You can also see a build log within the build output. The build log is above the row with the URL, which looks like\
@@ -859,7 +870,7 @@ The log file that has the contents of the messages that are shown in the termina
 
 5. Change the `name` and `gitbranch` of the new launch.
 
-6. Follow the steps that are specified in [Running a First Build Against Master](#Running-a-first-build-against-master) choosing the Dependency Based Build Launch with the `Branch Build` configuration.
+6. Follow the steps that are specified in [Running a First Build Against Master](#running-a-first-build-against-master) choosing the Dependency Based Build Launch with the `Branch Build` configuration.
 
 [Back to top](#table-of-contents)
 

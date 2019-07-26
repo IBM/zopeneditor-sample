@@ -8,7 +8,7 @@
             "args": [
                 "userID",
                 "host.machine.com",
-                "projectsParent/projectName",
+                "projectName",
                 "git@github.com:IBM/dbb.git"
             ]
         },
@@ -19,8 +19,7 @@
             "command": "ssh",
             "args": [
                 "user@host.machine.com",
-                "cd /u/userID/path/to/zAppBuild",
-                "./dbb-branch-build.sh",
+                "/u/userID/path/to/zAppBuild/dbb-branch-build.sh",
                 "master",
                 "/u/userID/path/to/zAppBuild",
                 "HLQ",

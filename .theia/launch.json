@@ -7,27 +7,29 @@
  * Contract with IBM Corp.
 *******************************************************************************/
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"type": "zDebug",
-			"request": "attach",
-			"name": "List parked IBM Compiled Language Debugger sessions",
-			"allSessions": true,
-			"port": 8002,
-			"ignoreCertificateErrors": true,
-			"secure": true,
-			"host": "cloud.provisioning.zos.ibm.com"
-		},
-		{
-			"type": "zDebug",
-			"request": "launch",
-			"name": "Connect to parked IBM Compiled Language Debugger session",
-			"sessionId": "*",
-			"port": 8002,
-			"ignoreCertificateErrors": true,
-			"secure": true,
-			"host": "cloud.provisioning.zos.ibm.com"
-		}
-	]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "zDebug",
+          "request": "attach",
+          "name": "List parked IBM Compiled Language Debugger sessions",
+          "allSessions": true,
+          "host": "10.1.1.2",
+          "port": 8002,
+          "secure": true,
+          "ignoreCertificateErrors": true
+      },
+      {
+          "type": "zDebug",
+          "request": "launch",
+          "name": "Connect to parked IBM Compiled Language Debugger sessions",
+          "sessionId": "*",
+          "host": "10.1.1.2",
+          "port": 8002,
+          "secure": true,
+          "ignoreCertificateErrors": true
+      }
+  ]
 }
