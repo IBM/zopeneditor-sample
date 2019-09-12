@@ -39,10 +39,7 @@
 //DD6      DD DSN=&HLQ..SAMPLE.CUSTFILE,
 //            DISP=(MOD,DELETE,DELETE),
 //            UNIT=SYSDA,SPACE=(CYL,(0))
-//DD7      DD DSN=&HLQ..SAMPLE.SYSDEBUG,
-//            DISP=(MOD,DELETE,DELETE),
-//            UNIT=SYSDA,SPACE=(CYL,(0))
-/*
+//*
 //*************************
 //* ALLOCATE DATASETS
 //*************************
@@ -80,9 +77,4 @@
 //            DISP=(NEW,CATLG),LRECL=600,RECFM=VB,DSORG=PS,
 //            SPACE=(TRK,(100,10),RLSE),
 //            BLKSIZE=(604)
-/*
-//DD7      DD DSN=&HLQ..SAMPLE.SYSDEBUG,
-//            DISP=(NEW,CATLG),LRECL=1024,RECFM=FB,DSORG=PO,
-//            SPACE=(TRK,(100,10),RLSE),
-//            BLKSIZE=0,DSNTYPE=LIBRARY
 //*

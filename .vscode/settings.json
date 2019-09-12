@@ -7,10 +7,7 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 {
-    "editor.autoSave": "off",
-    "application.confirmExit": "always",
-    "preview.openByDefault": true,
-    "zde.propertygroups": [
+    "zopeneditor.propertygroups": [
         {
             "name": "SAM-Copybooks",
             "type": "local",
