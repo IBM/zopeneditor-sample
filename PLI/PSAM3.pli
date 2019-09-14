@@ -1,0 +1,85 @@
+ PSAM3: PROCEDURE(CUSTFILE_RECORD,
+                  PRODUCT_STATS);
+ /****************************************************************
+  * LICENSED MATERIALS - PROPERTY OF IBM
+  * "RESTRICTED MATERIALS OF IBM"
+  * (C) COPYRIGHT IBM CORPORATION 2019. ALL RIGHTS RESERVED
+  * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+  * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+  * CONTRACT WITH IBM CORPORATION
+  ****************************************************************
+  * PROGRAM:  PSAM3    (PLI FOR MVS AND VM)
+  *
+  * AUTHOR :  DOUG STOUT
+  *           IBM PD TOOLS
+  *
+  * SUBROUTINE - CALLED BY PSAMM1
+  * COLLECTS STATISTICS FOR PRODUCT RECORDS
+  *
+  ****************************************************************/
+
+   DCL DUMP_FINDER CHAR(30) INIT('*STORAGE FOR PROGRAM PSAM3***');
+
+   /***************************************************/
+   /* PRODUCT RECORD (PASSED FROM CALLING PROGRAM)    */
+   /***************************************************/
+   %INCLUDE CUSTPLI;
+
+   /***********************************************************/
+   /* STATISTICS ACCUMULATORS (PASSED FROM CALLING PROGRAM)   */
+   /***********************************************************/
+   %INCLUDE PRDSTATS;
+
+   /********************/
+   /* GENERAL DECLARES */
+   /********************/
+
+   DCL PROGRAM_STATUS        CHAR(35);
+
+   /*****************************************************
+    * PSAM3 PROGRAM ROUTINE                             *
+    *****************************************************/
+
+   PROGRAM_STATUS = 'PROGRAM STARTED';
+   IF ( PRODUCT_RECORD.RECORD_TYPE = 'P' )  THEN  DO;
+     RETURN;
+   END;
+   IF ( PRODUCT_FIRST_TIME_SW ) THEN DO;
+     PROGRAM_STATUS = 'ZEROING STATS VARIABLES';
+     RECORD_COUNT = 0;
+     SERV_CALLS_TOTAL = 0;
+     SERV_CALLS_MIN = 0;
+     SERV_CALLS_MAX = 0;
+     SERV_CALLS_RANGE = 0;
+     SERV_CALLS_AVG = 0;
+   END;
+
+   PROGRAM_STATUS = 'CALCULATING SERVICE CALLS STATS';
+   RECORD_COUNT = RECORD_COUNT + 1;
+   SERV_CALLS_TOTAL = SERV_CALLS_TOTAL + SERVICE_CALLS;
+            /* CALCULATE AVERAGE */
+   SERV_CALLS_AVG = SERV_CALLS_TOTAL / RECORD_COUNT;
+            /* CALCULATE MINIMUM */
+   IF ( PRODUCT_FIRST_TIME_SW ) THEN DO;
+     SERV_CALLS_MIN = SERVICE_CALLS;
+   END;
+   IF ( SERVICE_CALLS < SERV_CALLS_MIN ) THEN
+     SERV_CALLS_MIN = SERVICE_CALLS;
+            /* CALCULATE MAXIMUM */
+   IF ( PRODUCT_FIRST_TIME_SW ) THEN DO;
+     SERV_CALLS_MAX = SERVICE_CALLS;
+   END;
+   IF ( SERVICE_CALLS > SERV_CALLS_MAX ) THEN
+     SERV_CALLS_MAX = SERVICE_CALLS;
+            /* CALCULATE RANGE   */
+   SERV_CALLS_RANGE = SERV_CALLS_MAX - SERV_CALLS_MIN;
+
+   PRODUCT_FIRST_TIME_SW = 0;
+
+   PROGRAM_STATUS = 'PROGRAM ENDING';
+
+   RETURN;
+
+ PROGRAM_END:
+ END PSAM3;
+
