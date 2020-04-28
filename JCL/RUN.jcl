@@ -27,7 +27,7 @@
 //* CAN ALSO CHANGE THEM AS NEEDED.
 //*
 //*****************************************************************
-//    SET HLQ='TSOUSER'                       *TSO USER ID
+//    SET HLQ='IBMUSER'                       *TSO USER ID
 //    SET CMPLLIB='IGY.V5R2M0.SIGYCOMP'       *COMPILER LIBRARY
 //    SET LINKLIB='CEE.SCEELKED'              *LINK LIBRARY
 //    SET SPACE1='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION

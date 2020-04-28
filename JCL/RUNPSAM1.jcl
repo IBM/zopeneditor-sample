@@ -16,7 +16,7 @@
 //*****************************************************************
 //    SET CMPLLIB='IBMZ.V5R2M0.SIBMZCMP'  *PLI COMPILER LIBRARY
 //    SET LINKLIB='CEE.SCEELKED'          *LINK LIBRARY
-//    SET HLQ='TSOUSER'                   *TSO USER ID
+//    SET HLQ='IBMUSER'                   *TSO USER ID
 //    SET SPACE1='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION
 //*
 //*************************
