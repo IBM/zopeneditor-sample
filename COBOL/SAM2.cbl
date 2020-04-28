@@ -49,11 +49,14 @@
        01  TRAN-OK                         PIC X.
        01  TRAN-MSG                        PIC X(50).
 
+R2     COPY SAM2PARM.
+
       *****************************************************************
        PROCEDURE DIVISION USING CUST-REC,
                                 TRANSACTION-RECORD,
                                 TRAN-OK,
-                                TRAN-MSG.
+                                TRAN-MSG
+R2                              SAM2-PARMS.
 
        000-MAIN.
            MOVE 'Y' TO TRAN-OK.
@@ -145,6 +148,8 @@
            MOVE 0 TO LOOP-COUNT.
            PERFORM 310-CRUNCH-LOOP
                UNTIL LOOP-COUNT > CRUNCH-CPU-LOOPS .
+R2         MOVE WORK-SUM TO CRUNCH-TOTAL.
+R2         MOVE MONTH-AVERAGE TO CRUNCH-AVG.
 
        310-CRUNCH-LOOP.
       *       CALUCLUATE AVERAGE OF ALL MONTHS

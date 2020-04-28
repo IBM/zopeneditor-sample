@@ -6,4 +6,3 @@
          2 BALANCE_RANGE     DEC(12,2),                                 
          2 BALANCE_AVG       DEC(12,2),                                 
          2 BALANCE_FIRST_TIME_SW     PIC '9';                           
-                                                                        

@@ -84,6 +84,7 @@
    DCL NUM_TRANSACTIONS      BIN FIXED(15) INIT(0);
    DCL NUM_CUSTFILE_RECS     BIN FIXED(15) INIT(0);
    DCL NUM_CUSTOMER_RECS     BIN FIXED(15) INIT(0);
+   DCL NUM_PRODUCT_RECS      BIN FIXED(15) INIT(0);   /* R2 */
    DCL NUM_DETAIL_LINES      BIN FIXED(15) INIT(0);
    DCL NUM_PRINT_REQUESTS    BIN FIXED(15) INIT(0);
    DCL NUM_PRINT_COMPLETED   BIN FIXED(15) INIT(0);
@@ -97,7 +98,13 @@
     ***************************************/
    %INCLUDE BALSTATS;
 
+   /***************************************
+    * PRODUCT STATS                       *
+    ***************************************/
+   %INCLUDE PRDSTATS;                           /* R2 */
+
    DCL PSAM2 EXTERNAL ENTRY;
+   DCL PSAM3 EXTERNAL ENTRY;                   /* R2 */
 
    /************************************
     * REPORT LINES, TEXT, AND FORMATS  *
@@ -140,9 +147,13 @@
    DCL NUMA_7V2        PIC 'ZZZ,ZZ9V.99';
    DCL NUMB_7V2        PIC 'ZZZ,ZZ9V.99';
    DCL NUMC_7V2        PIC 'ZZZ,ZZ9V.99';
+   DCL NUMD_7V2        PIC 'ZZZ,ZZ9V.99';            /*  R2  */
    DCL NUMA_11         PIC 'ZZZ,ZZZ,ZZ9';
    DCL NUMB_11         PIC 'ZZZ,ZZZ,ZZ9';
    DCL NUMC_11         PIC 'ZZZ,ZZZ,ZZ9';
+   DCL NUMD_11         PIC 'ZZZ,ZZZ,ZZ9';            /*  R2  */
+   DCL NUME_11         PIC 'ZZZ,ZZZ,ZZ9';            /*  R2  */
+   DCL NUMF_11         PIC 'ZZZ,ZZZ,ZZ9';            /*  R2  */
 
    /********************************
     * CONDITION HANDLING ROUTINES  *
@@ -180,7 +191,11 @@
    PUT SKIP EDIT('               TIME = ', CURRENT_HOUR, COLON,
                 CURRENT_MINUTE, COLON, CURRENT_SECOND) (R(FMT_MSG2));
 
+   SERV_CALLS_TOTAL  = 0;         /* R2  */
+   SERV_CALLS_MAX    = 0;         /* R2  */
+   SERV_CALLS_AVG    = 0;         /* R2  */
    BALANCE_FIRST_TIME_SW = 1;
+   PRODUCT_FIRST_TIME_SW = 1;
 
    PROGRAM_STATUS = 'OPENING FILES  ';
    OPEN FILE (TRANFILE);
@@ -237,6 +252,11 @@
              CALL PSAM2 ( CUSTFILE_RECORD,
                            CUSTOMER_BALANCE_STATS );
            END;    /*  IF RECORD_TYPE = 'C'  */
+           IF ( CUSTOMER_RECORD.RECORD_TYPE = 'P' )  THEN  DO;  /* R2 */
+             NUM_PRODUCT_RECS = NUM_PRODUCT_RECS + 1;
+             CALL PSAM3 ( CUSTFILE_RECORD,
+                           PRODUCT_STATS );
+           END;    /*  IF RECORD_TYPE = 'P'  */  /* R2 */
          END CUSTFILE_LOOP;
          NUM_PRINT_COMPLETED  = NUM_PRINT_COMPLETED + 1;
          CLOSE FILE (CUSTFILE);
@@ -259,9 +279,9 @@
    END TRANFILE_LOOP;
 
    TRANTOT: PROCEDURE;
+    /*  PUT FILE (CUSTRPT) SKIP (1) LIST ( SPACE );  */
      FMT_TOT1: FORMAT ( SKIP,X(2),A(15),X(4),A(11),A(11),
                              X(3),A(11),A(11),X(3),A(11),A(11) );
-     PUT FILE (CUSTRPT) SKIP (1) LIST ( SPACE );
      PUT FILE (CUSTRPT) SKIP (1) LIST ('TOTALS REPORT');
      PUT FILE (CUSTRPT) SKIP (1) LIST ((99)'-');
      IF ( NUM_PRINT_COMPLETED > 0 ) THEN DO;
@@ -274,13 +294,23 @@
           '       MAX:', NUMB_7V2,
           '   AVERAGE:', NUMC_7V2 )
           (R(FMT_TOT1));
+       NUME_11 = SERV_CALLS_TOTAL;              /* R2  */
+       NUMF_11 = SERV_CALLS_MAX;                /* R2  */
+       NUMD_7V2 = SERV_CALLS_AVG;               /* R2  */
+       PUT FILE (CUSTRPT)                       /* R2  */
+          EDIT ('SERVICE STATS:',               /* R2  */
+          '     TOTAL:', NUME_11,               /* R2  */
+          '       MAX:', NUMF_11,               /* R2  */
+          '   AVERAGE:', NUMD_7V2 )             /* R2  */
+          (R(FMT_TOT1));                        /* R2  */
        NUMA_11 = NUM_CUSTFILE_RECS;
        NUMB_11 = NUM_CUSTOMER_RECS;
+       NUMD_11 = NUM_PRODUCT_RECS;              /* R2  */
        PUT FILE (CUSTRPT)
           EDIT ('RECORD COUNTS:',
           ' ALL TYPES:', NUMA_11,
-          ' ALL TYPES:', NUMA_11,
-          ' CUST RECS:', NUMB_11 )
+          ' CUST RECS:', NUMB_11,
+          ' PROD RECS:', NUMD_11 )              /*  R2  */
           (R(FMT_TOT1));
        NUMA_11 = NUM_TRANSACTIONS;
        NUMB_11 = NUM_TRANSACTIONS - NUM_TRAN_ERRORS;
@@ -311,4 +341,3 @@
  PROGRAM_END:
  RETURN(BALANCE_AVG);
  END PSAM1;
-
