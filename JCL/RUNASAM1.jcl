@@ -1,4 +1,4 @@
-//WAZIASM1 JOB ,NOTIFY=&SYSUID,                                          
+//WAZIASM1 JOB ,NOTIFY=&SYSUID,
 // MSGCLASS=H,MSGLEVEL=(1,1),REGION=0M,COND=(4,LT)
 //*
 //****************************************************************
@@ -31,9 +31,24 @@
 //            DISP=(MOD,DELETE,DELETE),
 //            UNIT=SYSDA,SPACE=(CYL,(0))
 //*************************
+//* COMPILE ASAM2
+//*************************
+//ASM2     EXEC PGM=ASMA90,PARM='DECK,ALIGN,OBJ'
+//SYSLIB   DD  DISP=SHR,DSN=&MACLIB
+//         DD  DISP=SHR,DSN=&MODGEN
+//         DD  DISP=SHR,DSN=&SCEEMAC
+//         DD  DISP=SHR,DSN=&HLQ..SAMPLE.ASMCOPY
+//SYSPUNCH DD  DISP=SHR,DSN=&HLQ..SAMPLE.ASMOBJ(ASAM2)
+//SYSPRINT DD  SYSOUT=*
+//SYSUT1   DD  UNIT=&SPACE1
+//SYSUT2   DD  UNIT=&SPACE1
+//SYSUT3   DD  UNIT=&SPACE1
+//SYSLIN   DD  DUMMY
+//SYSIN    DD  DISP=SHR,DSN=&HLQ..SAMPLE.ASM(ASAM2)
+//*************************
 //* COMPILE ASAM1
 //*************************
-//ASM1      EXEC PGM=ASMA90,PARM='DECK,ALIGN,OBJ'
+//ASM1     EXEC PGM=ASMA90,PARM='DECK,ALIGN,OBJ'
 //SYSLIB   DD  DISP=SHR,DSN=&MACLIB
 //         DD  DISP=SHR,DSN=&MODGEN
 //         DD  DISP=SHR,DSN=&SCEEMAC
@@ -55,6 +70,7 @@
 //SYSLIB   DD  DISP=SHR,DSN=&LINKLIB
 //OBJ      DD  DISP=SHR,DSN=&HLQ..SAMPLE.ASMOBJ
 //SYSLIN   DD *
+     INCLUDE OBJ(ASAM2)
      INCLUDE OBJ(ASAM1)
      NAME ASAM1(R)
 /*
@@ -72,4 +88,3 @@
 //FILEOUT  DD  DSN=&HLQ..SAMPLE.ASM.FILEOUT,
 //     DISP=(NEW,CATLG),UNIT=DISK,SPACE=(TRK,(10,10),RLSE),
 //     DSORG=PS,RECFM=FB,LRECL=80,BLKSIZE=0
-//*
