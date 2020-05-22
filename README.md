@@ -1,6 +1,6 @@
-## Sample COBOL and PL/I files for the "IBM Z® Open Editor" for COBOL and PL/I
+## Sample COBOL, PL/I, and HLASM files for the "IBM Z® Open Editor" for COBOL, PL/I, and HLASM
 
-This repository provides sample COBOL and PL/I programs, along with JCL and data files to compile and run them.
+This repository provides sample COBOL, PL/I, and HLASM programs, along with JCL and data files to compile and run them.
 
 These examples are provided to allow you to not only experience the [IBM Z® Open Editor](https://marketplace.visualstudio.com/items?itemName=IBM.zopeneditor), but also in conjunction with the [Zowe VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe), experience the powerful capabilities for IBM z/OS development and processing.
 
@@ -73,3 +73,34 @@ The application creates a report, `USER1.SAMPLE.PLI.CUSTRPT`.
 A sample use case for the PL/I programs might be that `PSAM1` needs to process a new type of Customer record called a Product record and generate a new line for Service Calls in the Totals Report section.  You could accomplish this by creating a new program, `PSAM3` to process these new records and produce the product statistics needed on the report.
 
 Again, in the `Tutorial-Complete` branch, notice the new program `PSAM3`, the new Include `PRODSTATS` which is used for the data being passed between `PSAM1` and `PSAM3`.
+
+### HLASM Examples
+
+- HLASM programs: `ASAM1`, `ASAM2`, and `IRR@XACS`
+  - _`IRR@XACS` is included to provide a better example for the Outline View, it can be found in the `SYS1.SAMPLIB` on the z host_
+- Copybook: `REGISTRS`
+- Data source file: `ASM.FILEIN`
+- JCL members that set up and run the application: `ASMALLOC` and `RUNASAM1`.
+  - _Please Note - the JCL files are to used as templates, you may need to update the compiler library, the z/OS Macro library, the Assembler Macro library, and the Assembler Modgen library names.  You will also need to update the `HLQ` parm with your TSO user id_
+
+`ASAM1` reads in a record from the `ASM.FILEIN` dataset.  It will then write it to the output file `ASM.FILEOUT` as well as the record number and column number records.
+
+The `ASMALLOC.jcl` file will allocate the necessary data sets on the MVS host that need to be in place prior to using the Zowe CLI commands to copy the files from your local workspace into the pre-allocated data sets and to run the application.  The `RUNASAM1.jcl` will compile, link, and run the programs.
+
+The files created with the `ASMALLOC.jcl` are:
+
+```ascii
+USER1.SAMPLE.ASMOBJ
+USER1.SAMPLE.ASMLOAD
+USER1.SAMPLE.ASM
+USER1.SAMPLE.ASMCOPY
+USER1.SAMPLE.ASM.FILEIN
+```
+
+The application creates a file, `USER1.SAMPLE.ASM.FILEOUT`.
+
+### A Sample HLASM Use Case
+
+A sample use case for the ASM programs might be that `ASAM1` needs to also write the character string in hexadecimal format.  You could accomplish this by creating a new program, `ASAM2` to translate the string into hex format and return to `ASAM1`.
+
+`ASAM2` can be found in the `Tutorial-Complete` branch as well as an updated `ASAM1` with the necessary code to complete the use case.
