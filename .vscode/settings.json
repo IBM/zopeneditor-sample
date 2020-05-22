@@ -1,12 +1,15 @@
 /*******************************************************************************
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corporation 2019. All Rights Reserved.
+ * (C) Copyright IBM Corporation 2020. All Rights Reserved.
  *
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
 {
+    "editor.autoSave": "off",
+    "application.confirmExit": "always",
+    "preview.openByDefault": true,
     "zopeneditor.propertygroups": [
         {
             "name": "SAM-Copybooks",
@@ -17,5 +20,22 @@
                 "ASMCOPY"
             ]
         }
-    ]
+    ],
+    "zopeneditor.userbuild.workspaceSettings": {
+        "dbb": {
+            "command": "$DBB_HOME/bin/groovyz",
+            "commandArgs": [],
+            "buildScriptPath": "/u/${zopeneditor.userbuild.userSettings.dbbWorkspace}/zAppBuild/build.groovy",
+            "buildScriptArgs": [
+                "--userBuild",
+                "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
+                "--application wazi-sample",
+                "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
+                "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/wazi-sample/logs"
+            ],
+            "additionalDependencies": [
+                "application-conf",
+            ]
+        }
+    }
 }
