@@ -15,9 +15,9 @@
             "name": "SAM-Copybooks",
             "type": "local",
             "syslib": [
-                "COPYBOOK",
-                "INCLUDES",
-                "ASMCOPY"
+                "**/COPYBOOK",
+                "**/INCLUDES",
+                "**/ASMCOPY"
             ]
         }
     ],
@@ -25,13 +25,13 @@
         "dbb": {
             "command": "$DBB_HOME/bin/groovyz",
             "commandArgs": [],
-            "buildScriptPath": "/u/${zopeneditor.userbuild.userSettings.dbbWorkspace}/zAppBuild/build.groovy",
+            "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/zAppBuild/build.groovy",
             "buildScriptArgs": [
                 "--userBuild",
                 "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
-                "--application wazi-sample",
+                "--application zopeneditor-sample",
                 "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
-                "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/wazi-sample/logs"
+                "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
             ],
             "additionalDependencies": [
                 "application-conf",
