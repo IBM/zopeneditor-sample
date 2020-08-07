@@ -70,8 +70,8 @@
 //SYSLIB   DD  DISP=SHR,DSN=&LINKLIB
 //OBJ      DD  DISP=SHR,DSN=&HLQ..SAMPLE.ASMOBJ
 //SYSLIN   DD *
-     INCLUDE OBJ(ASAM2)
      INCLUDE OBJ(ASAM1)
+     INCLUDE OBJ(ASAM2)
      NAME ASAM1(R)
 /*
 //*************************

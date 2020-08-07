@@ -78,7 +78,6 @@ Again, in the `Tutorial-Complete` branch, notice the new program `PSAM3`, the ne
 
 - HLASM programs: `ASAM1` and `IRR@XACS`
   - _`IRR@XACS` is included to provide a better example for the Outline View, it can be found in the `SYS1.SAMPLIB` on the z host_
-
 - Copybook (in ASMCOPY): `REGISTRS`
 - Data source file: `SAMPLE.ASM.FILEIN`
 - JCL members that set up and run the application: `ASMALLOC` and `RUNASAM1`.
