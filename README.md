@@ -10,7 +10,7 @@ The sample applications consist of the following files:
 
 - COBOL programs: `SAM1` and `SAM2`
 - COPYBOOKS: `CUSTCOPY` and `TRANREC`
-- Data source files: `CUSTFILE` and `TRANFILE`
+- Data source files: `SAMPLE.CUSTFILE` and `SAMPLE.TRANFILE`
 - JCL members that set up and run the application: `ALLOCATE` and `RUN`.
   - _Please Note - the JCL files are to be used as templates, you may need to update the compiler library name and you will need to update the `HLQ` parm with your TSO user id_
 
@@ -45,7 +45,7 @@ In looking at the files, you will notice a new COPYBOOK, `SAM2PARM`, which was c
 
 - PL/I programs: `PSAM1` and `PSAM2`
 - INCLUDES: `BALSTATS` and `CUSTPLI`
-- Data source files: `PLI.TRANFILE` and `PLI.CUSTFILE`
+- Data source files: `SAMPLE.PLI.TRANFILE` and `SAMPLE.PLI.CUSTFILE`
 - JCL members that set up and run the application: `PLIALLOC` and `RUNPSAM1`.
   - _Please Note - the JCL files are to used as templates, you may need to update the compiler library name and you will need to update the `HLQ` parm with your TSO user id_
 
@@ -76,14 +76,15 @@ Again, in the `Tutorial-Complete` branch, notice the new program `PSAM3`, the ne
 
 ### HLASM Examples
 
-- HLASM programs: `ASAM1`, `ASAM2`, and `IRR@XACS`
+- HLASM programs: `ASAM1` and `IRR@XACS`
   - _`IRR@XACS` is included to provide a better example for the Outline View, it can be found in the `SYS1.SAMPLIB` on the z host_
-- Copybook: `REGISTRS`
-- Data source file: `ASM.FILEIN`
+
+- Copybook (in ASMCOPY): `REGISTRS`
+- Data source file: `SAMPLE.ASM.FILEIN`
 - JCL members that set up and run the application: `ASMALLOC` and `RUNASAM1`.
   - _Please Note - the JCL files are to used as templates, you may need to update the compiler library, the z/OS Macro library, the Assembler Macro library, and the Assembler Modgen library names.  You will also need to update the `HLQ` parm with your TSO user id_
 
-`ASAM1` reads in a record from the `ASM.FILEIN` dataset.  It will then write it to the output file `ASM.FILEOUT` as well as the record number and column number records.
+`ASAM1` reads in a record from the `SAMPLE.ASM.FILEIN` dataset.  It will then write it to the output file `ASM.FILEOUT` as well as the record number and column number records.
 
 The `ASMALLOC.jcl` file will allocate the necessary data sets on the MVS host that need to be in place prior to using the Zowe CLI commands to copy the files from your local workspace into the pre-allocated data sets and to run the application.  The `RUNASAM1.jcl` will compile, link, and run the programs.
 
