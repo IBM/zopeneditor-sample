@@ -1,0 +1,72 @@
+{
+  "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED",
+  "name": "sam",
+  "description": "Wazi's code samples with COBOL, PL/I, and HLASM applications",
+  "version": "1.1.0",
+  "author": {
+    "name": "IBM CORPORATION"
+  },
+  "property-groups": [
+    {
+      "name": "cobol-local",
+      "language": "cobol",
+      "type": "local",
+      "syslib": [
+        "**/COPYBOOK"
+      ]
+    },
+    {
+      "name": "pl1-local",
+      "language": "pl1",
+      "compilerOptions": "not(!)",
+      "type": "local",
+      "syslib": [
+        "**/INCLUDES"
+      ]
+    },
+    {
+      "name": "hlasm-local",
+      "language": "hlasm",
+      "type": "local",
+      "syslib": [
+        "**/ASMCOPY"
+      ]
+    },
+    {
+      "name": "zowe-mvs",
+      "type": "mvs",
+      "system": "zos1000.example.com",
+      "syslib": [
+        "USER1.SAMPLE.COBCOPY"
+      ],
+      "libraries": [
+        {
+          "name": "MYFILE",
+          "locations": [
+            "USER1.SAMPLE.COPY"
+          ]
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "name": "dbb-userbuild",
+      "type": "dbb",
+      "settings": {
+        "command": "$DBB_HOME/bin/groovyz",
+        "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
+        "buildScriptArgs": [
+          "--userBuild",
+          "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
+          "--application zopeneditor-sample",
+          "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
+          "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
+        ],
+        "additionalDependencies": [
+          "application-conf"
+        ]
+      }
+    }
+  ]
+}

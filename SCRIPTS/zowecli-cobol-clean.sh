@@ -8,16 +8,17 @@
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
-HLC=IBMUSER
-FILES_CMD=rse # files
-JOBS_CMD=rse # zos-jobs
+HLQ=IBMUSER
+FILES_CMD="rse" # for z/OSMF use "files"
+JOBS_CMD="rse"  # for z/OSMF use "zos-jobs"
+PROFILE=""      # to use a non-default profile use "--rse-proile profileName"
 
 echo "Deleting data sets for SAM app.."
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.COBOL
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.COBCOPY
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.CUSTFILE
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.TRANFILE
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.CUSTRPT
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.CUSTOUT
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.LOAD
-zowe ${FILES_CMD} delete data-set ${HLC}.SAMPLE.OBJ
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.COBOL $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.COBCOPY $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.CUSTFILE $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.TRANFILE $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.CUSTRPT $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.CUSTOUT $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.LOAD $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.OBJ $PROFILE
