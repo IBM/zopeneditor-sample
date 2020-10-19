@@ -1,0 +1,41 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+
+name: sam
+description: Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 1.1.0
+author:
+    name: IBM CORPORATION
+
+property-groups:
+  - name: cobol-local
+    language: cobol
+    type: local
+    syslib:
+      - "**/COPYBOOK"
+  - name: pl1-local
+    language: pl1
+    compilerOptions: not(!)
+    type: local
+    syslib:
+      - "**/INCLUDES"
+  - name: hlasm-local
+    language: hlasm
+    type: local
+    syslib:
+      - "**/ASMCOPY"
+  - name: zowe-mvs
+    type: mvs
+    system: zos1000.example.com
+    syslib:
+      - USER1.SAMPLE.COBCOPY
+    libraries:
+      - name: MYFILE
+        locations:
+          - USER1.SAMPLE.COPY
