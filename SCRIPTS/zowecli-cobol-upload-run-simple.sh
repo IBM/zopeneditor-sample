@@ -8,19 +8,20 @@
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
-HLC=IBMUSER
-FILES_CMD=rse # files
-JOBS_CMD=rse # zos-jobs
+HLQ=IBMUSER
+FILES_CMD="rse" # for z/OSMF use "files"
+JOBS_CMD="rse"  # for z/OSMF use "zos-jobs"
+PROFILE=""      # to use a non-default profile use "--rse-proile profileName"
 
 echo "Submitted job to allocate data sets.."
-zowe ${JOBS_CMD} submit local-file "JCL/ALLOCATE.jcl"
+zowe ${JOBS_CMD} submit local-file "JCL/ALLOCATE.jcl" $PROFILE
 sleep 3s
 
 echo "Copy my app to the created PDS.."
-zowe ${FILES_CMD} upload dir-to-pds COBOL ${HLC}.SAMPLE.COBOL
-zowe ${FILES_CMD} upload dir-to-pds COPYBOOK ${HLC}.SAMPLE.COBCOPY
-zowe ${FILES_CMD} upload file-to-data-set RESOURCES/SAMPLE.CUSTFILE ${HLC}.SAMPLE.CUSTFILE
-zowe ${FILES_CMD} upload file-to-data-set RESOURCES/SAMPLE.TRANFILE ${HLC}.SAMPLE.TRANFILE
+zowe ${FILES_CMD} upload dir-to-pds COBOL ${HLQ}.SAMPLE.COBOL $PROFILE
+zowe ${FILES_CMD} upload dir-to-pds COPYBOOK ${HLQ}.SAMPLE.COBCOPY $PROFILE
+zowe ${FILES_CMD} upload file-to-data-set RESOURCES/SAMPLE.CUSTFILE ${HLQ}.SAMPLE.CUSTFILE $PROFILE
+zowe ${FILES_CMD} upload file-to-data-set RESOURCES/SAMPLE.TRANFILE ${HLQ}.SAMPLE.TRANFILE $PROFILE
 
 echo "Compile and Run my app"
-zowe ${JOBS_CMD} submit local-file "JCL/RUN.jcl"
+zowe ${JOBS_CMD} submit local-file "JCL/RUN.jcl" $PROFILE
