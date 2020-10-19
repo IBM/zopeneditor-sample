@@ -48,5 +48,25 @@
         }
       ]
     }
+  ],
+  "profiles": [
+    {
+      "name": "dbb-userbuild",
+      "type": "dbb",
+      "settings": {
+        "command": "$DBB_HOME/bin/groovyz",
+        "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
+        "buildScriptArgs": [
+          "--userBuild",
+          "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
+          "--application zopeneditor-sample",
+          "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
+          "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
+        ],
+        "additionalDependencies": [
+          "application-conf"
+        ]
+      }
+    }
   ]
 }

@@ -7,11 +7,13 @@
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
+# Rename this file to zapp.yaml. Currently, only supported with VS Code, not Eclipse Che.
+
 name: sam
 description: Wazi's code samples with COBOL, PL/I, and HLASM applications
 version: 1.1.0
 author:
-    name: IBM CORPORATION
+  name: IBM CORPORATION
 
 property-groups:
   - name: cobol-local
@@ -39,3 +41,18 @@ property-groups:
       - name: MYFILE
         locations:
           - USER1.SAMPLE.COPY
+
+profiles:
+  - name: dbb-userbuild
+    type: dbb
+    settings:
+      command: $DBB_HOME/bin/groovyz
+      buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
+      buildScriptArgs:
+        - "--userBuild"
+        - "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}"
+        - "--application zopeneditor-sample"
+        - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
+        - "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
+      additionalDependencies:
+        - application-conf

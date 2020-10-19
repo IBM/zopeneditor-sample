@@ -25,7 +25,7 @@
         "dbb": {
             "command": "$DBB_HOME/bin/groovyz",
             "commandArgs": [],
-            "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/zAppBuild/build.groovy",
+            "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
             "buildScriptArgs": [
                 "--userBuild",
                 "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
