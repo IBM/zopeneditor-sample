@@ -33,6 +33,11 @@ exec_RC = 0                       /* Initialize exec return code   */
 
 IF rc = 0 THEN                  /* If read was successful          */
   DO
+  /*****************************************************************/
+  /* At this point, newvar.0 should be 20, indicating 20 records   */
+  /* have been read. Stem variables newvar.1, newvar.2, ... through*/
+  /* newvar.20 will contain the 20 records that were read.         */
+  /*****************************************************************/
 
     CALL file1
 
@@ -41,13 +46,15 @@ ELSE
   DO
     exec_RC = RC               /* Save exec return code         */
     SAY
-    SAY "Error during 1st EXECIO  DISKR, return code is " RC
+    SAY "Error during 1st EXECIO DISKR, return code is " RC
     SAY
   END
 
-CALL file2
+ CALL file2
 
 "EXECIO 0 DISKW myoutdd (FINIS"    /* Close output file            */
+
+ CALL fileout
 
 "FREE FI(myindd1)"
 "FREE FI(myindd2)"
@@ -55,29 +62,28 @@ CALL file2
  EXIT 0
 
  file1:
- SAY "-----------------------------------------------------"
- SAY newvar.0 "records have been read from 'sample1.data': "
- SAY
- DO i = 1 TO newvar.0        /* Loop through all records        */
-   SAY newvar.i              /* Display the ith record          */
- END
+    SAY "-----------------------------------------------------"
+    SAY newvar.0 "records have been read from 'sample1.data': "
+    SAY
+    DO i = 1 TO newvar.0        /* Loop through all records        */
+      SAY newvar.i              /* Display the ith record          */
+    END
 
- /* Write exactly the number of records read */
- "EXECIO" newvar.0 "DISKW myoutdd (STEM newvar."
- IF rc = 0 THEN              /* If write was successful         */
-   DO
-     SAY
-     SAY newvar.0 "records were written to 'all.sample.data'"
-   END
- ELSE
-   DO
-     exec_RC = RC         /* Save exec return code           */
-     SAY
-     SAY "Error during 1st EXECIO  DISKW, return code is " RC
-     SAY
-   END
- RETURN
-
+    "EXECIO" newvar.0 "DISKW myoutdd (STEM newvar." /* Write exactly
+                                   the number of records read      */
+    IF rc = 0 THEN              /* If write was successful         */
+      DO
+        SAY
+        SAY newvar.0 "records were written to 'all.sample.data'"
+      END
+    ELSE
+      DO
+        exec_RC = RC         /* Save exec return code           */
+        SAY
+        SAY "Error during 1st EXECIO DISKW, return code is " RC
+        SAY
+      END
+    RETURN
 
  file2:
  IF exec_RC = 0 THEN        /* If no errors so far... continue */
@@ -117,7 +123,7 @@ CALL file2
          DO
            exec_RC = RC      /* Save exec return code          */
            SAY
-           SAY "Error during 2nd EXECIO DISKW, return code is " RC
+           SAY "Error during 2nd EXECIO DISKW, return code is " RC
            SAY
          END
      END
@@ -125,8 +131,34 @@ CALL file2
      DO
        exec_RC = RC           /* Save exec return code         */
        SAY
-       SAY "Error during 2nd EXECIO  DISKR, return code is " RC
+       SAY "Error during 2nd EXECIO DISKR, return code is " RC
        SAY
      END
  END
  RETURN
+
+/*******************************************************************/
+/* Read all records from 'all.sample.data' and display them        */
+/*******************************************************************/
+fileout:
+exec_RC = 0                       /* Initialize exec return code   */
+
+"EXECIO * DISKR myoutdd (STEM newvar. FINIS"  /* Read all records  */
+
+IF rc = 0 THEN                  /* If read was successful          */
+  DO
+    SAY "-------------------------------------------------------"
+    SAY newvar.0 "records have been read from 'all.sample.data: "
+    SAY
+    DO i2 = 1 TO newvar.0        /* Loop through all records        */
+      SAY newvar.i2              /* Display the ith record          */
+    END
+  END
+ELSE
+  DO
+    exec_RC = RC               /* Save exec return code         */
+    SAY
+    SAY "Error during 3rd EXECIO DISKR, return code is " RC
+    SAY
+  END
+RETURN
