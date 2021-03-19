@@ -1,3 +1,11 @@
+ /****************************************************************
+  * LICENSED MATERIALS - PROPERTY OF IBM
+  * "RESTRICTED MATERIALS OF IBM"
+  * (C) COPYRIGHT IBM CORPORATION 2021. ALL RIGHTS RESERVED
+  * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+  * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+  * CONTRACT WITH IBM CORPORATION
+  ****************************************************************/
    DCL 1 CUSTFILE_RECORD     CHAR(80);                                  
    DCL 1 CUSTOMER_RECORD  BASED(ADDR(CUSTFILE_RECORD)),                 
          2 CUSTOMER_KEY,                                                

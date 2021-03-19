@@ -80,33 +80,17 @@
        WORKING-STORAGE SECTION.
       *****************************************************************
       *
-       01  SYSTEM-DATE-AND-TIME.
-           05  CURRENT-DATE.
-               10  CURRENT-YEAR            PIC 9(2).
-               10  CURRENT-MONTH           PIC 9(2).
-               10  CURRENT-DAY             PIC 9(2).
-           05  CURRENT-TIME.
-               10  CURRENT-HOUR            PIC 9(2).
-               10  CURRENT-MINUTE          PIC 9(2).
-               10  CURRENT-SECOND          PIC 9(2).
-               10  CURRENT-HNDSEC          PIC 9(2).
+      * This copybook demonstrates the libraries setting with a local
+      * copybook
       *
-       01  REPORT-TOTALS.
-           05  NUM-TRAN-RECS         PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-TRAN-ERRORS       PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-ADD-REQUESTS      PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-ADD-PROCESSED     PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-UPDATE-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-UPDATE-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-DELETE-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-DELETE-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-CRUNCH-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-CRUNCH-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-RPTALL-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-RPTALL-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-GEN-REQUESTS      PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-GEN-PROCESSED     PIC S9(9)   COMP-3  VALUE +0.
+       COPY DATETIME IN MYFILE.
+
+      * This copybook demonstrates the libraries setting with an MVS
+      * copybook
       *
+       COPY REPTTOTL IN MYLIB.
+
+
        01  WS-FIELDS.
            05  WS-CUSTFILE-STATUS      PIC X(2)  VALUE SPACES.
            05  WS-CUSTOUT-STATUS       PIC X(2)  VALUE SPACES.
