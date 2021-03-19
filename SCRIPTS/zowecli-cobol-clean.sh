@@ -16,6 +16,7 @@ PROFILE=""      # to use a non-default profile use "--rse-proile profileName"
 echo "Deleting data sets for SAM app.."
 zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.COBOL $PROFILE
 zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.COBCOPY $PROFILE
+zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.COPYLIB $PROFILE
 zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.CUSTFILE $PROFILE
 zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.TRANFILE $PROFILE
 zowe ${FILES_CMD} delete data-set ${HLQ}.SAMPLE.CUSTRPT $PROFILE
