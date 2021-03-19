@@ -1,3 +1,11 @@
+ /****************************************************************
+  * LICENSED MATERIALS - PROPERTY OF IBM
+  * "RESTRICTED MATERIALS OF IBM"
+  * (C) COPYRIGHT IBM CORPORATION 2021. ALL RIGHTS RESERVED
+  * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+  * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+  * CONTRACT WITH IBM CORPORATION
+  ****************************************************************/
    DCL 1 CUSTOMER_BALANCE_STATS,                                        
          2 BALANCE_COUNT     DEC(8),                                    
          2 BALANCE_TOTAL     DEC(12,2),                                 

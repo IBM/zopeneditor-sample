@@ -1,7 +1,7 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2021. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
@@ -19,23 +19,62 @@ property-groups:
     type: local
     syslib:
       - "**/COPYBOOK"
+    libraries:
+      - name: MYFILE
+        locations:
+          - "**/COPYLIB"
   - name: pl1-local
     language: pl1
     compilerOptions: not(!)
     type: local
     syslib:
       - "**/INCLUDES"
+    libraries:
+      - name: MYFILE
+        locations:
+          - "**/INCLUDELIB"
   - name: hlasm-local
     language: hlasm
     type: local
     syslib:
       - "**/ASMCOPY"
-  - name: zowe-mvs
+  - name: zowe-mvs-cbl
+    language: cobol
     type: mvs
     system: zos1000.example.com
     syslib:
       - USER1.SAMPLE.COBCOPY
     libraries:
-      - name: MYFILE
+      - name: MYLIB
         locations:
-          - USER1.SAMPLE.COPY
+          - USER1.SAMPLE.COPYLIB
+  - name: zowe-mvs-pl1
+    language: pl1
+    type: mvs
+    system: zos1000.example.com
+    syslib:
+      - USER1.SAMPLE.PLINC
+    libraries:
+      - name: MYLIB
+        locations:
+          - USER1.SAMPLE.PLI.INCLLIB
+
+# Mappings example using US defaults. Adjust to your code pages.
+profiles:
+  - name: RSE-Mappings
+    type: rseapi
+    settings:
+      mappings:
+        - resource: "**.SAMPLE.COB**"
+          extension: cbl
+          transfer: text
+          encoding: IBM-037
+          memberMappings:
+            - extension: dat
+              transfer: binary
+              resource: "*DAT"
+        - resource: "**PLI*"
+          extension: pl1
+          transfer: text
+          encoding: IBM-037
+      default.encoding: IBM-037
