@@ -1,7 +1,7 @@
       ****************************************************************
       * LICENSED MATERIALS - PROPERTY OF IBM
       * "RESTRICTED MATERIALS OF IBM"
-      * (C) COPYRIGHT IBM CORPORATION 2018, 2019. ALL RIGHTS RESERVED
+      * (C) COPYRIGHT IBM CORPORATION 2021. ALL RIGHTS RESERVED
       * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
       * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
       * CONTRACT WITH IBM CORPORATION
@@ -33,10 +33,6 @@
       * ADD    ___key____  <== Add a new blank record
       *
       *****************************************************************
-      * Change Log
-R2    * V02 * Add logic to show number of customers on report
-R2    *     * Add logic to process Crunch transactions
-      ***************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. SAM1.
        ENVIRONMENT DIVISION.
@@ -84,20 +80,17 @@ R2    *     * Add logic to process Crunch transactions
        WORKING-STORAGE SECTION.
       *****************************************************************
       *
-       01  SYSTEM-DATE-AND-TIME.
-           05  CURRENT-DATE.
-               10  CURRENT-YEAR            PIC 9(2).
-               10  CURRENT-MONTH           PIC 9(2).
-               10  CURRENT-DAY             PIC 9(2).
-           05  CURRENT-TIME.
-               10  CURRENT-HOUR            PIC 9(2).
-               10  CURRENT-MINUTE          PIC 9(2).
-               10  CURRENT-SECOND          PIC 9(2).
-               10  CURRENT-HNDSEC          PIC 9(2).
+      * This copybook demonstrates the libraries setting with a local
+      * copybook
       *
-      * some comments
-      * some more comments
+       COPY DATETIME IN MYFILE.
+
+      * This copybook demonstrates the libraries setting with an MVS
+      * copybook
       *
+       COPY REPTTOTL IN MYLIB.
+
+
        01  WS-FIELDS.
            05  WS-CUSTFILE-STATUS      PIC X(2)  VALUE SPACES.
            05  WS-CUSTOUT-STATUS       PIC X(2)  VALUE SPACES.
@@ -120,28 +113,10 @@ R2    *     * Add logic to process Crunch transactions
        01  WORK-VARIABLES.
            05  I                     PIC S9(9)   COMP-3  VALUE +0.
            05  WORK-NUM              PIC S9(8)   COMP.
-      *
-       01  REPORT-TOTALS.
-           05  NUM-TRAN-RECS         PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-TRAN-ERRORS       PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-ADD-REQUESTS      PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-ADD-PROCESSED     PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-UPDATE-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-UPDATE-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-DELETE-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-DELETE-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-CRUNCH-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-CRUNCH-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-RPTALL-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-RPTALL-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-GEN-REQUESTS      PIC S9(9)   COMP-3  VALUE +0.
-           05  NUM-GEN-PROCESSED     PIC S9(9)   COMP-3  VALUE +0.
-R2         05  NUM-PRE-CUSTOMERS     PIC S9(9)   COMP-3  VALUE +0.
-R2         05  NUM-POST-CUSTOMERS    PIC S9(9)   COMP-3  VALUE +0.
+
+
 
        COPY CUSTCOPY REPLACING ==:TAG:== BY ==WS-CUST==.
-
-R2     COPY SAM2PARM.
 
       *        *******************
       *            report lines
@@ -190,14 +165,6 @@ R2     COPY SAM2PARM.
                         VALUE '       Transaction processed: '.
            05  RPT-TRAN-RECORD            PIC X(80)  VALUE SPACES.
            05  FILLER                     PIC X(21)  VALUE SPACES.
-R2     01  RPT-CRUNCH-RECORD.
-R2         05  RPT-CRUNCH-CUST        PIC X(14)  VALUE SPACES.
-R2         05  FILLER                 PIC X(06)  VALUE 'TOTAL '.
-R2         05  RPT-CRUNCH-TOTAL       PIC ZZZ,ZZZ,ZZZ,ZZ9.
-R2         05  FILLER                 PIC X(05)  VALUE ' AVG '.
-R2         05  RPT-CRUNCH-AVG         PIC ZZZ,ZZZ,ZZZ,ZZ9.
-R2         05  FILLER                 PIC X(25)  VALUE SPACES.
-
        01  RPT-STATS-HDR1.
            05  FILLER PIC X(26) VALUE 'Transaction Totals:       '.
            05  FILLER PIC X(107) VALUE SPACES.
@@ -222,14 +189,7 @@ R2         05  FILLER                 PIC X(25)  VALUE SPACES.
            05  FILLER              PIC X(3)     VALUE SPACES.
            05  RPT-NUM-TRAN-ERR    PIC ZZZ,ZZZ,ZZ9.
            05  FILLER              PIC X(80)   VALUE SPACES.
-R2     01  RPT-STATS-HDR5.
-R2         05  FILLER PIC X(26) VALUE 'Customer Acct Totals:     '.
-R2         05  FILLER PIC X(107) VALUE SPACES.
-R2     01  RPT-STATS-CUST-DETAIL.
-R2         05  CUST-CNT-NAME       PIC X(30).
-R2         05  FILLER              PIC X(5)     VALUE SPACES.
-R2         05  RPT-NUM-CUST        PIC ZZZ,ZZZ,ZZ9.
-R2         05  FILLER              PIC X(87)   VALUE SPACES.
+
 
       *****************************************************************
        PROCEDURE DIVISION.
@@ -273,7 +233,6 @@ R2         05  FILLER              PIC X(87)   VALUE SPACES.
                ELSE
                  EVALUATE TRAN-CODE
                     WHEN 'UPDATE'
-R2                  WHEN 'CRUNCH'
                         PERFORM 200-PROCESS-UPDATE-TRAN
                     WHEN 'ADD   '
                         PERFORM 210-PROCESS-ADD-TRAN
@@ -295,12 +254,7 @@ R2                  WHEN 'CRUNCH'
 
 
        200-PROCESS-UPDATE-TRAN.
-R2         IF TRAN-CODE = 'UPDATE'
-               ADD +1 TO NUM-UPDATE-REQUESTS
-R2         ELSE
-R2             ADD +1 TO NUM-CRUNCH-REQUESTS
-R2         END-IF.
-
+           ADD +1 TO NUM-UPDATE-REQUESTS.
            PERFORM 720-POSITION-CUST-FILE.
            IF CUST-KEY NOT = TRAN-KEY OR WS-CUST-FILE-EOF = 'Y'
                MOVE 'NO MATCHING KEY:     ' TO ERR-MSG-DATA1
@@ -311,18 +265,13 @@ R2         END-IF.
       *        Subroutine SAM2 will apply an update to a customer record
       *
                CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
-                                      WS-TRAN-OK, WS-TRAN-MSG,
-R2                                    SAM2-PARMS
+                                      WS-TRAN-OK, WS-TRAN-MSG
                IF WS-TRAN-OK NOT = 'Y'
                    MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
                    MOVE SPACES      TO ERR-MSG-DATA2
                    PERFORM 299-REPORT-BAD-TRAN
                ELSE
-R2                 IF TRAN-CODE = 'UPDATE'
-                       ADD +1 TO NUM-UPDATE-PROCESSED
-R2                 ELSE
-R2                     ADD +1 TO NUM-CRUNCH-PROCESSED
-R2                 END-IF
+                   ADD +1 TO NUM-UPDATE-PROCESSED
                END-IF
            END-IF .
 
@@ -440,7 +389,7 @@ R2                 END-IF
            EVALUATE WS-CUSTFILE-STATUS
               WHEN '00'
               WHEN '04'
-R2                ADD +1 TO NUM-PRE-CUSTOMERS
+                  CONTINUE
               WHEN '10'
                   MOVE 'Y' TO WS-CUST-FILE-EOF
               WHEN OTHER
@@ -459,7 +408,7 @@ R2                ADD +1 TO NUM-PRE-CUSTOMERS
            END-IF .
            EVALUATE WS-CUSTOUT-STATUS
               WHEN '00'
-R2                ADD +1 TO NUM-POST-CUSTOMERS
+                  CONTINUE
               WHEN OTHER
                   MOVE 'CUSTOMER OUTPUT FILE I/O ERROR ON WRITE. RC: '
                               TO ERR-MSG-DATA1
@@ -482,19 +431,11 @@ R2                ADD +1 TO NUM-POST-CUSTOMERS
            WRITE REPORT-RECORD FROM RPT-HEADER1 AFTER PAGE.
 
        830-REPORT-TRAN-PROCESSED.
-R2         INITIALIZE RPT-TRAN-RECORD.
-R2         IF TRAN-CODE = 'CRUNCH'
-R2             MOVE TRANSACTION-RECORD(1:14) TO RPT-CRUNCH-CUST
-R2             MOVE CRUNCH-TOTAL             TO RPT-CRUNCH-TOTAL
-R2             MOVE CRUNCH-AVG               TO RPT-CRUNCH-AVG
-R2             MOVE RPT-CRUNCH-RECORD        TO RPT-TRAN-RECORD
-R2         ELSE
-               MOVE TRANSACTION-RECORD TO RPT-TRAN-RECORD
-               IF TRAN-COMMENT = '*'
-                  MOVE SPACES TO RPT-TRAN-MSG1
-               ELSE
-                  MOVE '       Transaction processed: ' to RPT-TRAN-MSG1
-               END-IF
+           MOVE TRANSACTION-RECORD TO RPT-TRAN-RECORD.
+           IF TRAN-COMMENT = '*'
+               MOVE SPACES TO RPT-TRAN-MSG1
+           ELSE
+               MOVE '       Transaction processed: ' to RPT-TRAN-MSG1
            END-IF.
            WRITE REPORT-RECORD FROM RPT-TRAN-DETAIL1.
 
@@ -524,27 +465,3 @@ R2         ELSE
            COMPUTE RPT-NUM-TRAN-ERR =
                       NUM-UPDATE-REQUESTS  -  NUM-UPDATE-PROCESSED .
            WRITE REPORT-RECORD  FROM  RPT-STATS-DETAIL.
-
-R2         MOVE 'CRUNCH '            TO RPT-TRAN.
-R2         MOVE NUM-CRUNCH-REQUESTS  TO RPT-NUM-TRANS.
-R2         MOVE NUM-CRUNCH-PROCESSED TO RPT-NUM-TRAN-PROC.
-R2         COMPUTE RPT-NUM-TRAN-ERR =
-R2                          NUM-CRUNCH-REQUESTS  -  NUM-CRUNCH-PROCESSED .
-R2         WRITE REPORT-RECORD  FROM  RPT-STATS-DETAIL.
-
-R2         WRITE REPORT-RECORD FROM RPT-STATS-HDR5 AFTER 2.
-R2         MOVE 'Pre Report Customer Count' TO CUST-CNT-NAME.
-R2         MOVE NUM-PRE-CUSTOMERS TO RPT-NUM-CUST.
-R2         WRITE REPORT-RECORD  FROM RPT-STATS-CUST-DETAIL.
-R2         MOVE 'Customers Added' TO CUST-CNT-NAME.
-R2         MOVE NUM-ADD-PROCESSED TO RPT-NUM-CUST.
-R2         WRITE REPORT-RECORD  FROM RPT-STATS-CUST-DETAIL.
-R2         MOVE 'Customers Deleted' TO CUST-CNT-NAME.
-R2         MOVE NUM-DELETE-PROCESSED TO RPT-NUM-CUST.
-R2         WRITE REPORT-RECORD  FROM RPT-STATS-CUST-DETAIL.
-R2         COMPUTE NUM-POST-CUSTOMERS = NUM-PRE-CUSTOMERS +
-R2                                      NUM-ADD-PROCESSED -
-R2                                      NUM-DELETE-PROCESSED.
-R2         MOVE 'Post Report Customer Count' TO CUST-CNT-NAME.
-R2         MOVE NUM-POST-CUSTOMERS TO RPT-NUM-CUST.
-R2         WRITE REPORT-RECORD  FROM RPT-STATS-CUST-DETAIL.

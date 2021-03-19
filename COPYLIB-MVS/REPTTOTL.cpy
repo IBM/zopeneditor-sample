@@ -1,0 +1,24 @@
+      ****************************************************************
+      * LICENSED MATERIALS - PROPERTY OF IBM
+      * "RESTRICTED MATERIALS OF IBM"
+      * (C) COPYRIGHT IBM CORPORATION 2021. ALL RIGHTS RESERVED
+      * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+      * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+      * CONTRACT WITH IBM CORPORATION
+      ****************************************************************
+      *
+       01  REPORT-TOTALS.
+           05  NUM-TRAN-RECS         PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-TRAN-ERRORS       PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-ADD-REQUESTS      PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-ADD-PROCESSED     PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-UPDATE-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-UPDATE-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-DELETE-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-DELETE-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-CRUNCH-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-CRUNCH-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-RPTALL-REQUESTS   PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-RPTALL-PROCESSED  PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-GEN-REQUESTS      PIC S9(9)   COMP-3  VALUE +0.
+           05  NUM-GEN-PROCESSED     PIC S9(9)   COMP-3  VALUE +0.

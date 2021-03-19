@@ -1,5 +1,5 @@
 {
-  "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED",
+  "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020, 2021. ALL RIGHTS RESERVED",
   "name": "sam",
   "description": "Wazi's code samples with COBOL, PL/I, and HLASM applications",
   "version": "1.1.0",
@@ -13,6 +13,14 @@
       "type": "local",
       "syslib": [
         "**/COPYBOOK"
+      ],
+      "libraries": [
+        {
+          "name": "MYFILE",
+          "locations": [
+            "**/COPYLIB"
+          ]
+        }
       ]
     },
     {
@@ -22,6 +30,14 @@
       "type": "local",
       "syslib": [
         "**/INCLUDES"
+      ],
+      "libraries": [
+        {
+          "name": "MYFILE",
+          "locations": [
+            "**/INCLUDELIB"
+          ]
+        }
       ]
     },
     {
@@ -33,7 +49,8 @@
       ]
     },
     {
-      "name": "zowe-mvs",
+      "name": "zowe-mvs-cbl",
+      "language": "cobol",
       "type": "mvs",
       "system": "zos1000.example.com",
       "syslib": [
@@ -41,9 +58,26 @@
       ],
       "libraries": [
         {
-          "name": "MYFILE",
+          "name": "MYLIB",
           "locations": [
-            "USER1.SAMPLE.COPY"
+            "USER1.SAMPLE.COPYLIB"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "zowe-mvs-pl1",
+      "language": "pl1",
+      "type": "mvs",
+      "system": "zos1000.example.com",
+      "syslib": [
+        "USER1.SAMPLE.PLINC"
+      ],
+      "libraries": [
+        {
+          "name": "MYLIB",
+          "locations": [
+            "USER1.SAMPLE.PLI.INCLLIB"
           ]
         }
       ]
@@ -66,6 +100,34 @@
         "additionalDependencies": [
           "application-conf"
         ]
+      }
+    },
+    {
+      "name": "RSE-Mappings",
+      "type": "rseapi",
+      "settings": {
+        "mappings": [
+          {
+            "resource": "**.SAMPLE.COB**",
+            "extension": "cbl",
+            "transfer": "text",
+            "encoding": "IBM-037",
+            "memberMappings": [
+              {
+                "extension": "dat",
+                "transfer": "binary",
+                "resource": "*DAT"
+              }
+            ]
+          },
+          {
+            "resource": "**PLI*",
+            "extension": "pl1",
+            "transfer": "text",
+            "encoding": "IBM-037"
+          }
+        ],
+        "default.encoding": "IBM-037"
       }
     }
   ]
