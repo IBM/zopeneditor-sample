@@ -1,5 +1,5 @@
 # Application Configuration
-This folder contains application specific configuration properties used by the zAppBuild Groovy build and utility scripts. It is intended to be copied as a high level folder in the application repository or main application repository if the application source files are distributed across multiple repositories. Once copied to the application repository, users should review the default property files and modify any values as needed. 
+This folder contains application specific configuration properties used by the zAppBuild Groovy build and utility scripts. It is intended to be copied as a high level folder in the application repository or main application repository if the application source files are distributed across multiple repositories. Once copied to the application repository, users should review the default property files and modify any values as needed.
 
 At the beginning of the build, the `application-conf/application.properties` file will automatically be loaded into the [DBB BuildProperties class](https://www.ibm.com/support/knowledgecenter/SS6T76_1.0.4/scriptorg.html#build-properties-class). Use the `applicationPropFiles` property (see table below) to load additional application property files.
 
@@ -19,10 +19,10 @@ excludeFileList | Files to exclude when scanning or running full build.
 impactResolutionRules | Comma separated list of resolution rule properties used for impact builds.  Sample resolution rule properties (in JSON format) are included below.
 
 ### file.properties
-Location of file properties, script mappings and file level property overrides.  All file properties for the entire application, including source files in distributed repositories of the application need to be contained either in this file or in other property files in the `application-conf` directory. Look for column 'Overridable' in the tables below for build properties that can have file level property overrides. 
+Location of file properties, script mappings and file level property overrides.  All file properties for the entire application, including source files in distributed repositories of the application need to be contained either in this file or in other property files in the `application-conf` directory. Look for column 'Overridable' in the tables below for build properties that can have file level property overrides.
 
-Property | Description 
---- | --- 
+Property | Description
+--- | ---
 dbb.scriptMapping | DBB configuration file properties associtation build files to language scripts
 
 ### Assembler.properties
@@ -97,3 +97,5 @@ pli_linkEditParms | Default link edit parameters. | true
 pli_linkEdit | Flag indicating to execute the link edit step to produce a load module for the source file.  If false then a object deck will be created instead for later linking. | true
 plil_scanLoadModule | Flag indicating to scan the load module for link dependencies and store in the application's outputs collection. | true
 
+### datasets-sandbox.properties
+This file is to be used by those going through the user build tutorial on the Nazare Sandbox host.  It is pre-configured with all of the datasets needed by DBB to run user builds.  The user build tutorial provides instructions on use of this file.
