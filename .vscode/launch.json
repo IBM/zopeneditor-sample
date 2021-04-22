@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "zOpenDebug",
+            "request": "launch",
+            "name": "Connect to parked IBM Z Open Debug session",
+            "useConnectionDetailsFromSettings": false,
+            "user": "IBMUSER",
+            "password": "${command:AskForPassword}",
+            "ignoreCertificateErrors": true,
+            "host": "zos.mycompany.com",
+            "port": 30358,
+            "secure": true
+        },
+        {
+            "type": "zOpenDebug",
+            "request": "attach",
+            "name": "List parked IBM Z Open Debug sessions",
+            "useConnectionDetailsFromSettings": false,
+            "ignoreCertificateErrors": true,
+            "host": "zos.mycompany.com",
+            "port": 30358,
+            "secure": true
+        }
+    ]
+}
