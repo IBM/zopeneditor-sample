@@ -195,4 +195,70 @@ To demonstrate resolving library based copybooks and includes on a remote z host
           - USER1.SAMPLE.COPYLIB
 ```
 
-Notice the **libraries: name** `MYLIB` matches the libray name in the `SAM1LIB` copy statement `COPY REPTTOTL IN MYLIB`
+Notice the **libraries: name** `MYLIB` matches the library name in the `SAM1LIB` copy statement `COPY REPTTOTL IN MYLIB`
+
+## Running a Debug session on Wazi Sandbox
+
+The following steps are a cheat sheet of the main steps to perform for running a debug session in VS Code with IBM Z Open Debug as well as IBM Wazi Developer, which includes the Wazi Developer for Workspaces browser-based editor as well as the Wazi Sandbox virtualized z/OS system that comes pre-configured for Debug. For a more detailed explanations refer to the Z Open Debug documentation for details.
+
+### Settings to configure
+
+- Update the  `launch.json` file with your hostname, which is currently `zos.mycompany.com` as well as the port of your Z Open Debug "remote-debug-service".
+  - Keep the file in the `.vscode` folder for VS Code
+  - Move the file to the `.theia` folder for IBM Wazi Developer for Workspaces
+- Configure Z Open Debug Settings
+  - `File > Preferences > Settings > User`
+  - Type `zopendebug` in the Search bar
+  - Configure with the following:
+    - Host name: `zos.mycompany.com`
+    - Port: the port of your Z Open Debug "debug-profile-service"
+    - Context Root: `api/v1`
+    - Connection Secured: ensure box is checked
+    - User Name: `ibmuser`
+    - Profile View settings can be left unchecked
+
+### Create an IBM Z Open Debug Profile
+
+- Open Command Palette (Ctrl+Shift+P)
+- Enter `Debug` in the command bar
+- Select `IBM Z Open Debug Profiles View`
+- Select `Create Profile`
+- Select `Batch, IMS, DB2`
+- You can use the default Profile name or enter your own
+- The connection information will be pre-populated.
+- Select `Create`
+
+
+### Self-signed certificates workarounds
+
+If you are running into problems with your Debug Profile showing you a connection error then it might be because you are using a self-signed certificate for your Debug services. In that case you need to loosen the security configuration in your editor or browser. If you have valid certificates and your Z Open Debug profile connects showing you a blue check mark icon then ignore these steps.
+
+- VS Code workaround:
+  - Exit out of VS Code
+  - Open a command prompt
+  - Start VS Code using the command `code --ignore-certificate-errors`
+  - When VS Code starts, return to the `Debug Profiles view` tab
+  - Click the `Edit` icon for the profile just created
+  - A blue checkmark with a `Connected` label should appear after the connection setting
+- IBM Wazi Developer for Workspaces workaround:
+  - Open another tab in the same browser
+  - Paste this url : https://zos.mycompany.com:30858/api/v1/profile/dtcn/ (replace 30858 with your "debug-profile-service" port)
+  - The browser will show a security error
+  - Click `Advanced`
+  - Click `Proceed to unsafe`
+  - Browser will ignore certificate errors
+- Return to the `Debug Profiles view` tab
+- Click the `Edit` icon for the profile just created
+- A blue checkmark with a `Connected` label should appear after the connection setting
+
+### Run a Debug Session
+
+- Submit `DEMODBG.jcl` to run `SAM1`
+- Click on the `Debug` icon in left panel
+- Select `List parked IBM Z Open Debug Sessions` and run by clicking on green arrow
+- The `Debug Console` will open with a list of parked sessions (it may take a minute or so to show the sessions)
+- Session `SAM1` will display in the Debug Console
+- Click on `SAM1` to highlight the session
+- Back in the Debug viewer, select `Connect to parked IBM Z Open Debug Sessions` and run by clicking on the green arrow
+- Enter the password for `IBMUSER`
+- `SAM1` should appear in the editor window in debug mode.  Use the various debug buttons to control your session.
