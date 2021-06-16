@@ -9,8 +9,8 @@
 ################################################################
 
 HLQ=IBMUSER
-FILES_CMD="rse" # for z/OSMF use "files"
-JOBS_CMD="rse"  # for z/OSMF use "zos-jobs"
+FILES_CMD=rse   # for z/OSMF use "files"
+JOBS_CMD=rse    # for z/OSMF use "zos-jobs"
 PROFILE=""      # to use a non-default profile use "--rse-proile profileName"
 
 echo "Submitted job to allocate data sets.."
