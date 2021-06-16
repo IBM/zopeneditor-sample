@@ -2,16 +2,16 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2021. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
 set -e
-HLQ="IBMUSER"
-FILES_CMD="rse" # for z/OSMF use "files"
-JOBS_CMD="rse"  # for z/OSMF use "zos-jobs"
+HLQ=IBMUSER
+FILES_CMD=rse   # for z/OSMF use "files"
+JOBS_CMD=rse    # for z/OSMF use "zos-jobs"
 PROFILE=""      # to use a non-default profile use "--rse-proile profileName"
 
 echo "Started sample script that will allocate datasets, upload programs, execute JCL and download results."
