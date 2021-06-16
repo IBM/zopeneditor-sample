@@ -64,7 +64,7 @@
     ],
     "zopeneditor.userbuild.workspaceSettings": {
         "dbb": {
-            "command": "$DBB_HOME/bin/groovyz",
+            "command": "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
             "commandArgs": [],
             "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
             "buildScriptArgs": [
