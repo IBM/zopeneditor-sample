@@ -13,7 +13,7 @@
 //* THE FOLLOWING HLQ SYMBOLIC MUST CONTAIN THE HIGH LEVEL
 //* QUALIFIER UNDER WHICH THE SAMPLE DATASETS MAY RESIDE.
 //*
-//    SET HLQ='TSOUSER'       *TSO USER ID
+//    SET HLQ='IBMUSER'       *TSO USER ID
 //*************************
 //* CLEAN UP DATASETS
 //*************************
@@ -34,6 +34,9 @@
 //            DISP=(MOD,DELETE,DELETE),
 //            UNIT=SYSDA,SPACE=(CYL,(0))
 //DD5      DD DSN=&HLQ..SAMPLE.ASM.FILEIN,
+//            DISP=(MOD,DELETE,DELETE),
+//            UNIT=SYSDA,SPACE=(CYL,(0))
+//DD6      DD DSN=&HLQ..SAMPLE.EQALANGX,
 //            DISP=(MOD,DELETE,DELETE),
 //            UNIT=SYSDA,SPACE=(CYL,(0))
 /*
@@ -69,4 +72,9 @@
 //            DISP=(NEW,CATLG),LRECL=80,RECFM=FB,DSORG=PS,
 //            SPACE=(TRK,(100,10),RLSE),
 //            BLKSIZE=(32720)
+/*
+//DD6      DD DSN=&HLQ..SAMPLE.EQALANGX,
+//            DISP=(NEW,CATLG),LRECL=1562,RECFM=VB,DSORG=PO,
+//            SPACE=(TRK,(20,20),RLSE),
+//            BLKSIZE=(32760),DSNTYPE=LIBRARY
 //*

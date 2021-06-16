@@ -103,6 +103,7 @@ USER1.SAMPLE.ASMLOAD
 USER1.SAMPLE.ASM
 USER1.SAMPLE.ASMCOPY
 USER1.SAMPLE.ASM.FILEIN
+USER1.SAMPLE.EQALANGX
 ```
 
 The application creates a file, `USER1.SAMPLE.ASM.FILEOUT`.
@@ -199,7 +200,7 @@ Notice the **libraries: name** `MYLIB` matches the library name in the `SAM1LIB`
 
 ## Running a Debug session on Wazi Sandbox
 
-The following steps are a cheat sheet of the main steps to perform for running a debug session in VS Code with IBM Z Open Debug as well as IBM Wazi Developer, which includes the Wazi Developer for Workspaces browser-based editor as well as the Wazi Sandbox virtualized z/OS system that comes pre-configured for Debug. For a more detailed explanations refer to the Z Open Debug documentation for details.
+The following steps are a cheat sheet of the main steps to perform for running a debug session in VS Code with IBM Z Open Debug as well as IBM Wazi Developer, which includes the Wazi Developer for Workspaces browser-based editor as well as the Wazi Sandbox virtualized z/OS system that comes pre-configured for Debug. For a more detailed explanations refer to the [Z Open Debug documentation](https://www.ibm.com/docs/en/wdfrhcw/1.2.0?topic=code-debugging-applications) for details.
 
 ### Settings to configure
 
@@ -253,12 +254,41 @@ If you are running into problems with your Debug Profile showing you a connectio
 
 ### Run a Debug Session
 
-- Submit `DEMODBG.jcl` to run `SAM1`
+- Submit `DEMODBG.jcl` to run `SAM1` or `DEBUGASM.jcl` to run `ASAM1`
 - Click on the `Debug` icon in left panel
 - Select `List parked IBM Z Open Debug Sessions` and run by clicking on green arrow
 - The `Debug Console` will open with a list of parked sessions (it may take a minute or so to show the sessions)
-- Session `SAM1` will display in the Debug Console
-- Click on `SAM1` to highlight the session
+- Session `SAM1` or `ASAM1` will display in the Debug Console
 - Back in the Debug viewer, select `Connect to parked IBM Z Open Debug Sessions` and run by clicking on the green arrow
 - Enter the password for `IBMUSER`
-- `SAM1` should appear in the editor window in debug mode.  Use the various debug buttons to control your session.
+- `SAM1` or `ASAM1` should appear in the editor window in debug mode.  Use the various debug buttons to control your session.
+
+## Setting up to run a DBB User Build on Wazi Sandbox
+
+The following steps are a cheat sheet of the main steps to perform for running an IBM Dependency Based Build (DBB) user build in VS Code as well as IBM Wazi Developer, which includes the Wazi Developer for Workspaces browser-based editor as well as the Wazi Sandbox virtualized z/OS system that comes pre-configured with DBB.
+
+- Check the [DBB Prerequisites and IBM Z Open Editor workspace and user settings for DBB](https://www.ibm.com/docs/en/wdfrhcw/1.2.0?topic=code-setting-up-user-build)
+- Switch to the `wazi-master` branch of the sample repo
+- Open the `zowecli-create-profiles.sh` script and replace the parameter values with the appropriate values for Wazi Sanbox
+- Run the script to create the RSE and SSH profiles which will also set them as default profiles.
+- Verify the RSE profile using either Zowe Explorer or Zowe CLI commands
+  - Zowe Explorer
+    - Click the refresh button and add the new RSE profile.
+    - Click the magnifying glass icon and run a search on IMBUSER.* data sets and /u/ibmuser uss files
+  - Zowe CLI
+    - In the terminal window, run the commands:
+
+      ``` ascii
+      zowe rse ls ds "IBMUSER"
+      ```
+
+      ``` ascii
+      zowe rse ls uss "/u/ibmuser"
+      ```
+
+- Open the `dbb-prepare-uss-folder.sh` script and verify the parameter values for Wazi Sanbox
+- Run the script to clone the DBB zappbuild repo to the uss working directory and to upload the pre-configured `datasets.properties` file.
+- Open a COBOL, PL/I, or HLASM file.
+- Right click and select `Run Setup for IBM User Build Setup`
+- When complete, right click and select `Run IBM User Build`
+- If you need to start with a fresh setup or just need to remove the working directory when finished, you can run the `dbb-remove-uss-filder.sh` script.

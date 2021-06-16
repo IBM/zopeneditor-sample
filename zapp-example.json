@@ -54,13 +54,13 @@
       "type": "mvs",
       "system": "zos1000.example.com",
       "syslib": [
-        "USER1.SAMPLE.COBCOPY"
+        "IBMUSER.SAMPLE.COBCOPY"
       ],
       "libraries": [
         {
           "name": "MYLIB",
           "locations": [
-            "USER1.SAMPLE.COPYLIB"
+            "IBMUSER.SAMPLE.COPYLIB"
           ]
         }
       ]
@@ -71,13 +71,13 @@
       "type": "mvs",
       "system": "zos1000.example.com",
       "syslib": [
-        "USER1.SAMPLE.PLINC"
+        "IBMUSER.SAMPLE.PLINC"
       ],
       "libraries": [
         {
           "name": "MYLIB",
           "locations": [
-            "USER1.SAMPLE.PLI.INCLLIB"
+            "IBMUSER.SAMPLE.PLI.INCLLIB"
           ]
         }
       ]
@@ -88,7 +88,7 @@
       "name": "dbb-userbuild",
       "type": "dbb",
       "settings": {
-        "command": "$DBB_HOME/bin/groovyz",
+        "command": "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
         "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
         "buildScriptArgs": [
           "--userBuild",

@@ -45,27 +45,27 @@ property-groups:
     type: mvs
     system: zos1000.example.com
     syslib:
-      - USER1.SAMPLE.COBCOPY
+      - IBMUSER.SAMPLE.COBCOPY
     libraries:
       - name: MYLIB
         locations:
-          - USER1.SAMPLE.COPYLIB
+          - IBMUSER.SAMPLE.COPYLIB
   - name: zowe-mvs-pl1
     language: pl1
     type: mvs
     system: zos1000.example.com
     syslib:
-      - USER1.SAMPLE.PLINC
+      - IBMUSER.SAMPLE.PLINC
     libraries:
       - name: MYLIB
         locations:
-          - USER1.SAMPLE.COPY
+          - IBMUSER.SAMPLE.PLI.INCLLIB
 
 profiles:
   - name: dbb-userbuild
     type: dbb
     settings:
-      command: $DBB_HOME/bin/groovyz
+      command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
       buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
       buildScriptArgs:
         - "--userBuild"
@@ -75,7 +75,6 @@ profiles:
         - "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
       additionalDependencies:
         - application-conf
-          - USER1.SAMPLE.PLI.INCLLIB
 
 # Mappings example using US defaults. Adjust to your code pages.
   - name: RSE-Mappings

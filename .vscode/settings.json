@@ -34,13 +34,13 @@
             "type": "mvs",
             "language": "cobol",
             "syslib": [
-                "USER1.SAMPLE.COBCOPY"
+                "IBMUSER.SAMPLE.COBCOPY"
             ],
             "libraries": [
                 {
                     "name": "MYLIB",
                     "locations": [
-                        "USER1.SAMPLE.COPYLIB"
+                        "IBMUSER.SAMPLE.COPYLIB"
                     ]
                 }
             ]
@@ -50,13 +50,13 @@
             "type": "mvs",
             "language": "pl1",
             "syslib": [
-                "USER1.SAMPLE.PLINC"
+                "IBMUSER.SAMPLE.PLINC"
             ],
             "libraries": [
                 {
                     "name": "MYLIB",
                     "locations": [
-                        "USER1.SAMPLE.PLI.INCLLIB"
+                        "IBMUSER.SAMPLE.PLI.INCLLIB"
                     ]
                 }
             ]
@@ -64,7 +64,7 @@
     ],
     "zopeneditor.userbuild.workspaceSettings": {
         "dbb": {
-            "command": "$DBB_HOME/bin/groovyz",
+            "command": "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
             "commandArgs": [],
             "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
             "buildScriptArgs": [
