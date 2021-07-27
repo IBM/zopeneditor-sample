@@ -15,7 +15,8 @@
 
 WORK_DIR="/u/ibmuser/projects"   # WORK_DIR='parent workspace directory'
 FILES_CMD=rse                    # for z/OSMF use "files"
-SSHPROFILE=""                    # to use a non-default profile use "--rse-profile profileName"
+SSHPROFILE=""                    # to use a non-default profile use "--ssh-profile profileName"
+FILESPROFILE=""                  # to use a non-default profile use "--rse-profile profileName"
 DBB_ZAPPBUILD="https://github.com/IBM/dbb-zappbuild.git"
 
 # Delete dbb files to start fresh
@@ -36,8 +37,7 @@ zowe uss issue ssh "cd $WORK_DIR;git config --global http.sslVerify false;git cl
 # Copy the Sanbox datasets.properties file
 echo ""
 echo "Installing the Sandbox datasets.properties file..."
-zowe $FILES_CMD upload file-to-uss "application-conf/datasets-sandbox.properties" "$WORK_DIR/dbb-zappbuild/build-conf/datasets.properties" $SSHPROFILE
-
+zowe $FILES_CMD upload file-to-uss "application-conf/datasets-sandbox.properties" "$WORK_DIR/dbb-zappbuild/build-conf/datasets.properties" $FILESPROFILE
 
 echo ""
 echo 'DBB Setup Finished'
