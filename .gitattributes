@@ -1,3 +1,7 @@
+# line endings
+* text=auto eol=lf
+
+# file encodings
 *.cpy zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.cbl zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.jcl zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
