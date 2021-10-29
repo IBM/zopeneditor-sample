@@ -1,0 +1,114 @@
+###############################################################################
+# Licensed Materials - Property of IBM
+# (c) Copyright IBM Corporation 2021. All Rights Reserved.
+#
+# Note to U.S. Government Users Restricted Rights:
+# Use, duplication or disclosure restricted by GSA ADP Schedule
+# Contract with IBM Corp.
+###############################################################################
+
+---
+- hosts: "{{ host | default('sandbox1') }}"
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  # Variables and template prep
+  - name: Defining variables
+    set_fact:
+      hlq: "{{ ansible_user | upper }}"
+      dbb_dir: "/u/{{ ansible_user }}/projects"
+
+  - name: Defining data sets names
+    set_fact:
+      jcl_pds: "{{ hlq }}.SAMPLE.JCL"
+      src_pds: "{{ hlq }}.SAMPLE.COBOL"
+      copy_pds: "{{ hlq }}.SAMPLE.COBCOPY"
+
+  - name: Create local temp directory
+    tempfile:
+      state: directory
+    register: tempdir
+    delegate_to: localhost
+
+  - name: Resolve templates to be copied to copied and used
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      mode: 0644
+    with_items:
+      - { src: "templates/ALLOCATE.j2", dest: "{{ tempdir.path }}/ALLOCATE" }
+      - { src: "templates/DEBUG.j2", dest: "{{ tempdir.path }}/DEBUG" }
+      - { src: "templates/RUN.j2", dest: "{{ tempdir.path }}/RUN" }
+      - { src: "templates/dbb-sam-build.j2", dest: "{{ tempdir.path }}/dbb-sam-build.groovy" }
+    delegate_to: localhost
+
+  # Preparing Data Sets
+  - name: Execute allocate jcl
+    zos_job_submit:
+      src: "{{ tempdir.path }}/ALLOCATE"
+      location: LOCAL
+      wait: true
+
+  # Uploading files for compilation
+  - name: Copy cobol programs
+    zos_copy:
+      src: "{{ playbook_dir }}/../COBOL/"
+      dest: "{{ src_pds }}"
+
+  - name: Copy cobol copybooks
+    zos_copy:
+      src: "{{ playbook_dir }}/../COPYBOOK/"
+      dest: "{{ copy_pds }}"
+
+  - name: Create a log files directory
+    file:
+      path: "{{ dbb_dir }}/logs"
+      state: directory
+      mode: u+rwx,g-wx,o-rwx
+
+  - name: Copy groovy build script
+    zos_copy:
+      src: "{{ tempdir.path }}/dbb-sam-build.groovy"
+      dest: "{{ dbb_dir }}/dbb-sam-build.groovy"
+
+  - name: Copy Debug JCL to JCL data set
+    zos_copy:
+      src: "{{ tempdir.path }}/DEBUG"
+      dest: "{{ jcl_pds }}"
+
+  - name: Copy Run JCL to JCL data set
+    zos_copy:
+      src: "{{ tempdir.path }}/RUN"
+      dest: "{{ jcl_pds }}"
+
+  # Build the application
+  - name: Run DBB build script
+    shell:
+      cmd: "{{ dbb_home }}/bin/groovyz {{ dbb_settings }} {{ dbb_dir }}/dbb-sam-build.groovy {{ hlq }} {{ dbb_dir }} > {{ dbb_dir }}/dbb-sam-build.txt 2>&1"
+    args:
+      chdir: "{{ dbb_dir }}"
+    register: result
+    ignore_errors: true
+
+  - name: Getting the DBB build output from host
+    command: "cat {{ dbb_dir }}/dbb-sam-build.txt"
+    register: filename
+  - name: Show DBB build output
+    debug:
+      msg: "{{ filename.stdout }}"
+
+  - name: Check if build succeeded
+    fail:
+      msg: "The Groovy build failed. Check the log files on USS at {{ dbb_dir }}/logs."
+    failed_when:
+      - result.rc > 0
+
+  # Finished, cleanup
+  - name: Delete local temp directory
+    file:
+      path: "{{ tempdir }}"
+      state: absent
+    delegate_to: localhost

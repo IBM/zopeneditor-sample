@@ -1,0 +1,62 @@
+###############################################################################
+# Licensed Materials - Property of IBM
+# (c) Copyright IBM Corporation 2021. All Rights Reserved.
+#
+# Note to U.S. Government Users Restricted Rights:
+# Use, duplication or disclosure restricted by GSA ADP Schedule
+# Contract with IBM Corp.
+###############################################################################
+
+## Playbook that runs the SAM app that was previously build with either
+## the dbb-sam-build.yml playbook or by running IBM User Build.
+
+---
+- hosts: "{{ host | default('sandbox1') }}"
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  # Variables and template prep
+  - name: Defining user-specific variables
+    set_fact:
+      hlq: "{{ ansible_user | upper }}"
+
+  - name: Defining data sets names
+    set_fact:
+      tranfile: "{{ hlq }}.SAMPLE.TRANFILE"
+      custfile: "{{ hlq }}.SAMPLE.CUSTFILE"
+      custreport: "{{ hlq }}.SAMPLE.CUSTRPT"
+      jcl_pds: "{{ hlq }}.SAMPLE.JCL"
+
+  # Uploading files
+  - name: Copy test data TRANFILE
+    zos_copy:
+      src: "{{ playbook_dir }}/../RESOURCES/SAMPLE.TRANFILE.txt"
+      dest: "{{ tranfile }}"
+
+  - name: Copy test data CUSTFILE
+    zos_copy:
+      src: "{{ playbook_dir }}/../RESOURCES/SAMPLE.CUSTFILE.txt"
+      dest: "{{ custfile }}"
+
+  - name: Execute RUN JCL
+    zos_job_submit:
+      src: "{{ jcl_pds }}(RUN)"
+      location: DATA_SET
+      wait: true
+
+  - name: Get the SAM report file
+    zos_fetch:
+      src: "{{ custreport }}"
+      dest: "/tmp/"
+      flat: true
+
+  - name: Fetch the SAM report file
+    command: "cat /tmp/{{ custreport }}"
+    register: report_file
+    delegate_to: localhost
+  - name: Show the SAM report file
+    debug:
+      var: report_file.stdout_lines

@@ -1,9 +1,9 @@
-//ZDEDBB   JOB ,NOTIFY=&SYSUID,
+//SAMRUN   JOB ,NOTIFY=&SYSUID,
 // MSGCLASS=H,MSGLEVEL=(1,1),REGION=144M
 //*****************************************************************
 //* LICENSED MATERIALS - PROPERTY OF IBM
 //* "RESTRICTED MATERIALS OF IBM"
-//* (C) COPYRIGHT IBM CORPORATION 2018, 2019. ALL RIGHTS RESERVED
+//* (C) COPYRIGHT IBM CORPORATION 2018, 2021. ALL RIGHTS RESERVED
 //*
 //*  US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 //*  OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
@@ -27,7 +27,7 @@
 //* CAN ALSO CHANGE THEM AS NEEDED.
 //*
 //*****************************************************************
-//    SET HLQ='TSOUSER'                       *TSO USER ID
+//    SET HLQ='IBMUSER'                       *TSO USER ID
 //*
 //*************************
 //* CLEAN UP

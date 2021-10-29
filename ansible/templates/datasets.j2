@@ -13,58 +13,55 @@
 # Ex:
 # MACLIB=SYS1.MACLIB
 
+# LE (Language Environment) load library. Example: CEE.SCEELKED
+SCEELKED={{ link_library }}
+
 # z/OS macro library. Example: SYS1.MACLIB
 MACLIB=SYS1.MACLIB
-
 # Assembler macro library. Example: CEE.SCEEMAC
 SCEEMAC=CEE.SCEEMAC
-
-# LE (Language Environment) load library. Example: CEE.SCEELKED
-SCEELKED=CEE.SCEELKED
-
 # High Level Assembler (HLASM) load library. Example: ASM.SASMMOD1
 SASMMOD1=ASM.SASMMOD1
 
 # Cobol Compiler Data Sets. Example: COBOL.V4R1M0.SIGYCOMP
-SIGYCOMP_V4=IGY630.SIGYCOMP
-SIGYCOMP_V6=IGY630.SIGYCOMP
+SIGYCOMP_V4={{ cobol4_compiler_library }}
+SIGYCOMP_V6={{ cobol6_compiler_library }}
 
 # PL/I Compiler Data Sets.  Example: PLI.V5R2M0.SIBMZCMP
-IBMZPLI_V52=IEL530.SIBMZCMP
-IBMZPLI_V51=
+IBMZPLI_V51={{ ibmzpli_v51 }}
+IBMZPLI_V52={{ ibmzpli_v52 }}
+
+# REXX Compiler Data Sets. Example: REXX.V1R4.SFANLMD
+SFANLMD={{ sfanlmd }}
 
 # CICS Macro Library. Example: CICSTS.V3R2M0.CICS.SDFHMAC
-SDFHMAC=DFH550.CICS.SDFHMAC
-
+SDFHMAC={{ sdfhmac }}
 # CICS Load Library. Example: CICSTS.V3R2M0.CICS.SDFHLOAD
-SDFHLOAD=DFH550.CICS.SDFHLOAD
-
+SDFHLOAD={{ sdfhload }}
 # CICS COBOL Library. Example: CICSTS.V3R2M0.CICS.SDFHCOB
-SDFHCOB=DFH550.CICS.SDFHCOB
+SDFHCOB={{ sdfhcob }}
 
 # MQ COBOL Library. Example: CSQ.V9R1M0.SCSQCOBC
-SCSQCOBC=CSQ911.SCSQCOBC
-
+SCSQCOBC={{ scsqcobc }}
 # MQ Load Library. Example: CSQ.V9R1M0.SCSQLOAD
-SCSQLOAD=CSQ911.SCSQLOAD
+SCSQLOAD={{ scsqload }}
 
 # DB2 Load Library. Example: DB2.V9R1M0.SDSNLOAD
-SDSNLOAD=DSNC10.SDSNLOAD
+SDSNLOAD={{ sdsnload }}
 
 # IMS Macro Library. Example: DFS.V11R1M0.SDFSMAC
-SDFSMAC=DFSF10.SDFSMAC
-
+SDFSMAC={{ sdfsmac }}
 # IMS RESLIB. Example: DFS.V11R1M0.SDFSRESL
-SDFSRESL=DFSF10.SDFSRESL
+SDFSRESL={{ sdfsresl }}
 
 # User generated library for DB/DC and DC installations. Example: DFS.V11R1M0.REFERAL
-REFERAL=DFSF10.REFERAL
+REFERAL={{ referal }}
 
 # IBM Debug Library containing Exits
-SEQAMOD=EQAF00.SEQAMOD
+SEQAMOD={{ debug_library }}
 
 # Optional IDz Load Library. Example: FEL.V14R0M0.SFELLOAD
-SFELLOAD=FELE20.SFELLOAD
+SFELLOAD={{ sfelload }}
 
 # Optional IDZ zUnit / WAZI VTP library containing necessary copybooks. Example : FEL.V14R2.SBZUSAMP
-SBZUSAMP=FELE20.SBZUSAMP
+SBZUSAMP={{ sbzusamp }}

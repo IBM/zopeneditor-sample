@@ -1,4 +1,4 @@
-//ZDEDBG  JOB ,NOTIFY=&SYSUID,
+//SAMDBG  JOB ,NOTIFY=&SYSUID,
 // MSGCLASS=H,MSGLEVEL=(1,1),REGION=144M
 //*****************************************************************
 //* LICENSED MATERIALS - PROPERTY OF IBM
