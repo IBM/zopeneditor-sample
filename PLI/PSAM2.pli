@@ -1,4 +1,4 @@
-%PROCESS SOURCE RULES(LAXIF); 
+%PROCESS SOURCE RULES(LAXIF);
  PSAM2: PROCEDURE(CUSTFILE_RECORD,
                   CUSTOMER_BALANCE_STATS);
  /****************************************************************
