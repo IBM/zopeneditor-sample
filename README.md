@@ -59,7 +59,7 @@ Before you run and use the sample code, ensure that the following prerequisites 
   - `SAM1LIB` is a copy of `SAM1` but shows resolving copybooks with the local and MVS library options
 - Copybooks: `CUSTCOPY` and `TRANREC`
 - Libraries copybooks: `DATETIME` (local under COPYLIB) and `REPTTOTL` (MVS under COPYLIB-MVS)
-- Data source files: `SAMPLE.CUSTFILE` and `SAMPLE.TRANFILE`
+- Data source files: `SAMPLE.CUSTFILE.txt` and `SAMPLE.TRANFILE.txt`
 - JCL members that set up and run the application: `ALLOCATE` and `RUN`.
   **Note:** The JCL files are to be used as templates, so you might need to update the compiler library name and the `HLQ` parm with your TSO user ID.
 
@@ -110,7 +110,7 @@ In looking at the files, you will notice a new copybook called `SAM2PARM`, which
   - `PSAM1LIB` is a copy of `PSAM1` but shows resolving includes with the local and MVS library options
 - Includes: `BALSTATS` and `CUSTPLI`
 - Libraries includes: `DATETIME` (local under INCLUDELIB) and `REPTTOTL` (MVS under INCLUDELIB-MVS)
-- Data source files: `SAMPLE.PLI.TRANFILE` and `SAMPLE.PLI.CUSTFILE`
+- Data source files: `SAMPLE.PLI.TRANFILE.txt` and `SAMPLE.PLI.CUSTFILE.txt`
 - JCL members that set up and run the application: `PLIALLOC` and `RUNPSAM1`.
   **Note:** The JCL files are to be used as templates, so you might need to update the compiler library name and you will need to update the `HLQ` parm with your TSO user ID.
 
@@ -155,7 +155,7 @@ After you successfully run the programs, you can see these resulting new files o
 
 - HLASM programs: `ASAM1` and `IRR@XACS`. `IRR@XACS` is included to provide a better example for the Outline View, and can be found in the `SYS1.SAMPLIB` on the Z host.
 - Copybook (in ASMCOPY): `REGISTRS`
-- Data source file: `SAMPLE.ASM.FILEIN`
+- Data source file: `SAMPLE.ASM.FILEIN.txt`
 - JCL members that set up and run the application: `ASMALLOC` and `RUNASAM1`. **Note:** The JCL files are to be used as templates, so you might need to update the compiler library, the z/OS Macro library, the Assembler Macro library, and the Assembler Modgen library names. You will also need to update the `HLQ` parm with your TSO user ID.
 
 `ASAM1` reads in a record from the `SAMPLE.ASM.FILEIN` data set.  It will then write it to the output file `ASM.FILEOUT` and the record number and column number records.
@@ -194,7 +194,7 @@ After you successfully run the programs, you can see these resulting new files o
 ### Sample files
 
 - REXX program: `RSAM1`
-- Data source files: `SAMPLE.REXX.FILEIN1` and `SAMPLE.REXX.FILEIN2`
+- Data source files: `SAMPLE.REXX.FILEIN1.txt` and `SAMPLE.REXX.FILEIN2.txt`
 - JCL member to allocate files necessary to run the exec: `REXALLOC`. **Note:** You will need to update the `HLQ` parm with your TSO user ID.
 
 `RSAM1` reads in the records from the `SAMPLE.REXX.FILEIN1` and `SAMPLE.REXX.FILEIN2` data sets.  It will then write them to the output file `SAMPLE.REXX.FILEOUT`.
