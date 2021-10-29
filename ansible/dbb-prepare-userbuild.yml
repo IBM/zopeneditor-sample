@@ -1,0 +1,109 @@
+###############################################################################
+# Licensed Materials - Property of IBM
+# (c) Copyright IBM Corporation 2021. All Rights Reserved.
+#
+# Note to U.S. Government Users Restricted Rights:
+# Use, duplication or disclosure restricted by GSA ADP Schedule
+# Contract with IBM Corp.
+###############################################################################
+
+## Playbook that sets up IBM Z Open Editor's User Build with DBB on USS
+## Prepares folders, clones the dbb-zappbuild repository and suggest user settings
+
+---
+- hosts: "{{ host | default('sandbox1') }}"
+  collections:
+    - ibm.ibm_zos_core
+  gather_facts: no
+  environment: "{{ environment_vars }}"
+  tasks:
+
+  # Variables and template prep
+  - name: Defining user-specific variables
+    set_fact:
+      hlq: "{{ ansible_user | upper }}"
+      home_dir: "/u/{{ ansible_user }}"
+
+  - name: Define DBB specific variables
+    set_fact:
+      dbb_dir: "{{ home_dir }}/projects"
+      dbb_zappbuild_loc: "{{ home_dir }}/projects/dbb-zappbuild"
+      dbb_zappbuild_repo: "https://github.com/IBM/dbb-zappbuild.git"
+
+  - name: Create local temp directory
+    tempfile:
+      state: directory
+    register: tempdir
+    delegate_to: localhost
+
+  - name: Resolve templates to be copied to copied and used
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      mode: 0644
+    with_items:
+      - { src: "templates/datasets.j2", dest: "{{ tempdir.path }}/datasets.properties" }
+    delegate_to: localhost
+
+  # Refresh the entire projects directory
+  - name: Delete any existing project directory
+    file:
+      path: "{{ dbb_dir }}"
+      state: absent
+
+  - name: Create a new project directory
+    file:
+      path: "{{ dbb_dir }}"
+      state: directory
+      mode: u+rwx,g-wx,o-rwx
+
+  - name: Set the git config for sslVerify due to configuration issues with Wazi Sandbox
+    git_config:
+      name: http.sslVerify
+      scope: global
+      value: false
+
+  - name: Clone the default dbb-zappbuild repository
+    git:
+      repo: "{{ dbb_zappbuild_repo }}"
+      dest: "{{ dbb_zappbuild_loc }}"
+      version: master
+
+  - name: Set the git config for sslVerify back
+    git_config:
+      name: http.sslVerify
+      scope: global
+      value: true
+
+  - name: Upload datasets properties to zappbuild's conf directory
+    zos_copy:
+      src: "{{ tempdir.path }}/datasets.properties"
+      dest: "{{ dbb_zappbuild_loc }}/build-conf/datasets.properties"
+
+  # SAM specific preparations
+
+  - name: Create SAM specific variables
+    set_fact:
+      app_name: "zopeneditor-sample"
+      dbb_logs_dir: "{{ dbb_dir }}/zopeneditor-sample/logs"
+
+  - name: Create a log files directory
+    file:
+      path: "{{ dbb_logs_dir }}"
+      state: directory
+      mode: u+rwx,g-wx,o-rwx
+
+  - name: Copy-paste these settings into Z Open Editor or Wazi Developer for Workspaces to configure user build. Check docs for workspace settings.
+    set_fact:
+      settings :
+            "{'zopeneditor.userbuild.userSettings':
+               {'dbbWorkspace': '{{ dbb_dir }}',
+                'dbbHlq': '{{ hlq }}.SAMPLE',
+                'localWorkspacePath': '{{ dbb_dir }}/{{ app_name }}',
+                'dbbLogDir': '{{ dbb_logs_dir }}'
+               }
+             }"
+
+  - name: Show the sample user settings object
+    debug:
+      var: settings

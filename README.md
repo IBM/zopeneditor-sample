@@ -91,7 +91,7 @@ The application creates a new `CUSTFILE` and produces a customer report in `USER
 
 #### Running Zowe scripts
 
-You can use the folder called `zowe` that contains Bash shell scripts with [Zowe CLI](https://ibm.github.io/zopeneditor-about/Docs/setup_integration.html) profiles to upload the COBOL program files, copybooks, and JCL files to MVS and execute the JCL conveniently.
+You can use the folder called `zowe` that contains Bash shell scripts with [Zowe CLI](https://ibm.github.io/zopeneditor-about/Docs/setup_integration.html) profiles to upload the COBOL program files, copybooks, and JCL files to MVS and execute the JCL conveniently. 
 
 **Note:** All the scripts assume that you execute them from the workspace directory, for example, the command `zowe/zowecli-cobol-upload-run-simple.sh`.
 
@@ -107,10 +107,10 @@ You can use the folder called `zowe` that contains Bash shell scripts with [Zowe
 
 If you use DBB, you can use the example Groovy scripts provided in the folder `groovy` to:
 
-- Perform operations remotely on USS and get started with DBB setting up a remote workspace on z/OS USS.
-- Run complete builds, opposed to running single program builds with Z Open Editor's user build,
-- Execute the build results.
-
+- Perform operations remotely on USS and get started with DBB setting up a remote workspace on z/OS USS. 
+- Run complete builds, opposed to running single program builds with Z Open Editor's user build, 
+- Execute the build results. 
+  
 The Groovy scripts have corresponding Bash scripts that upload and execute the Groovy to and on USS.
 
 |Script|Function|
@@ -121,16 +121,16 @@ The Groovy scripts have corresponding Bash scripts that upload and execute the G
 
 #### Running Ansible scripts
 
-You can use the Ansible scripts provided in the `ansible` folder to automate setting up remote workspaces on USS for user build, running builds, and running the SAM application.
+You can use the Ansible scripts provided in the `ansible` folder to automate setting up remote workspaces on USS for user build, running builds, and running the SAM application. 
 
-Instead of Zowe CLI, it uses the [Ansible framework](https://docs.ansible.com/ansible/latest/user_guide/index.html) and [Red Hat Ansible Certified Content for IBM Z](https://ibm.github.io/z_ansible_collections_doc/index.html), which are collections for Ansible created by IBM for interactions with z/OS. In addition to the documentation, you can find many examples at <https://github.com/IBM/z_ansible_collections_samples> for more use cases than the ones implemented here.
+Instead of Zowe CLI, it uses the [Ansible framework](https://docs.ansible.com/ansible/latest/user_guide/index.html) and [Red Hat Ansible Certified Content for IBM Z](https://ibm.github.io/z_ansible_collections_doc/index.html), which are collections for Ansible created by IBM for interactions with z/OS. In addition to the documentation, you can find many examples at <https://github.com/IBM/z_ansible_collections_samples> for more use cases than the ones implemented here. 
 
 ##### Prerequisites
 
-To run these scripts, ensure that the following requirements are met:
+To run these scripts, ensure that the following requirements are met: 
 - Install Ansible on your local machine.
 - Install the IBM z/OS collections on your local machine.
-- [Prerequisites for Ansible](https://ibm.github.io/z_ansible_collections_doc/requirements/requirements.html) are available on z/OS USS.
+- [Prerequisites for Ansible](https://ibm.github.io/z_ansible_collections_doc/requirements/requirements.html) are available on z/OS USS. 
 - Other specific prerequisites required for the sample scripts, for example, the availability of Git on your system to clone the repository and perform other Git operations. If these are not available, use other ways to achieve the same results, such as downloading the repository as a .zip file and extracting it.
 
 Run these scripts from within the `ansible` folder with a command, for example,
@@ -363,7 +363,7 @@ Take the following main steps to run a debug session with IBM Z Open Debug in VS
 1. Select `IBM Z Open Debug Profiles View`.
 1. Select `Create Profile`.
 1. Select `Batch, IMS, DB2`.
-1. Use the default profile name or enter your own one.
+1. Use the default profile name or enter your own one. 
 1. The connection information will be pre-populated.
 1. Select `Create`.
 

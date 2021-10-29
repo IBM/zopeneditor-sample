@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "zOpenDebug",
+            "request": "launch",
+            "name": "Connect to parked IBM Z Open Debug session",
+            "useConnectionDetailsFromSettings": false,
+            "user": "{{ hlq }}",
+            "password": "${command:AskForPassword}",
+            "ignoreCertificateErrors": true,
+            "host": "{{ ansible_host }}",
+            "port": {{ remote_debug_service_port}},
+            "secure": true
+        },
+        {
+            "type": "zOpenDebug",
+            "request": "attach",
+            "name": "List parked IBM Z Open Debug sessions",
+            "useConnectionDetailsFromSettings": false,
+            "ignoreCertificateErrors": true,
+            "host": "{{ ansible_host }}",
+            "port": {{ remote_debug_service_port}},
+            "secure": true
+        }
+    ]
+}
