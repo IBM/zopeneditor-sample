@@ -95,7 +95,8 @@
           "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
           "--application zopeneditor-sample",
           "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
-          "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
+          "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}",
+          "--dependencyFile ${dependencyFile}"
         ],
         "additionalDependencies": [
           "application-conf"
