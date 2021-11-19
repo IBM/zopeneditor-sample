@@ -2,7 +2,7 @@
   "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020, 2021. ALL RIGHTS RESERVED",
   "name": "sam",
   "description": "Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "1.1.0",
+  "version": "1.4.1",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -95,7 +95,8 @@
           "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
           "--application zopeneditor-sample",
           "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
-          "--outDir ${zopeneditor.userbuild.userSettings.dbbWorkspace}/zopeneditor-sample/logs"
+          "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}",
+          "--dependencyFile ${dependencyFile}"
         ],
         "additionalDependencies": [
           "application-conf"
