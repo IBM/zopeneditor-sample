@@ -67,7 +67,7 @@
     git:
       repo: "{{ dbb_zappbuild_repo }}"
       dest: "{{ dbb_zappbuild_loc }}"
-      version: master
+      version: main
 
   - name: Set the git config for sslVerify back
     git_config:
@@ -99,7 +99,7 @@
             "{'zopeneditor.userbuild.userSettings':
                {'dbbWorkspace': '{{ dbb_dir }}',
                 'dbbHlq': '{{ hlq }}.SAMPLE',
-                'localWorkspacePath': '{{ dbb_dir }}/{{ app_name }}',
+                'localWorkspacePath': '{{ playbook_dir | dirname }}',
                 'dbbLogDir': '{{ dbb_logs_dir }}'
                }
              }"
