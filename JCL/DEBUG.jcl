@@ -37,8 +37,6 @@
 //    SET SPACE2='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION
 //    SET DBGLIB='EQAF00.SEQAMOD'             *DEBUGGER LIBRARY
 //    SET DBGCOPTS='TEST'                     *DEBUG COMPILE OPTS
-//    SET DBGADDR='localhost'                 *DEBUG ADAPTER ADDR
-//    SET DBGPORT='7393'                      *DEBUG ADAPTER PORT
 //*
 //***************************
 //*                         *
@@ -149,9 +147,9 @@
 //*************************
 //* RUN SAM1
 //*************************
-// SET APOS='&'
-//SAM1  EXEC   PGM=SAM1,
-//       PARM=('/TEST(,,,TCPIP&APOS&DBGADDR%&DBGPORT:*)')
+// SET TESTOPT='/TEST(,,,RDS:*)'
+//SAM1   EXEC   PGM=SAM1,
+//       PARM=('&TESTOPT')
 //STEPLIB DD DSN=&HLQ..SAMPLE.LOAD,DISP=SHR
 //        DD DSN=&DBGLIB,DISP=SHR
 //*

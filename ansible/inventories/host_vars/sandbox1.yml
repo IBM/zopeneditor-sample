@@ -25,10 +25,13 @@ ssh_port: 31652                   # default: 22
 tn3270_unsecure_port: 32226       # default: 23
 tn3270_secure_port: 30207         # default: 2023
 
-remote_debug_service_port: 30710  # default: 7394
-debug_profile_service_port: 30185 # default: 7392
-debug_manager_port: 31649         # default: 7397
+# Verify Debug SSL certifcate and ports by accessing
+# https://ip-address:debug_profile_service_port_ssl/api/v1/remote-debug/config
+remote_debug_service_port: 30710
+debug_profile_service_port: 30185
+debug_profile_service_port_ssl: 8192
 local_debug_port: 7393
+debug_manager_port: 31649
 
 rse_api_port: 31046               # default: 7395
 rsed_port: 30929                  # default: 4035
