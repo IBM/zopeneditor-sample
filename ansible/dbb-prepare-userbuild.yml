@@ -95,14 +95,14 @@
 
   - name: Copy-paste these settings into Z Open Editor or Wazi Developer for Workspaces to configure user build. Check docs for workspace settings.
     set_fact:
-      settings :
-            "{'zopeneditor.userbuild.userSettings':
-               {'dbbWorkspace': '{{ dbb_dir }}',
-                'dbbHlq': '{{ hlq }}.SAMPLE',
-                'localWorkspacePath': '{{ playbook_dir | dirname }}',
-                'dbbLogDir': '{{ dbb_logs_dir }}'
-               }
-             }"
+      settings:
+        "{'zopeneditor.userbuild.userSettings': {
+            'dbbWorkspace': '{{ dbb_dir }}',
+            'dbbHlq': '{{ hlq }}.SAMPLE',
+            'localWorkspacePath': '{{ playbook_dir | dirname }}',
+            'dbbLogDir': '{{ dbb_logs_dir }}'
+            }
+          }"
 
   - name: Show the sample user settings object
     debug:
