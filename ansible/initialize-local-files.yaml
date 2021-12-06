@@ -43,11 +43,11 @@
 
   - name: Copy-paste these settings into Z Open Editor or Wazi Developer for Workspaces to configure Debug.
     set_fact:
-      settings :
-            "{'zopendebug.connection.connectionName': '{{ ansible_host }}',
-              'zopendebug.connection.connectionPort: '{{ debug_profile_service_port_ssl }}',
-              'zopendebug.connection.userName': '{{ ansible_user }}'
-             }"
+      settings:
+        "{'zopendebug.connection.connectionName': '{{ ansible_host }}',
+          'zopendebug.connection.connectionPort': '{{ debug_profile_service_port_ssl }}',
+          'zopendebug.connection.userName': '{{ ansible_user }}'
+         }"
 
   - name: Show the sample user settings object
     debug:
