@@ -92,10 +92,13 @@
       chdir: "{{ dbb_dir }}"
     register: result
     ignore_errors: true
+    changed_when: result.rc > 0
 
   - name: Getting the DBB build output from host
     command: "cat {{ dbb_dir }}/dbb-sam-build.txt"
     register: filename
+    changed_when: filename.rc > 0
+
   - name: Show DBB build output
     debug:
       msg: "{{ filename.stdout }}"

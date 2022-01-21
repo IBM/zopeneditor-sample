@@ -14,7 +14,7 @@
 environment_vars:
   _BPXK_AUTOCVT: "ON"
   ZOAU_HOME: "{{ zoau }}"
-  PYTHONPATH: "{{ zoau }}/lib"
+  # PYTHONPATH: "{{ zoau }}/lib" # Only enable when using Python that was not installed via pip
   ROCKET: "{{ rocket }}"
   GIT_EXEC_PATH: "{{ rocket }}/libexec/git-core"
   JAVA_HOME: "{{ java_home }}"
