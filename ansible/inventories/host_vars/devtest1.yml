@@ -90,6 +90,7 @@ sbzusamp: BZU.SBZUSAMP
 pyz: "/usr/lpp/IBM/cyp/v3r9/pyz"
 ansible_python_interpreter: "{{ pyz }}/bin/python3.9"
 zoau: "/usr/lpp/IBM/zoautil"
+go_home: "/usr/lpp/IBM/cvg/v1r16/go"
 rocket: "/rsusr/ported"
 java_home: "/usr/lpp/java/J8.0_64"
 dbb_home: "/usr/lpp/IBM/dbb"
