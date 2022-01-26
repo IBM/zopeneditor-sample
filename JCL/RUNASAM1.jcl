@@ -1,4 +1,4 @@
-//WAZIASM1 JOB ,NOTIFY=&SYSUID,                                          
+//SAMASM1 JOB ,NOTIFY=&SYSUID,
 // MSGCLASS=H,MSGLEVEL=(1,1),REGION=0M,COND=(4,LT)
 //*
 //****************************************************************
