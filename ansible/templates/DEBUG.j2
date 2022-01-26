@@ -3,7 +3,7 @@
 //*****************************************************************
 //* LICENSED MATERIALS - PROPERTY OF IBM
 //* "RESTRICTED MATERIALS OF IBM"
-//* (C) COPYRIGHT IBM CORPORATION 2018, 2021. ALL RIGHTS RESERVED
+//* (C) COPYRIGHT IBM CORPORATION 2018, 2022. ALL RIGHTS RESERVED
 //*
 //*  US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 //*  OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
@@ -31,12 +31,17 @@
 //*
 //*****************************************************************
 //    SET HLQ='{{ hlq }}'                       *TSO USER ID
-//    SET CMPLLIB='{{ cobol6_compiler_library}}'           *COMPILER LIBRARY
+//    SET CMPLLIB='{{ cobol6_compiler_library}}'         *COMPILER LIBRARY
 //    SET LINKLIB='{{ link_library }}'              *LINK LIBRARY
 //    SET SPACE1='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION
 //    SET SPACE2='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION
 //    SET DBGLIB='{{ debug_library }}'             *DEBUGGER LIBRARY
 //    SET DBGCOPTS='TEST'                     *DEBUG COMPILE OPTS
+{% if editor == 'vscode' %}
+//    SET TESTOPT='/TEST(,,,RDS:*)' * Z OPEN DEBUG FOR VS CODE
+{% else %}
+//    SET TESTOPT='/TEST(,,,DBMDT:*)' * WAZI DEVELOPER FOR ECLIPSE
+{% endif %}
 //*
 //***************************
 //*                         *
@@ -147,7 +152,6 @@
 //*************************
 //* RUN SAM1
 //*************************
-// SET TESTOPT='/TEST(,,,RDS:*)'
 //SAM1  EXEC   PGM=SAM1,
 //      PARM=('&TESTOPT')
 //STEPLIB DD DSN=&HLQ..SAMPLE.LOAD,DISP=SHR
