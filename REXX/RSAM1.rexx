@@ -41,7 +41,7 @@ ELSE
   DO
     exec_RC = RC               /* Save exec return code         */
     SAY
-    SAY "Error during 1st EXECIO  DISKR, return code is " RC
+    SAY "Error during 1st EXECIO DISKR, return code is " RC
     SAY
   END
 
@@ -73,7 +73,7 @@ CALL file2
    DO
      exec_RC = RC         /* Save exec return code           */
      SAY
-     SAY "Error during 1st EXECIO  DISKW, return code is " RC
+     SAY "Error during 1st EXECIO DISKW, return code is " RC
      SAY
    END
  RETURN
@@ -117,7 +117,7 @@ CALL file2
          DO
            exec_RC = RC      /* Save exec return code          */
            SAY
-           SAY "Error during 2nd EXECIO DISKW, return code is " RC
+           SAY "Error during 2nd EXECIO DISKW, return code is " RC
            SAY
          END
      END
@@ -125,7 +125,7 @@ CALL file2
      DO
        exec_RC = RC           /* Save exec return code         */
        SAY
-       SAY "Error during 2nd EXECIO  DISKR, return code is " RC
+       SAY "Error during 2nd EXECIO DISKR, return code is " RC
        SAY
      END
  END
