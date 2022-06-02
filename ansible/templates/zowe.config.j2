@@ -1,0 +1,51 @@
+{
+    "$schema": "./zowe.schema.json",
+    "profiles": {
+        "{{ host }}": {
+            "properties": {
+                "host": "{{ ansible_host }}",
+                "rejectUnauthorized": false
+{% if editor == 'che' %}
+               ,"user": "{{ hlq }}",
+                "password": "{{ password }}"
+{% endif %}
+            },
+{% if editor == 'vscode' %}
+            "secure": [
+                "user",
+                "password"
+            ],
+{% endif %}
+            "profiles": {
+                "zosmf": {
+                    "type": "zosmf",
+                    "properties": {
+                        "port": {{ zosmf_port }}
+                    }
+                },
+                "rseapi": {
+                    "type": "rse",
+                    "properties": {
+                        "port": {{ rse_api_port }},
+                        "basePath": "rseapi",
+                        "protocol": "https"
+                    }
+                },
+                "ssh": {
+                    "type": "ssh",
+                    "properties": {
+                        "port": {{ ssh_port }}
+                    }
+                }
+            }
+        }
+    },
+    "defaults": {
+        "zosmf": "{{ host }}.zosmf",
+        "rse": "{{ host }}.rseapi",
+        "ssh": "{{ host }}.ssh"
+    }
+{% if editor == 'vscode' %}
+    ,"autoStore": true
+{% endif %}
+}

@@ -1,6 +1,6 @@
 ###############################################################################
 # Licensed Materials - Property of IBM
-# (c) Copyright IBM Corporation 2021. All Rights Reserved.
+# (c) Copyright IBM Corporation 2021, 2022. All Rights Reserved.
 #
 # Note to U.S. Government Users Restricted Rights:
 # Use, duplication or disclosure restricted by GSA ADP Schedule
@@ -13,42 +13,109 @@
 - hosts: "{{ host | default('sandbox1') }}"
   collections:
     - ibm.ibm_zos_core
-  gather_facts: no
+  gather_facts: false
   environment: "{{ environment_vars }}"
 
   vars_prompt:
     - name: password
       prompt: "Password for the z/OS user?"
+    - name: zowecli_version
+      prompt: "Which version of Zowe CLI are you using? Enter 'v6' or 'v7'"
+      default: "v7"
+      private: false
+    - name: editor
+      prompt: "Are you using Z Open Editor (vscode) or Wazi for Workspaces (che)? Enter 'vscode' or 'che'"
+      default: "vscode"
+      private: false
+    - name: overwrite
+      prompt: "Do you want to automatically overwrite your existing configuration files? Enter 'yes' or 'no'"
+      default: "no"
+      private: false
 
   tasks:
 
   # Variables and template prep
-  - name: Defining user-specific variables
-    set_fact:
-      hlq: "{{ ansible_user | upper }}"
+    - name: Defining user-specific variables
+      ansible.builtin.set_fact:
+        hlq: "{{ ansible_user | upper }}"
 
-  - name: Execute the generated script '~/.zowe/zowecli-create-profiles.sh' to create Zowe CLI profiles for the host {{ ansible_host }}.
-    template:
-      src: zowecli-create-profiles.j2
-      dest: ~/.zowe/zowecli-create-profiles.sh
-      mode: u+rwx
-    delegate_to: localhost
+    - name: Generating Zowe CLI v6 profile creation script.
+      ansible.builtin.template:
+        src: zowecli-create-profiles.j2
+        dest: ~/.zowe/zowecli-create-profiles.sh
+        mode: u+rwx
+      when: zowecli_version == "v6"
+      delegate_to: localhost
 
-  - name: Copy or merge the generated launch file '~/.zowe/launch.json' for the host {{ ansible_host }} to your top-level workspace directory .vscode or .theia.
-    template:
-      src: debug-launch.j2
-      dest: ~/.zowe/launch.json
-      mode: ugo+rw
-    delegate_to: localhost
+    - name: Zowe CLI v6 profile creation script created
+      ansible.builtin.debug:
+        msg:
+          - "Execute the following command to finish creating Zowe CLI v6 (Zowe 1.x) profiles for '{{ ansible_host }}':"
+          - "sh ~/.zowe/zowecli-create-profiles.sh"
+      when: zowecli_version == "v6"
+      delegate_to: localhost
 
-  - name: Copy-paste these settings into Z Open Editor or Wazi Developer for Workspaces to configure Debug.
-    set_fact:
-      settings:
-        "{'zopendebug.connection.connectionName': '{{ ansible_host }}',
-          'zopendebug.connection.connectionPort': '{{ debug_profile_service_port_ssl }}',
-          'zopendebug.connection.userName': '{{ ansible_user }}'
-         }"
+    - name: Generating Zowe CLI v7 profile config file.
+      ansible.builtin.template:
+        src: zowe.config.j2
+        dest: ~/.zowe/zowe.config.GEN.json
+        mode: u+rw
+      when: zowecli_version == "v7"
+      delegate_to: localhost
 
-  - name: Show the sample user settings object
-    debug:
-      var: settings
+    - name: Automatically replacing an existing Zowe CLI v7 profiles config file
+      ansible.builtin.command:
+        cmd: mv -f ~/.zowe/zowe.config.GEN.json ~/.zowe/zowe.config.json
+      when: zowecli_version == "v7" and overwrite == "yes"
+      delegate_to: localhost
+
+    - name: Zowe CLI v7 profile config file created overwriting existing file
+      ansible.builtin.debug:
+        msg:
+          - "To finish configure configuration of your  Zowe CLI v7 (Zowe 2) profiles for '{{ ansible_host }}' run these commmands"
+          - "zowe config update-schemas"
+          - "zowe config profiles"
+      when: zowecli_version == "v7" and overwrite == "yes"
+      delegate_to: localhost
+
+    - name: Zowe CLI v7 profile config file created in new file
+      ansible.builtin.debug:
+        msg:
+          - "To finish configure configuration of your  Zowe CLI v7 (Zowe 2) profiles for '{{ ansible_host }}' run these commmands"
+          - "mv -f ~/.zowe/zowe.config.GEN.json ~/.zowe/zowe.config.json"
+          - "zowe config update-schemas"
+          - "zowe config profiles"
+      when: zowecli_version == "v7" and overwrite == "no"
+      delegate_to: localhost
+
+    - name: Generating Debug launch
+      ansible.builtin.template:
+        src: debug-launch.j2
+        dest: ~/.zowe/launch.json
+        mode: ugo+rw
+      delegate_to: localhost
+
+    - name: Replacing Debug launch file in local workspace
+      ansible.builtin.command:
+        chdir: ../.vscode
+        cmd: mv -f ~/.zowe/launch.json .
+      when: overwrite == "yes"
+      delegate_to: localhost
+
+    - name: Generated Debug launch file needs to be manually copied
+      ansible.builtin.debug:
+        msg: "Copy or merge the generated launch file '~/.zowe/launch.json' for the host {{ ansible_host }} to your workspace directory .vscode or .theia."
+      when: overwrite == "no"
+      delegate_to: localhost
+
+    - name: Copy-paste these settings into Z Open Editor or Wazi Developer for Workspaces to configure Debug.
+      ansible.builtin.set_fact:
+        settings:
+          "{'zopendebug.connection.connectionName': '{{ ansible_host }}',
+            'zopendebug.connection.connectionPort': '{{ debug_profile_service_port_ssl }}',
+            'zopendebug.connection.userName': '{{ ansible_user }}'
+          }"
+
+    - name: Show the sample user settings object
+      ansible.builtin.debug:
+        var: settings

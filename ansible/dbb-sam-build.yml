@@ -11,114 +11,113 @@
 - hosts: "{{ host | default('sandbox1') }}"
   collections:
     - ibm.ibm_zos_core
-  gather_facts: no
+  gather_facts: false
   environment: "{{ environment_vars }}"
 
   vars_prompt:
-  - name: editor
-    prompt: "Which editor do you use for Debug? Enter 'vscode' or 'eclipse'"
-    default: "vscode"
-    private: no
+    - name: editor
+      prompt: "Which editor do you use for Debug? Enter 'vscode' or 'eclipse'"
+      default: "vscode"
 
   tasks:
 
-  # Variables and template prep
-  - name: Defining variables
-    set_fact:
-      hlq: "{{ ansible_user | upper }}"
-      dbb_dir: "/u/{{ ansible_user }}/projects"
+    # Variables and template prep
+    - name: Defining variables
+      ansible.builtin.set_fact:
+        hlq: "{{ ansible_user | upper }}"
+        dbb_dir: "/u/{{ ansible_user }}/projects"
 
-  - name: Defining data sets names
-    set_fact:
-      jcl_pds: "{{ hlq }}.SAMPLE.JCL"
-      src_pds: "{{ hlq }}.SAMPLE.COBOL"
-      copy_pds: "{{ hlq }}.SAMPLE.COBCOPY"
+    - name: Defining data sets names
+      ansible.builtin.set_fact:
+        jcl_pds: "{{ hlq }}.SAMPLE.JCL"
+        src_pds: "{{ hlq }}.SAMPLE.COBOL"
+        copy_pds: "{{ hlq }}.SAMPLE.COBCOPY"
 
-  - name: Create local temp directory
-    tempfile:
-      state: directory
-    register: tempdir
-    delegate_to: localhost
+    - name: Create local temp directory
+      ansible.builtin.tempfile:
+        state: directory
+      register: tempdir
+      delegate_to: localhost
 
-  - name: Resolve templates to be copied to copied and used
-    template:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      mode: 0644
-    with_items:
-      - { src: "templates/ALLOCATE.j2", dest: "{{ tempdir.path }}/ALLOCATE" }
-      - { src: "templates/DEBUG.j2", dest: "{{ tempdir.path }}/DEBUG" }
-      - { src: "templates/RUN.j2", dest: "{{ tempdir.path }}/RUN" }
-      - { src: "templates/dbb-sam-build.j2", dest: "{{ tempdir.path }}/dbb-sam-build.groovy" }
-    delegate_to: localhost
+    - name: Resolve templates to be copied to copied and used
+      ansible.builtin.template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: 0644
+      with_items:
+        - {src: "templates/ALLOCATE.j2", dest: "{{ tempdir.path }}/ALLOCATE"}
+        - {src: "templates/DEBUG.j2", dest: "{{ tempdir.path }}/DEBUG"}
+        - {src: "templates/RUN.j2", dest: "{{ tempdir.path }}/RUN"}
+        - {src: "templates/dbb-sam-build.j2", dest: "{{ tempdir.path }}/dbb-sam-build.groovy"}
+      delegate_to: localhost
 
-  # Preparing Data Sets
-  - name: Execute allocate jcl
-    zos_job_submit:
-      src: "{{ tempdir.path }}/ALLOCATE"
-      location: LOCAL
-      wait: true
+    # Preparing Data Sets
+    - name: Execute allocate jcl
+      zos_job_submit:
+        src: "{{ tempdir.path }}/ALLOCATE"
+        location: LOCAL
+        wait: true
 
-  # Uploading files for compilation
-  - name: Copy cobol programs
-    zos_copy:
-      src: "{{ playbook_dir }}/../COBOL/"
-      dest: "{{ src_pds }}"
+    # Uploading files for compilation
+    - name: Copy cobol programs
+      zos_copy:
+        src: "{{ playbook_dir }}/../COBOL/"
+        dest: "{{ src_pds }}"
 
-  - name: Copy cobol copybooks
-    zos_copy:
-      src: "{{ playbook_dir }}/../COPYBOOK/"
-      dest: "{{ copy_pds }}"
+    - name: Copy cobol copybooks
+      zos_copy:
+        src: "{{ playbook_dir }}/../COPYBOOK/"
+        dest: "{{ copy_pds }}"
 
-  - name: Create a log files directory
-    file:
-      path: "{{ dbb_dir }}/logs"
-      state: directory
-      mode: u+rwx,g-wx,o-rwx
+    - name: Create a log files directory
+      ansible.builtin.file:
+        path: "{{ dbb_dir }}/logs"
+        state: directory
+        mode: u+rwx,g-wx,o-rwx
 
-  - name: Copy groovy build script
-    zos_copy:
-      src: "{{ tempdir.path }}/dbb-sam-build.groovy"
-      dest: "{{ dbb_dir }}/dbb-sam-build.groovy"
+    - name: Copy groovy build script
+      zos_copy:
+        src: "{{ tempdir.path }}/dbb-sam-build.groovy"
+        dest: "{{ dbb_dir }}/dbb-sam-build.groovy"
 
-  - name: Copy Debug JCL to JCL data set
-    zos_copy:
-      src: "{{ tempdir.path }}/DEBUG"
-      dest: "{{ jcl_pds }}"
+    - name: Copy Debug JCL to JCL data set
+      zos_copy:
+        src: "{{ tempdir.path }}/DEBUG"
+        dest: "{{ jcl_pds }}"
 
-  - name: Copy Run JCL to JCL data set
-    zos_copy:
-      src: "{{ tempdir.path }}/RUN"
-      dest: "{{ jcl_pds }}"
+    - name: Copy Run JCL to JCL data set
+      zos_copy:
+        src: "{{ tempdir.path }}/RUN"
+        dest: "{{ jcl_pds }}"
 
-  # Build the application
-  - name: Run DBB build script
-    shell:
-      cmd: "{{ dbb_home }}/bin/groovyz {{ dbb_settings }} {{ dbb_dir }}/dbb-sam-build.groovy {{ hlq }} {{ dbb_dir }} > {{ dbb_dir }}/dbb-sam-build.txt 2>&1"
-    args:
-      chdir: "{{ dbb_dir }}"
-    register: result
-    ignore_errors: true
-    changed_when: result.rc > 0
+    # Build the application
+    - name: Run DBB build script
+      ansible.builtin.shell:
+        cmd: "{{ dbb_home }}/bin/groovyz {{ dbb_settings }} {{ dbb_dir }}/dbb-sam-build.groovy {{ hlq }} {{ dbb_dir }} > {{ dbb_dir }}/dbb-sam-build.txt 2>&1"
+      args:
+        chdir: "{{ dbb_dir }}"
+      register: result
+      ignore_errors: true
+      changed_when: result.rc > 0
 
-  - name: Getting the DBB build output from host
-    command: "cat {{ dbb_dir }}/dbb-sam-build.txt"
-    register: filename
-    changed_when: filename.rc > 0
+    - name: Getting the DBB build output from host
+      ansible.builtin.command: "cat {{ dbb_dir }}/dbb-sam-build.txt"
+      register: filename
+      changed_when: filename.rc > 0
 
-  - name: Show DBB build output
-    debug:
-      msg: "{{ filename.stdout }}"
+    - name: Show DBB build output
+      ansible.builtin.debug:
+        msg: "{{ filename.stdout }}"
 
-  - name: Check if build succeeded
-    fail:
-      msg: "The Groovy build failed. Check the log files on USS at {{ dbb_dir }}/logs."
-    failed_when:
-      - result.rc > 0
+    - name: Check if build succeeded
+      ansible.builtin.fail:
+        msg: "The Groovy build failed. Check the log files on USS at {{ dbb_dir }}/logs."
+      failed_when:
+        - result.rc > 0
 
-  # Finished, cleanup
-  - name: Delete local temp directory
-    file:
-      path: "{{ tempdir }}"
-      state: absent
-    delegate_to: localhost
+    # Finished, cleanup
+    - name: Delete local temp directory
+      ansible.builtin.file:
+        path: "{{ tempdir }}"
+        state: absent
+      delegate_to: localhost
