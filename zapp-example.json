@@ -1,8 +1,8 @@
 {
-  "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020, 2021. ALL RIGHTS RESERVED",
+  "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020, 2022. ALL RIGHTS RESERVED",
   "name": "sam",
   "description": "Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "1.4.1",
+  "version": "2.1.0",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -46,6 +46,14 @@
       "type": "local",
       "syslib": [
         "**/ASMCOPY"
+      ]
+    },
+    {
+      "name": "rexx-local",
+      "language": "rexx",
+      "type": "local",
+      "syslib": [
+        "**/REXXINC"
       ]
     },
     {
