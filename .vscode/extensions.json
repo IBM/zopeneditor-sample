@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "ibm.zopeneditor",
-        "zowe.vscode-extension-for-zowe"
+        "zowe.vscode-extension-for-zowe",
+        "redhat.vscode-yaml"
     ]
 }

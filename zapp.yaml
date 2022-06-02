@@ -1,7 +1,7 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020, 2021. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2022. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
@@ -9,7 +9,7 @@
 
 name: sam
 description: Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 1.4.1
+version: 2.1.0
 author:
   name: IBM CORPORATION
 
@@ -38,6 +38,15 @@ property-groups:
     type: local
     syslib:
       - "**/ASMCOPY"
+  - name: rexx-local
+    language: rexx
+    type: local
+    syslib:
+      - "**/REXXINC"
+    libraries:
+      - name: REXXLIB
+        locations:
+          - "**/REXXLIB"
   - name: zowe-mvs-cbl
     language: cobol
     type: mvs
