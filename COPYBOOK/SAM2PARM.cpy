@@ -6,7 +6,7 @@
       * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
       * CONTRACT WITH IBM CORPORATION
       ****************************************************************
-       01  SAM2-PARMS.
-           05  CRUNCH-TOTAL           PIC 9(16).
-           05  FILLER                 PIC X.
-           05  CRUNCH-AVG             PIC 9(16).
+       01 SAM2-PARMS.
+        05 CRUNCH-TOTAL  PIC 9(16).
+        05 FILLER        PIC X.
+        05 CRUNCH-AVG    PIC 9(16).

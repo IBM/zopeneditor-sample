@@ -10,10 +10,11 @@
 
 TSOUSER="{{ hlq }}"
 PASSWORD="{{ password }}"
-HOSTNAME="{{ ansible_host }}"             # zOS host name
+HOSTNAME="{{ ansible_host }}"
 PROFILEBASENAME="{{ host }}"
-RSEPORT="{{ rse_api_port }}"                           # rse api port
-SSHPORT="{{ ssh_port }}"                             # ssh port
+RSEPORT="{{ rse_api_port }}"
+SSHPORT="{{ ssh_port }}"
+ZOSMFPORT="{{ zosmf_port }}"
 
 echo "Creating RSE profile and setting as default..."
 set -x
@@ -25,4 +26,10 @@ echo "Creating SSH profile and setting as default..."
 set -x
 zowe profiles create ssh-profile ${PROFILEBASENAME}-ssh --host ${HOSTNAME} --user ${TSOUSER} --pass ${PASSWORD} --port ${SSHPORT} --ow
 zowe profiles set ssh ${PROFILEBASENAME}-ssh
+set +x
+
+echo "Creating z/OSMF profile and setting as default..."
+set -x
+zowe profiles create zosmf-profile ${PROFILEBASENAME}-zosmf --host ${HOSTNAME} --port ${ZOSMFPORT} --user ${TSOUSER} --pass ${PASSWORD} --reject-unauthorized false --ow
+zowe profiles set rse ${PROFILEBASENAME}-rse
 set +x
