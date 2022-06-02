@@ -1,0 +1,11 @@
+cobol:
+  dataDivision:
+    alignValueClauses: false
+    indentation:
+      indentLength: 1
+  procedureDivision:
+    indentation:
+      indentForAllBlocks: 1
+  commentCase: none
+copybook:
+  codeCase: upper
