@@ -1,4 +1,4 @@
-//SAMASM1 JOB ,NOTIFY=&SYSUID,
+//WAZIASM1 JOB ,NOTIFY=&SYSUID,
 // MSGCLASS=H,MSGLEVEL=(1,1),REGION=0M,COND=(4,LT)
 //*
 //****************************************************************
@@ -72,6 +72,7 @@
 //SYSLIN   DD *
      INCLUDE OBJ(ASAM2)
      INCLUDE OBJ(ASAM1)
+     INCLUDE OBJ(ASAM2)
      NAME ASAM1(R)
 /*
 //*************************

@@ -1,4 +1,3 @@
-%PROCESS SOURCE RULES(LAXIF); 
  PSAM3: PROCEDURE(CUSTFILE_RECORD,
                   PRODUCT_STATS);
  /****************************************************************
