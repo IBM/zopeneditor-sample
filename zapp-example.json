@@ -101,7 +101,7 @@
         "buildScriptArgs": [
           "--userBuild",
           "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
-          "--application zopeneditor-sample",
+          "--application .",
           "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
           "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}",
           "--dependencyFile ${dependencyFile}"

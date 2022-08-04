@@ -52,10 +52,10 @@ R2     COPY SAM2PARM.
 
       *****************************************************************
        PROCEDURE DIVISION USING CUST-REC,
-                                TRANSACTION-RECORD,
-                                TRAN-OK,
-                                TRAN-MSG,
-R2                              SAM2-PARMS.
+           TRANSACTION-RECORD,
+           TRAN-OK,
+           TRAN-MSG
+R2         SAM2-PARMS.
 
        000-MAIN.
            MOVE 'Y' TO TRAN-OK.
