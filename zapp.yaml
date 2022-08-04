@@ -7,8 +7,6 @@
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
-# Rename this file to zapp.yaml. Currently, only supported with VS Code, not Eclipse Che.
-
 name: sam
 description: Wazi's code samples with COBOL, PL/I, and HLASM applications
 version: 2.1.0
