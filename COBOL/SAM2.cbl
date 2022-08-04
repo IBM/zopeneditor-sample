@@ -50,9 +50,9 @@
 
       *****************************************************************
        PROCEDURE DIVISION USING CUST-REC,
-           TRANSACTION-RECORD,
-           TRAN-OK,
-           TRAN-MSG.
+                                TRANSACTION-RECORD,
+                                TRAN-OK,
+                                TRAN-MSG.
 
        000-MAIN.
            MOVE 'Y' TO TRAN-OK.
