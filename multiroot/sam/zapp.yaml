@@ -30,3 +30,20 @@ property-groups:
       - name: MYLIB
         locations:
           - IBMUSER.SAMPLE.COPYLIB
+
+profiles:
+
+  - name: dbb-userbuild
+    type: dbb
+    settings:
+      command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
+      buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
+      buildScriptArgs:
+        - "--userBuild"
+        - "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}"
+        - "--application ."
+        - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
+        - "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}"
+        - "--dependencyFile ${dependencyFile}"
+      additionalDependencies:
+        - application-conf
