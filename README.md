@@ -102,6 +102,10 @@ After you successfully run the programs, you can see the resulting new files of 
 
 In looking at the files, you will notice a new copybook called `SAM2PARM`, which was created to contain the parameters necessary for `SAM1.cbl` to pass to `SAM2.cbl` in order to process a new transaction type.  There is also a new `TRANFILE` which contains a record for the new `CRUNCH` transaction.
 
+### Multi-root example
+
+The COBOL sample above shows how to use VS Code as a single-root workspace. You also find the folder called [multiroot](./multiroot) in this repository that contains a simple example for how to utilize IBM Z Open Editor with a [VS Code multi-roor workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces) setup. See the [README](./multiroot/README.md) in that folder for more details.
+
 ## Running PL/I sample files
 
 ### Sample files

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../sam"
+		},
+		{
+			"path": "../copybooks"
+		}
+	],
+	"settings": {}
+}
