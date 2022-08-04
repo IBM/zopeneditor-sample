@@ -1,0 +1,32 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2020, 2022. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+
+name: sam
+description: Wazi's multi-root workspace code sample for COBOL
+version: 2.1.1
+author:
+  name: IBM CORPORATION
+
+property-groups:
+  - name: sam-local
+    language: cobol
+    type: local
+    syslib:
+      - cust
+      - trans
+  - name: zowe-mvs-cbl
+    language: cobol
+    type: mvs
+    system: zos1000.example.com
+    syslib:
+      - IBMUSER.SAMPLE.COBCOPY
+    libraries:
+      - name: MYLIB
+        locations:
+          - IBMUSER.SAMPLE.COPYLIB
