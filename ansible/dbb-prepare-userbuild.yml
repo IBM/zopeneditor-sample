@@ -85,7 +85,7 @@
     - name: Create SAM specific variables
       ansible.builtin.set_fact:
         app_name: "zopeneditor-sample"
-        dbb_logs_dir: "{{ dbb_dir }}/zopeneditor-sample/logs"
+        dbb_logs_dir: "{{ dbb_dir }}/logs"
 
     - name: Create a log files directory
       ansible.builtin.file:
