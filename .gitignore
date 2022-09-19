@@ -1,4 +1,6 @@
 logs
+*.log
 .project
 *.tgz
 *.zip
+*.lst
