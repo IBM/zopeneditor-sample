@@ -69,13 +69,18 @@
       when: zowecli_version == "v7" and overwrite == "yes"
       delegate_to: localhost
 
-    - name: Zowe CLI v7 profile config file created overwriting existing file
+    - name: On Che executing Zowe CLI schema merge for automatically replaced Zowe Config file
+      ansible.builtin.command:
+        cmd: /opt/app-root/src/.npm-global/bin/zowe config update-schemas
+      when: zowecli_version == "v7" and overwrite == "yes" and editor == "che"
+      delegate_to: localhost
+
+    - name: On VS Code tell user to manually finish Zowe CLI v7 profile configuration for automatically replaced Zowe Config file
       ansible.builtin.debug:
         msg:
           - "To finish configure configuration of your  Zowe CLI v7 (Zowe 2) profiles for '{{ ansible_host }}' run these commmands"
           - "zowe config update-schemas"
-          - "zowe config profiles"
-      when: zowecli_version == "v7" and overwrite == "yes"
+      when: zowecli_version == "v7" and overwrite == "yes" and editor == "vscode"
       delegate_to: localhost
 
     - name: Zowe CLI v7 profile config file created in new file
@@ -84,7 +89,6 @@
           - "To finish configure configuration of your  Zowe CLI v7 (Zowe 2) profiles for '{{ ansible_host }}' run these commmands"
           - "mv -f ~/.zowe/zowe.config.GEN.json ~/.zowe/zowe.config.json"
           - "zowe config update-schemas"
-          - "zowe config profiles"
       when: zowecli_version == "v7" and overwrite == "no"
       delegate_to: localhost
 

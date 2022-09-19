@@ -43,13 +43,14 @@ zosmf_port: 32505                 # default: 10443
 ################################################################################
 
 # Cobol Compiler Data Sets. Example: COBOL.V4R1M0.SIGYCOMP
+cobol4_compiler_library: IGY630.SIGYCOMP
 cobol6_compiler_library: IGY630.SIGYCOMP
-
 link_library: CEE.SCEELKED
 debug_library: ISM330
 
 # PL/I Compiler Data Sets.  Example: PLI.V5R2M0.SIBMZCMP
-ibmzpli_v61: IEL610.SIBMZCMP
+ibmzpli_v52: IEL530.SIBMZCMP
+ibmzpli_v51: IEL530.SIBMZCMP
 
 # REXX Compiler Data Sets. Example: REXX.V1R4.SFANLMD
 sfanlmd: FAN140.SFANLMD
