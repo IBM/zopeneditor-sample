@@ -75,6 +75,11 @@
         state: directory
         mode: u+rwx,g-wx,o-rwx
 
+    - name: Delete previous groovy build script
+      file:
+        path: "{{ dbb_dir }}/dbb-sam-build.groovy"
+        state: absent
+
     - name: Copy groovy build script
       zos_copy:
         src: "{{ tempdir.path }}/dbb-sam-build.groovy"

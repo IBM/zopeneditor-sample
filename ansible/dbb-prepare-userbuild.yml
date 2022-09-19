@@ -75,6 +75,11 @@
         scope: global
         value: true
 
+    - name: Delete datasets properties to zappbuild's conf directory
+      file:
+        path: "{{ dbb_zappbuild_loc }}/build-conf/datasets.properties"
+        state: absent
+
     - name: Upload datasets properties to zappbuild's conf directory
       zos_copy:
         src: "{{ tempdir.path }}/datasets.properties"
@@ -107,3 +112,4 @@
     - name: Show the sample user settings object
       ansible.builtin.debug:
         var: settings
+        
