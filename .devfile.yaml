@@ -1,0 +1,29 @@
+# Licensed Materials - Property of IBM
+# (C) Copyright IBM Corporation 2019, 2022. All Rights Reserved.
+#
+# Note to U.S. Government Users Restricted Rights:
+# Use, duplication or disclosure restricted by GSA ADP Schedule
+# Contract with IBM Corp.
+
+schemaVersion: 2.1.0
+metadata:
+  generateName: wazicode-
+starterProjects:
+  - name: zopeneditor-sample
+    git:
+      remotes:
+        origin: "https://github.com/IBM/zopeneditor-sample.git"
+        branch: devfile2
+
+components:
+  - container:
+      image: icr.io/wazi-code/ibm-wazi-for-devspaces-codeready@sha256:05209b4edf88f98d25c294b9c957326ff004323671271f29b1ea8ed07f30bd98
+      memoryLimit: 1024Mi
+      mountSources: true
+      volumeMounts:
+        - name: zowe
+          path: /home/wazi/.zowe
+    name: wazi-terminal
+  - volume:
+      size: 1G
+    name: zowe
