@@ -25,12 +25,14 @@ These two branches represent a before and after view of working sample applicati
 
 You can use these branches with IBM Z Open Editor and Zowe Explorer installations on MacOS or Windows, as well as on [Eclipse Che](https://github.com/IBM/zopeneditor-about/tree/master/che).
 
-### Branches for IBM Wazi Developer
+### Branches for IBM Wazi for VS Code and IBM Wazi for Dev Spaces
 
-The following branches provide additional sample code for Wazi Developer and its integrations with other zDevOps products:
+The following branches provide additional sample code for Wazi for VS Code and IBM Wazi for Dev Spaces and its integrations with other zDevOps products:
 
-- `wazi-main` branch:  sample application
-- `wazi-tutorial-complete` branch: extended sample application
+- `wazi-main` branch:  sample applications
+- `wazi-tutorial-complete` branch: extended sample applications
+- `analyze-sidecar` branch: sample applications for Wazi Analyze
+- `analyze-sidecar-complete` branch: extended sample applications for Wazi Analyze
 
 These branches represent two different states of development in the same application, and include the following samples:
 
@@ -39,6 +41,7 @@ These branches represent two different states of development in the same applica
 - User Build configuration files to be used with IBM Dependency Based Build (DBB)
 - Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi Sandbox or any other z/OS system
 - Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi Sandbox or any other z/OS system
+- Wazi Analyze configuration files that can be used to scan all source code files (except REXX) in the entire branch
 - A GitLab CI sample to build and run the application as part of a GitLab pipeline
 
 **Note:** The automation scripts currently cover the COBOL samples `SAM1` and `SAM2` only, but you can easily copy and adjust them for the PL/I and Assembler samples. To learn more about how to use these scripts, check the [Section "Building and running the COBOL example"](#building-and-running-the-cobol-example) in this file for the Bash with Zowe CLI scripts, and in the `wazi-main` branch for the Groovy and Ansible variants.

@@ -8,101 +8,81 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 3.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 3.0.0
+description: For IBM Z Open Editor 2.2.0 or earlier. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 2.2.0
 author:
   name: IBM CORPORATION
 
-propertyGroups:
-  - name: cobol-copybooks
+property-groups:
+  - name: cobol-local
     language: cobol
+    type: local
+    syslib:
+      - "**/COPYBOOK"
     libraries:
-      - name: syslib
-        type: local
-        locations:
-          - "**/COPYBOOK"
-      - name: syslib
-        type: mvs
-        locations:
-          - "IBMUSER.SAMPLE.COBCOPY"
-      - name: MYLIB
-        type: mvs
-        locations:
-          - IBMUSER.SAMPLE.COPYLIB
-      - name: MYLIB
-        type: local
-        locations:
-          - "**/COPYLIB-MVS"
       - name: MYFILE
-        type: local
         locations:
           - "**/COPYLIB"
-
-  - name: pl1-includes
+  - name: pl1-local
     language: pl1
     compilerOptions: not(!)
+    type: local
+    syslib:
+      - "**/INCLUDES"
     libraries:
-      - name: syslib
-        type: local
-        locations:
-          - "**/INCLUDES"
-      - name: syslib
-        type: mvs
-        locations:
-          - IBMUSER.SAMPLE.PLINC
-      - name: MYLIB
-        type: mvs
-        locations:
-          - "IBMUSER.SAMPLE.PLI.INCLLIB"
-      - name: MYLIB
-        type: local
-        locations:
-          - "**/INCLUDELIB-MVS"
       - name: MYFILE
-        type: local
         locations:
           - "**/INCLUDELIB"
-
   - name: hlasm-local
     language: hlasm
-    libraries:
-      - name: syslib
-        type: local
-        locations:
-          - "**/ASMCOPY"
-
+    type: local
+    syslib:
+      - "**/ASMCOPY"
   - name: rexx-local
     language: rexx
+    type: local
+    syslib:
+      - "**/REXXINC"
     libraries:
-    - name: syslib
-      type: local
-      locations:
-        - "**/REXXINC"
-    - name: REXXLIB
-      type: local
-      locations:
-        - "**/REXXLIB"
+      - name: REXXLIB
+        locations:
+          - "**/REXXLIB"
+  - name: zowe-mvs-cbl
+    language: cobol
+    type: mvs
+    system: zos1000.example.com
+    syslib:
+      - IBMUSER.SAMPLE.COBCOPY
+    libraries:
+      - name: MYLIB
+        locations:
+          - IBMUSER.SAMPLE.COPYLIB
+  - name: zowe-mvs-pl1
+    language: pl1
+    type: mvs
+    system: zos1000.example.com
+    syslib:
+      - IBMUSER.SAMPLE.PLINC
+    libraries:
+      - name: MYLIB
+        locations:
+          - IBMUSER.SAMPLE.PLI.INCLLIB
 
 profiles:
   - name: dbb-userbuild
     type: dbb
     settings:
-      application: SAM
       command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
       buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
       buildScriptArgs:
         - "--userBuild"
         - "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}"
-        - "--application ${application}"
+        - "--application ."
         - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
         - "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}"
         - "--dependencyFile ${dependencyFile}"
       additionalDependencies:
         - application-conf
-        - "zapp*"
-      logFilePatterns:
-        - "${buildFile.basename}.log"
-        - "BuildReport.*"
 
 # Mappings example using US defaults. Adjust to your code pages.
   - name: RSE-Mappings
