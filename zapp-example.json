@@ -1,41 +1,90 @@
 {
-  "_copyright": "(C) COPYRIGHT IBM CORPORATION 2020, 2022. ALL RIGHTS RESERVED",
   "name": "sam",
   "description": "Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "author": {
     "name": "IBM CORPORATION"
   },
-  "property-groups": [
+  "propertyGroups": [
     {
-      "name": "cobol-local",
+      "name": "cobol-copybooks",
       "language": "cobol",
-      "type": "local",
-      "syslib": [
-        "**/COPYBOOK"
-      ],
       "libraries": [
         {
+          "name": "syslib",
+          "type": "local",
+          "locations": [
+            "**/COPYBOOK"
+          ]
+        },
+        {
+          "name": "MYLIB",
+          "type": "mvs",
+          "locations": [
+            "IBMUSER.SAMPLE.COPYLIB"
+          ]
+        },
+        {
           "name": "MYFILE",
+          "type": "local",
           "locations": [
             "**/COPYLIB"
+          ]
+        },
+        {
+          "name": "MYLIB",
+          "type": "local",
+          "locations": [
+            "**/COPYLIB-MVS"
+          ]
+        },
+        {
+          "name": "syslib",
+          "type": "mvs",
+          "locations": [
+            "IBMUSER.SAMPLE.COBCOPY"
           ]
         }
       ]
     },
     {
-      "name": "pl1-local",
+      "name": "pl1-includes",
       "language": "pl1",
       "compilerOptions": "not(!)",
-      "type": "local",
-      "syslib": [
-        "**/INCLUDES"
-      ],
       "libraries": [
         {
+          "name": "syslib",
+          "type": "local",
+          "locations": [
+            "**/INCLUDES"
+          ]
+        },
+        {
+          "name": "MYLIB",
+          "type": "mvs",
+          "locations": [
+            "IBMUSER.SAMPLE.PLI.INCLLIB"
+          ]
+        },
+        {
           "name": "MYFILE",
+          "type": "local",
           "locations": [
             "**/INCLUDELIB"
+          ]
+        },
+        {
+          "name": "MYLIB",
+          "type": "local",
+          "locations": [
+            "**/INCLUDELIB-MVS"
+          ]
+        },
+        {
+          "name": "syslib",
+          "type": "mvs",
+          "locations": [
+            "IBMUSER.SAMPLE.PLINC"
           ]
         }
       ]
@@ -43,49 +92,32 @@
     {
       "name": "hlasm-local",
       "language": "hlasm",
-      "type": "local",
-      "syslib": [
-        "**/ASMCOPY"
-      ]
-    },
-    {
-      "name": "rexx-local",
-      "language": "rexx",
-      "type": "local",
-      "syslib": [
-        "**/REXXINC"
-      ]
-    },
-    {
-      "name": "zowe-mvs-cbl",
-      "language": "cobol",
-      "type": "mvs",
-      "system": "zos1000.example.com",
-      "syslib": [
-        "IBMUSER.SAMPLE.COBCOPY"
-      ],
       "libraries": [
         {
-          "name": "MYLIB",
+          "name": "syslib",
+          "type": "local",
           "locations": [
-            "IBMUSER.SAMPLE.COPYLIB"
+            "**/ASMCOPY"
           ]
         }
       ]
     },
     {
-      "name": "zowe-mvs-pl1",
-      "language": "pl1",
-      "type": "mvs",
-      "system": "zos1000.example.com",
-      "syslib": [
-        "IBMUSER.SAMPLE.PLINC"
-      ],
+      "name": "rexx-local",
+      "language": "rexx",
       "libraries": [
         {
-          "name": "MYLIB",
+          "name": "syslib",
+          "type": "local",
           "locations": [
-            "IBMUSER.SAMPLE.PLI.INCLLIB"
+            "**/REXXINC"
+          ]
+        },
+        {
+          "name": "REXXLIB",
+          "type": "local",
+          "locations": [
+            "**/REXXLIB"
           ]
         }
       ]
@@ -96,18 +128,24 @@
       "name": "dbb-userbuild",
       "type": "dbb",
       "settings": {
+        "application": "SAM",
         "command": "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
         "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
         "buildScriptArgs": [
           "--userBuild",
           "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
-          "--application .",
+          "--application ${application}",
           "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
           "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}",
           "--dependencyFile ${dependencyFile}"
         ],
         "additionalDependencies": [
-          "application-conf"
+          "application-conf",
+          "zapp*"
+        ],
+        "logFilePatterns": [
+          "${buildFile.basename}.log",
+          "BuildReport.*"
         ]
       }
     },

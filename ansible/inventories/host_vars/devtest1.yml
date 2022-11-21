@@ -40,6 +40,13 @@ cobol6_compiler_library: IGY.V6R4M0.SIGYCOMP
 link_library: CEE.SCEELKED
 debug_library: EQAW.SEQAMOD
 
+# z/OS macro library. Example: SYS1.MACLIB
+hlasm_maclib: SYS1.MACLIB
+# Assembler macro library. Example: CEE.SCEEMAC
+hlasm_sceemac: CEE.SCEEMAC
+# High Level Assembler (HLASM) load library. Example: ASM.SASMMOD1
+hlasm_sasmod1: ASM.SASMMOD1
+
 # PL/I Compiler Data Sets.  Example: PLI.V5R2M0.SIBMZCMP
 ibmzpli_v61: PLI.V6R1M0.SIBMZCMP
 
