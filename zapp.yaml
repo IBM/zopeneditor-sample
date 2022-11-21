@@ -10,65 +10,80 @@
 # Rename this file to zapp.yaml. Currently, only supported with VS Code, not Eclipse Che.
 
 name: sam
-description: Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 2.1.0
+description: For IBM Z Open Editor 3.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 3.0.0
 author:
   name: IBM CORPORATION
 
-property-groups:
-  - name: cobol-local
+propertyGroups:
+  - name: cobol-copybooks
     language: cobol
-    type: local
-    syslib:
-      - "**/COPYBOOK"
     libraries:
-      - name: MYFILE
+      - name: syslib
+        type: local
         locations:
-          - "**/COPYLIB"
-  - name: pl1-local
-    language: pl1
-    compilerOptions: not(!)
-    type: local
-    syslib:
-      - "**/INCLUDES"
-    libraries:
-      - name: MYFILE
+          - "**/COPYBOOK"
+      - name: syslib
+        type: mvs
         locations:
-          - "**/INCLUDELIB"
-  - name: hlasm-local
-    language: hlasm
-    type: local
-    syslib:
-      - "**/ASMCOPY"
-  - name: rexx-local
-    language: rexx
-    type: local
-    syslib:
-      - "**/REXXINC"
-    libraries:
-      - name: REXXLIB
-        locations:
-          - "**/REXXLIB"
-  - name: zowe-mvs-cbl
-    language: cobol
-    type: mvs
-    system: zos1000.example.com
-    syslib:
-      - IBMUSER.SAMPLE.COBCOPY
-    libraries:
+          - "IBMUSER.SAMPLE.COBCOPY"
       - name: MYLIB
+        type: mvs
         locations:
           - IBMUSER.SAMPLE.COPYLIB
-  - name: zowe-mvs-pl1
-    language: pl1
-    type: mvs
-    system: zos1000.example.com
-    syslib:
-      - IBMUSER.SAMPLE.PLINC
-    libraries:
       - name: MYLIB
+        type: local
         locations:
-          - IBMUSER.SAMPLE.PLI.INCLLIB
+          - "**/COPYLIB-MVS"
+      - name: MYFILE
+        type: local
+        locations:
+          - "**/COPYLIB"
+
+  - name: pl1-includes
+    language: pl1
+    compilerOptions: not(!)
+    libraries:
+      - name: syslib
+        type: local
+        locations:
+          - "**/INCLUDES"
+      - name: syslib
+        type: mvs
+        locations:
+          - IBMUSER.SAMPLE.PLINC
+      - name: MYLIB
+        type: mvs
+        locations:
+          - "IBMUSER.SAMPLE.PLI.INCLLIB"
+      - name: MYLIB
+        type: local
+        locations:
+          - "**/INCLUDELIB-MVS"
+      - name: MYFILE
+        type: local
+        locations:
+          - "**/INCLUDELIB"
+
+  - name: hlasm-local
+    language: hlasm
+    libraries:
+      - name: syslib
+        type: local
+        locations:
+          - "**/ASMCOPY"
+
+  - name: rexx-local
+    language: rexx
+    libraries:
+    - name: syslib
+      type: local
+      locations:
+        - "**/REXXINC"
+    - name: REXXLIB
+      type: local
+      locations:
+        - "**/REXXLIB"
 
 # Mappings example using US defaults. Adjust to your code pages.
 profiles:

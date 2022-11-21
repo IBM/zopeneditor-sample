@@ -9,24 +9,16 @@
 
 name: sam
 description: Wazi's multi-root workspace code sample for COBOL
-version: 2.1.1
+version: 3.0.0
 author:
   name: IBM CORPORATION
 
-property-groups:
-  - name: sam-local
+propertyGroups:
+  - name: cobol-copybooks
     language: cobol
-    type: local
-    syslib:
-      - cust
-      - trans
-  - name: zowe-mvs-cbl
-    language: cobol
-    type: mvs
-    system: zos1000.example.com
-    syslib:
-      - IBMUSER.SAMPLE.COBCOPY
     libraries:
-      - name: MYLIB
+      - name: syslib
+        type: local
         locations:
-          - IBMUSER.SAMPLE.COPYLIB
+          - cust
+          - trans
