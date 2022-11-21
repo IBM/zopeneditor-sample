@@ -7,43 +7,30 @@
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
-name: sam
+name: sam-application
 description: Wazi's multi-root workspace code sample for COBOL
-version: 2.1.1
+version: 3.0.0
 author:
   name: IBM CORPORATION
-
-property-groups:
-  - name: sam-local
-    language: cobol
-    type: local
-    syslib:
-      - cust
-      - trans
-  - name: zowe-mvs-cbl
-    language: cobol
-    type: mvs
-    system: zos1000.example.com
-    syslib:
-      - IBMUSER.SAMPLE.COBCOPY
-    libraries:
-      - name: MYLIB
-        locations:
-          - IBMUSER.SAMPLE.COPYLIB
 
 profiles:
 
   - name: dbb-userbuild
     type: dbb
     settings:
-      command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
+      application: SAM-BUILD
+      command: "$DBB_HOME/bin/groovyz"
       buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
       buildScriptArgs:
         - "--userBuild"
         - "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}"
-        - "--application ."
+        - "--application ${application}"
         - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
         - "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}"
         - "--dependencyFile ${dependencyFile}"
       additionalDependencies:
         - application-conf
+        - "zapp.*"
+      logFilePatterns:
+        - "${buildFile.basename}.log"
+        - buildList.txt
