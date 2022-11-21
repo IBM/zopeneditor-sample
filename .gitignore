@@ -1,5 +1,6 @@
-logs
 *.log
+logs/*
+!logs/readme
 .project
 *.tgz
 *.zip
