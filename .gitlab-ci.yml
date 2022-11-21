@@ -1,0 +1,51 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2021. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+
+stages: # List of stages for jobs, and their order of execution
+  - dependencies
+  - build
+  - test
+  - deploy
+
+variables:
+  DBB_HOME: "/usr/lpp/IBM/dbb"
+  DBB_LOG_DIR: "$CI_PROJECT_DIR/build_log/$CI_PIPELINE_ID"
+
+dbb:
+  stage: dependencies
+  trigger:
+    project: "kmayoz/dbb-zappbuild"
+    branch: development
+    strategy: depend
+
+build-job:
+  stage: build
+  before_script:
+    - |
+      rm -rf $DBB_LOG_DIR
+      mkdir -p $DBB_LOG_DIR
+  script:
+    - |
+      $DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON $PWD/../dbb-zappbuild/build.groovy --workspace $PWD/.. --application zopeneditor-sample --hlq IBMUSER.SAMPLE --outDir $DBB_LOG_DIR --fullBuild
+  artifacts:
+    name: "build-logs-${CI_PIPELINE_ID}"
+    paths:
+      - $DBB_LOG_DIR
+    expire_in: 1 month
+  tags:
+    - zos
+
+unit-test-job:
+  stage: test
+  script:
+    - mkdir -p $PWD/logs
+    - |
+      $DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON $PWD/BUILD/dbb-sam-run.groovy IBMUSER $PWD
+  tags:
+    - zos

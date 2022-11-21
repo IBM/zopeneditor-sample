@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (C) Copyright IBM Corporation 2019, 2022. All Rights Reserved.
@@ -8,5 +9,8 @@
  *******************************************************************************/
 {
   "zopeneditor.zapp.useDefaultOnlineZappSchema": true,
-  "zopeneditor.zcodeformat.useDefaultOnlineZCodeFormatSchema": true
+  "zopeneditor.zcodeformat.useDefaultOnlineZCodeFormatSchema": true,
+  "editor.autoSave": "off",
+  "application.confirmExit": "always",
+  "preview.openByDefault": true
 }

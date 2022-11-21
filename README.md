@@ -25,20 +25,23 @@ These two branches represent a before and after view of working sample applicati
 
 You can use these branches with IBM Z Open Editor and Zowe Explorer installations on MacOS or Windows, as well as on [Eclipse Che](https://github.com/IBM/zopeneditor-about/tree/master/che).
 
-### Branches for IBM Wazi Developer
+### Branches for IBM Wazi for VS Code and IBM Wazi for Dev Spaces
 
-The following branches provide additional sample code for Wazi Developer and its integrations with other zDevOps products:
+The following branches provide additional sample code for Wazi for VS Code and IBM Wazi for Dev Spaces and its integrations with other zDevOps products:
 
-- `wazi-main` branch:  sample application
-- `wazi-tutorial-complete` branch: extended sample application
+- `wazi-main` branch:  sample applications
+- `wazi-tutorial-complete` branch: extended sample applications
+- `analyze-sidecar` branch: sample applications for Wazi Analyze
+- `analyze-sidecar-complete` branch: extended sample applications for Wazi Analyze
 
 These branches represent two different states of development in the same application, and include the following samples:
 
 - All samples, such as JCL file, that are pre-configured and tested to be used with the IBM Wazi Sandbox
 - IBM Debug for z/OS configuration settings, VS Code launches, and JCL
-- User Build configuration files to be used with IBM Dependency Based Build
+- User Build configuration files to be used with IBM Dependency Based Build (DBB)
 - Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi Sandbox or any other z/OS system
 - Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi Sandbox or any other z/OS system
+- Wazi Analyze configuration files that can be used to scan all source code files (except REXX) in the entire branch
 - A GitLab CI sample to build and run the application as part of a GitLab pipeline
 
 **Note:** The automation scripts currently cover the COBOL samples `SAM1` and `SAM2` only, but you can easily copy and adjust them for the PL/I and Assembler samples. To learn more about how to use these scripts, check the [Section "Building and running the COBOL example"](#building-and-running-the-cobol-example) in this file for the Bash with Zowe CLI scripts, and in the `wazi-main` branch for the Groovy and Ansible variants.
@@ -48,7 +51,7 @@ These branches represent two different states of development in the same applica
 Before you run and use the sample code, ensure that the following prerequisites are met:
 
 - Set up IBM Z Open Editor by following the [procedure](https://ibm.github.io/zopeneditor-about/Docs/getting_started.html).
-- To use the user build function, IBM Dependency Based Build (DBB) is required to be set up.
+- To use the user build function, DBB is required to be set up.
 - To use the Z Open Debug function, IBM z/OS Debugger is required to be set up.
 
 ## Running COBOL sample files
@@ -89,12 +92,64 @@ USER1.SAMPLE.TRANFILE
 
 The application creates a new `CUSTFILE` and produces a customer report in `USER1.SAMPLE.CUSTRPT`.
 
-The folder called `zowe` contains Bash shell scripts that can be used with [Zowe CLI](https://ibm.github.io/zopeneditor-about/Docs/setup_integration.html) profiles to upload the COBOL program files, copybooks, and JCL files to MVS and execute the JCL conveniently. All the scripts assume that you execute them from the workspace directory, so for example as the command `zowe/zowecli-cobol-upload-run-simple.sh`.
+#### Running Zowe scripts
 
-- `zowe/zowecli-create-profiles.sh`: This script contains Zowe CLI commands to create profiles for RSE API, z/OSMF, SSH. You can edit the variables in the beginning for your account. The script can also be used for updates, such as changed passwords, as it overwrites existing profiles with new values.
-- `zowe/zowecli-cobol-upload-run-simple.sh`: A simple example that executes one Zowe CLI command after the other required to build and run the SAM1 example using JCL files. It main purpose is to demonstrate the command usage without distracting with too much scripting code.
-- `zowe/zowecli-cobol-upload-run-tutorial.sh`: Is discussed in the [RSE API Plugin for Zowe CLI tutorial](https://ibm.github.io/zopeneditor-about/Docs/rse_tutorial.html#approach-3-using-a-script-to-automate-command-line-operations-against-z-os-resources) of the Z Open Editor user documentation. It performs essentially the same steps as the previous script, but is written more in the style how an automation script would work, but actually querying JCL job statuses and waiting.
-- `zowe/zowecli-cobol-clean.sh`: A simple script that deletes all the data sets created by the other scripts.
+You can use the folder called `zowe` that contains Bash shell scripts with [Zowe CLI](https://ibm.github.io/zopeneditor-about/Docs/setup_integration.html) profiles to upload the COBOL program files, copybooks, and JCL files to MVS and execute the JCL conveniently. 
+
+**Note:** All the scripts assume that you execute them from the workspace directory, for example, the command `zowe/zowecli-cobol-upload-run-simple.sh`.
+
+|Script|Function|
+|---|---|
+|`zowe/zowecli-create-profiles.sh`|Contains Zowe CLI commands to create profiles for RSE API, z/OSMF, SSH. You can edit the variables in the beginning for your account. You can also use this script to update profiles, such as change passwords, as it overwrites existing profiles with new values.|
+|`zowe/zowecli-cobol-upload-run-simple.sh`|Executes one Zowe CLI command after the other that is required to build and run the `SAM1` example using JCL files. It shows the command usage without distracting with too much scripting code.|
+|`zowe/zowecli-cobol-upload-run-tutorial.sh`|As discussed in the [RSE API Plug-in for Zowe CLI tutorial](https://ibm.github.io/zopeneditor-about/Docs/rse_tutorial.html#approach-3-using-a-script-to-automate-command-line-operations-against-z-os-resources) of the Z Open Editor user documentation, it performs essentially the same steps as the previous script, but is written more in the style how an automation script would work, but querying JCL job statuses and waiting.|
+|`zowe/zowecli-cobol-clean.sh`|Deletes all the data sets created by the other scripts.|
+|`zowe/dbb-prepare-uss-folder.sh`|If you use DBB with Z Open Editor's user build, use this script to set up the USS. It will create a project directory and then clone the required `dbb-zappbuild` GitHub repository (requires Git being installed and available in the PATH) that contains the Groovy files used by user build. Also, the script will upload the file `application-conf/datasets-sandbox.properties` to the cloned Git repository. This file contains all the defaults for IBM Wazi Sandbox. If you use a different z/OS system, you might have to update the values in that file.|
+
+#### Using Groovy scripts
+
+If you use DBB, you can use the example Groovy scripts provided in the folder `groovy` to:
+
+- Perform operations remotely on USS and get started with DBB setting up a remote workspace on z/OS USS. 
+- Run complete builds, opposed to running single program builds with Z Open Editor's user build, 
+- Execute the build results. 
+  
+The Groovy scripts have corresponding Bash scripts that upload and execute the Groovy to and on USS.
+
+|Script|Function|
+|---|---|
+|`groovy/dbb-sam-prepare-and-build.sh`|Calls `zowe/dbb-prepare-uss-folder.sh` and builds the entire SAM application by executing the `groovy/dbb-sam-build.groovy` script. It can be used as a starting point for developers to ensure that everything builds before they make changes. You can use the `groovy/dbb-sam-build.groovy` in other automation scripts, such as the GitLab pipeline example provided in `.gitlab-ci.yml`, to execute a fully automated build.|
+|`groovy/dbb-sam-run.sh`|Executes `groovy/dbb-sam-run.groovy`, which is uploaded by `groovy/dbb-sam-prepare-and-build.sh`, to run the application. You can use the script after performing a user build with changes to verify that the SAM application still works correctly.|
+|`groovy/dbb-utilities.groovy`|Contains a collection of utilities that realize the functionality that are currently not available in DBB, such as the creation of sequential data set for test data required to run the script.|
+
+#### Running Ansible scripts
+
+You can use the Ansible scripts provided in the `ansible` folder to automate setting up remote workspaces on USS for user build, running builds, and running the SAM application. 
+
+Instead of Zowe CLI, it uses the [Ansible framework](https://docs.ansible.com/ansible/latest/user_guide/index.html) and [Red Hat Ansible Certified Content for IBM Z](https://ibm.github.io/z_ansible_collections_doc/index.html), which are collections for Ansible created by IBM for interactions with z/OS. In addition to the documentation, you can find many examples at <https://github.com/IBM/z_ansible_collections_samples> for more use cases than the ones implemented here. 
+
+##### Prerequisites
+
+To run these scripts, ensure that the following requirements are met: 
+- Install Ansible on your local machine.
+- Install the IBM z/OS collections on your local machine.
+- [Prerequisites for Ansible](https://ibm.github.io/z_ansible_collections_doc/requirements/requirements.html) are available on z/OS USS. 
+- Other specific prerequisites required for the sample scripts, for example, the availability of Git on your system to clone the repository and perform other Git operations. If these are not available, use other ways to achieve the same results, such as downloading the repository as a .zip file and extracting it.
+
+Run these scripts from within the `ansible` folder with a command, for example,
+
+```bash
+ansible-playbook -i ~/ansible/inventories --extra-vars "host=sandbox1" dbb-sam-build.yml
+```
+
+|Script|Function|
+|---|---|
+|`ansible/inventories`|Provides templates for creating an inventory of your z/OS machines. Under the `host_vars` folder, provide one file for each machine with the respective values completed and a corresponding entry in the `ansible/inventories/inventory.yml` file for that machine providing specific username and ssh port number. It is recommended to copy and paste this folder into your local home or `/etc/ansible` directory, as these settings are often specific to your individual z/OS system, such as your personal Wazi Sandbox instance.|
+|`ansible/templates`|Contains templated versions of scripts and JCL files that will be completed based on the variables provides in the `host_vars` files. When you have to update the scripts and JCL in the other script examples for each of your z/OS system's specific values, the ansible template mechanism allows you to use the same files for different systems with all different values based in the inventory settings.|
+|`ansible/dbb-prepare-userbuild.yml`|Prepares the user's remote USS folder for user build by creating a project's working directory and cloning the required `dbb-zappbuild` GitHub repository in that folder. It uses a template to generate a system-specific `datasets.properties` file and uploads it into the cloned `dbb-zappbuild` repository. It also generates the VS Code user settings required for user build that you can copy and paste from the console output into your VS Code settings editor.|
+|`ansible/dbb-sam-build.yml`|Performs a complete build of the SAM application. You can use it after setting up your development workspace to build the entire application before making changes and building on the updated program.|
+|`ansible/dbb-sam-run.yml`|Executes the compiled application on your z/OS System, which can be used after running a user build to check whether the application works correctly.|
+|`ansible/initialize-local-files.yaml`|Shows you examples for setting up your local VS Code workspace. It generates and executes a file to create Zowe CLI profiles that can then be used with Zowe Explorer. It also generates launch files for IBM Debug for z/OS that can be used with the `DEBUG.JCL` that was generated and uploaded by the `ansible/dbb-sam-build.yml` to start a remote debug session and connect to it.|
 
 ### Results
 
@@ -174,6 +229,7 @@ USER1.SAMPLE.ASMLOAD
 USER1.SAMPLE.ASM
 USER1.SAMPLE.ASMCOPY
 USER1.SAMPLE.ASM.FILEIN
+USER1.SAMPLE.EQALANGX
 ```
 
 The application creates a file, `USER1.SAMPLE.ASM.FILEOUT`.
@@ -287,7 +343,100 @@ To resolve library-based copybooks and includes on a remote Z host, take the fol
 
     **Note:** The **libraries: name** `MYLIB` matches the library name in the `SAM1LIB` copy statement `COPY REPTTOTL IN MYLIB`.
 
-## Support and Feedback
+## Running a debug session on Wazi Sandbox
+
+Take the following main steps to run a debug session with IBM Z Open Debug in VS Code or IBM Wazi Developer. For more details on running the session, refer to the [Z Open Debug documentation](https://www.ibm.com/docs/en/wdfrhcw/1.2.0?topic=code-debugging-applications).
+
+### Configure Z Open Debug
+
+1. Update the  `launch.json` file with your hostname that is `zos.mycompany.com` and the port of your Z Open Debug "remote-debug-service".
+     - Keep the file in the `.vscode` folder for VS Code
+     - Move the file to the `.theia` folder for IBM Wazi Developer for Workspaces
+2. Configure Z Open Debug:
+     1. Click `File > Preferences > Settings > User`.
+     2. Type `zopendebug` in the search bar.
+     3. Enter the following settings:
+          - Host name: `zos.mycompany.com`
+          - Port: The port of your Z Open Debug "debug-profile-service"
+          - Context Root: `api/v1`
+          - Connection Secured: ensure that box is checked
+          - User Name: `ibmuser`
+          - Profile View settings can be left unchecked
+
+### Create a Z Open Debug profile
+
+1. Open Command Palette.
+1. Enter `Debug` in the command bar.
+1. Select `IBM Z Open Debug Profiles View`.
+1. Select `Create Profile`.
+1. Select `Batch, IMS, DB2`.
+1. Use the default profile name or enter your own one. 
+1. The connection information will be pre-populated.
+1. Select `Create`.
+
+### Troubleshooting: Self-signed certificates workarounds
+
+If you run into problems with your Debug profile showing you a connection error, it might be because you are using a self-signed certificate for your Debug services. In that case, loosen the security configuration in your editor or browser. If you have valid certificates and your Z Open Debug profile connection showing you a blue checkmark icon, ignore these steps.
+
+- VS Code workaround:
+  1. Exit VS Code.
+  1. Open a command prompt.
+  1. Start VS Code by using the command `code --ignore-certificate-errors`.
+  1. When VS Code starts, return to the `Debug Profiles view` tab.
+  1. Click the `Edit` icon for the profile that is just created.
+A blue checkmark with a `Connected` label should appear after the connection setting.
+- IBM Wazi Developer for Workspaces workaround:
+  1. Open another tab in the same browser
+  1. Paste this url: https://zos.mycompany.com:30858/api/v1/profile/dtcn/, replace `30858` with your "debug-profile-service" port.
+  1. The browser will show a security error.
+  1. Click `Advanced`.
+  1. Click `Proceed to unsafe`.
+  1. Browser will ignore certificate errors.
+  1. Return to the `Debug Profiles view` tab.
+  1. Click the `Edit` icon for the profile that is just created.
+  A blue checkmark with a `Connected` label should appear after the connection setting.
+
+### Run a debug session
+
+- Submit `DEMODBG.jcl` to run `SAM1`. Or submit `DEBUGASM.jcl` to run `ASAM1`.
+- Click the `Debug` icon in left panel.
+- Select `List parked IBM Z Open Debug Sessions` and click the green arrow to run.
+- The `Debug Console` is opened with a list of parked sessions. It might take about a minute to show the sessions `SAM1` or `ASAM1` will display in the Debug Console.
+- Return to the Debug view, select `Connect to parked IBM Z Open Debug Sessions` and click the green arrow to run.
+- Enter the password for `IBMUSER`.
+- `SAM1` or `ASAM1` should appear in the editor window in debug mode.  Use the various debug buttons to control your session.
+
+## Running a DBB user build on Wazi Sandbox
+
+Take the following main steps to run a DBB user build in VS Code or in IBM Wazi Developer.
+
+1. Check the [prerequisites and settings required for user build](https://www.ibm.com/docs/en/wdfrhcw/1.2.0?topic=code-setting-up-user-build)
+1. Switch to the `wazi-master` branch of the sample repository.
+1. Open the `zowecli-create-profiles.sh` script and replace the parameter values with the appropriate values for Wazi Sandbox.
+1. Run the script to create the RSE and SSH profiles that will also set them as default profiles.
+1. Verify the RSE profile using either Zowe Explorer or Zowe CLI commands:
+     - Zowe Explorer
+       1. Click the refresh button and add the new RSE profile.
+       1. Click the magnifying glass icon and run a search on `IMBUSER.*` data sets and `/u/ibmuser` USS files
+     - Zowe CLI
+       - In the terminal window, run the commands:
+
+         ``` ascii
+         zowe rse ls ds "IBMUSER"
+         ```
+
+         ``` ascii
+         zowe rse ls uss "/u/ibmuser"
+         ```
+
+1. Open the `dbb-prepare-uss-folder.sh` script and verify the parameter values for Wazi Sandbox.
+1. Run the script to clone the DBB `zappbuild` repository to the USS working directory and to upload the pre-configured `datasets.properties` file.
+1. Open a COBOL, PL/I, or HLASM file.
+1. Right click and select `Run Setup for IBM User Build Setup`.
+1. When completed, right click and select `Run IBM User Build`.
+1. To start with a fresh setup or remove the working directory when finished, run the `dbb-remove-uss-filder.sh` script.
+
+## Support and feedback
 
 If you encounter issues when running the sample code, or have feedback on the sample code, create a pull request or issue in this [GitHub repository](https://github.com/IBM/zopeneditor-sample).
 

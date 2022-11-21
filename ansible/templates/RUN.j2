@@ -3,7 +3,7 @@
 //*****************************************************************
 //* LICENSED MATERIALS - PROPERTY OF IBM
 //* "RESTRICTED MATERIALS OF IBM"
-//* (C) COPYRIGHT IBM CORPORATION 2018, 2022. ALL RIGHTS RESERVED
+//* (C) COPYRIGHT IBM CORPORATION 2018, 2019. ALL RIGHTS RESERVED
 //*
 //*  US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 //*  OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
@@ -27,9 +27,9 @@
 //* CAN ALSO CHANGE THEM AS NEEDED.
 //*
 //*****************************************************************
-//    SET HLQ='IBMUSER'                       *TSO USER ID
-//    SET CMPLLIB='IGY630.SIGYCOMP'           *COMPILER LIBRARY
-//    SET LINKLIB='CEE.SCEELKED'              *LINK LIBRARY
+//    SET HLQ='{{ hlq }}'                       *TSO USER ID
+//    SET CMPLLIB='{{ cobol6_compiler_library }}'           *COMPILER LIBRARY
+//    SET LINKLIB='{{ link_library }}'              *LINK LIBRARY
 //    SET SPACE1='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION
 //    SET SPACE2='SYSALLDA,SPACE=(CYL,(1,1))' *SPACE ALLOCATION
 //*

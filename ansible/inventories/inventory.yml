@@ -1,0 +1,32 @@
+###############################################################################
+# Licensed Materials - Property of IBM
+# (c) Copyright IBM Corporation 2021. All Rights Reserved.
+#
+# Note to U.S. Government Users Restricted Rights:
+# Use, duplication or disclosure restricted by GSA ADP Schedule
+# Contract with IBM Corp.
+###############################################################################
+
+################################################################################
+# Sample of hosts that would be used with the playbooks provided. Example for such a command:
+# > ansible-playbook -i inventories --extra-vars "host=devtest1" dbb-sam-run.yml
+#
+# Description of the properties used in this configuration:
+# - Property `ansible_host` is the z/OS managed node (target),
+#    e.g, ansible_host: "zvm1.vmec.svl.ibm.com"
+# - Property `ansible_port` is the SSH port of system to be used. In case of an
+#   IBM Wazi Sandbox it would be the public node port mapped to the SSH port.
+# - Property `ansible_user` is the z/OS managed user to connect and run as over SSH,
+#    e.g, ansible_user: "zosadm"
+################################################################################
+
+source_system:
+  hosts:
+    sandbox1: # IBM Wazi Sandbox template
+      ansible_host: sandbox1.example.com
+      ansible_port: 31652
+      ansible_user: ibmuser
+    devtest1: # Dev and Test z/OS system sample
+      ansible_host: lpar1.example.com
+      ansible_port: 22
+      ansible_user: user1
