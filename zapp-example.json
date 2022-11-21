@@ -128,18 +128,24 @@
       "name": "dbb-userbuild",
       "type": "dbb",
       "settings": {
+        "application": "SAM",
         "command": "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
         "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
         "buildScriptArgs": [
           "--userBuild",
           "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}",
-          "--application .",
+          "--application ${application}",
           "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}",
           "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}",
           "--dependencyFile ${dependencyFile}"
         ],
         "additionalDependencies": [
-          "application-conf"
+          "application-conf",
+          "zapp*"
+        ],
+        "logFilePatterns": [
+          "${buildFile.basename}.log",
+          "BuildReport.*"
         ]
       }
     },

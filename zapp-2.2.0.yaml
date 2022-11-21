@@ -68,8 +68,23 @@ property-groups:
         locations:
           - IBMUSER.SAMPLE.PLI.INCLLIB
 
-# Mappings example using US defaults. Adjust to your code pages.
 profiles:
+  - name: dbb-userbuild
+    type: dbb
+    settings:
+      command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
+      buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
+      buildScriptArgs:
+        - "--userBuild"
+        - "--workspace ${zopeneditor.userbuild.userSettings.dbbWorkspace}"
+        - "--application ."
+        - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
+        - "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}"
+        - "--dependencyFile ${dependencyFile}"
+      additionalDependencies:
+        - application-conf
+
+# Mappings example using US defaults. Adjust to your code pages.
   - name: RSE-Mappings
     type: rseapi
     settings:

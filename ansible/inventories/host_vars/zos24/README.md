@@ -1,1 +1,0 @@
-This folder contains host variables files for previous versions of Wazi Sandbox and Wazi as a Service that were based on z/OS 2.4. If you are still using these version you can use these files instead of the one listed in the parent folder.

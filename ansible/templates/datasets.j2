@@ -10,18 +10,16 @@
 # Dataset references
 # Build properties for Partition Data Sets (PDS) used by zAppBuild build scripts.
 # Please provide a fully qualified DSN for each build property below.
-# Ex:
-# MACLIB=SYS1.MACLIB
 
 # LE (Language Environment) load library. Example: CEE.SCEELKED
 SCEELKED={{ link_library }}
 
 # z/OS macro library. Example: SYS1.MACLIB
-MACLIB=SYS1.MACLIB
+MACLIB={{ hlasm_maclib }}
 # Assembler macro library. Example: CEE.SCEEMAC
-SCEEMAC=CEE.SCEEMAC
+SCEEMAC={{ hlasm_sceemac }}
 # High Level Assembler (HLASM) load library. Example: ASM.SASMMOD1
-SASMMOD1=ASM.SASMMOD1
+SASMMOD1={{ hlasm_sasmod1 }}
 
 # Cobol Compiler Data Sets. Example: COBOL.V4R1M0.SIGYCOMP
 SIGYCOMP_V6={{ cobol6_compiler_library }}
