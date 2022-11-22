@@ -7,7 +7,7 @@
 
 schemaVersion: 2.1.0
 metadata:
-  generateName: wazicode-
+  name: wazi-demo
 starterProjects:
   - name: zopeneditor-sample
     git:
