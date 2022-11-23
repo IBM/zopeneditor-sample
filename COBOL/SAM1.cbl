@@ -8,7 +8,7 @@
       ****************************************************************
       * PROGRAM:  SAM1
       *
-      * AUTHOR :  Doug Stout
+      * AUTHOR :  Doug Stou
       *
       * READS A SEQUENTIAL TRANSACTION FILE AND MAKES UPDATES
       * TO A SORTED SEQUENTIAL CUSTOMER FILE
