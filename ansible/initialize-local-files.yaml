@@ -10,7 +10,8 @@
 ## Playbook that creates local Zowe profiles for the host provided
 
 ---
-- hosts: "{{ host | default('sandbox1') }}"
+- name: Initialize local files in developer workspace
+  hosts: "{{ host | default('sandbox1') }}"
   collections:
     - ibm.ibm_zos_core
   gather_facts: false

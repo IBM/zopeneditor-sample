@@ -18,8 +18,8 @@ profiles:
   - name: dbb-userbuild
     type: dbb
     settings:
-      application: SAM-BUILD
-      command: "$DBB_HOME/bin/groovyz"
+      application: SAM-multiroot
+      command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
       buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
       buildScriptArgs:
         - "--userBuild"
