@@ -11,7 +11,8 @@
 ## the dbb-sam-build.yml playbook or by running IBM User Build.
 
 ---
-- hosts: "{{ host | default('sandbox1') }}"
+- name: Run the SAM COBOL application
+  hosts: "{{ host | default('sandbox1') }}"
   collections:
     - ibm.ibm_zos_core
   gather_facts: false

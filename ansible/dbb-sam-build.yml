@@ -8,7 +8,8 @@
 ###############################################################################
 
 ---
-- hosts: "{{ host | default('sandbox1') }}"
+- name: Build the SAM COBOL application
+  hosts: "{{ host | default('sandbox1') }}"
   collections:
     - ibm.ibm_zos_core
   gather_facts: false
@@ -76,7 +77,7 @@
         mode: u+rwx,g-wx,o-rwx
 
     - name: Delete previous groovy build script
-      file:
+      ansible.builtin.file:
         path: "{{ dbb_dir }}/dbb-sam-build.groovy"
         state: absent
 
