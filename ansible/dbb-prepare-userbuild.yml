@@ -11,7 +11,8 @@
 ## Prepares folders, clones the dbb-zappbuild repository and suggest user settings
 
 ---
-- hosts: "{{ host | default('sandbox1') }}"
+- name: Prepare USS home directory for User Build
+  hosts: "{{ host | default('sandbox1') }}"
   collections:
     - ibm.ibm_zos_core
   gather_facts: false
@@ -63,11 +64,19 @@
         scope: global
         value: false
 
-    - name: Clone the default dbb-zappbuild repository
+    - name: Clone the dbb-zappbuild/zAppBuild_2_x repository/branch if DBB v1 installed
+      ansible.builtin.git:
+        repo: "{{ dbb_zappbuild_repo }}"
+        dest: "{{ dbb_zappbuild_loc }}"
+        version: zAppBuild_2_x
+      when: dbb_version == 1
+
+    - name: Clone the dbb-zappbuild/main repository/branch if DBB v2 installed
       ansible.builtin.git:
         repo: "{{ dbb_zappbuild_repo }}"
         dest: "{{ dbb_zappbuild_loc }}"
         version: main
+      when: dbb_version == 2
 
     - name: Set the git config for sslVerify back
       community.general.git_config:
@@ -76,7 +85,7 @@
         value: true
 
     - name: Delete datasets properties to zappbuild's conf directory
-      file:
+      ansible.builtin.file:
         path: "{{ dbb_zappbuild_loc }}/build-conf/datasets.properties"
         state: absent
 
@@ -112,4 +121,3 @@
     - name: Show the sample user settings object
       ansible.builtin.debug:
         var: settings
-        

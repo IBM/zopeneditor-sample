@@ -100,4 +100,5 @@ rocket: "/rsusr/ported"
 java_home: "/usr/lpp/java/J8.0_64"
 dbb_home: "/usr/lpp/IBM/dbb"
 dbb_conf: "/etc/dbb"
+dbb_version: 1
 dbb_settings: ""
