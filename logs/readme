@@ -1,0 +1,3 @@
+Use this folder as the value for
+- LOGDIR in wazi-analyze.dat so that log files will be stored here and easily viewed in this editor
+- the zopeneditor.userbuild.userSettings.localLogDir user setting for downloading user build logs
