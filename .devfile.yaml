@@ -1,11 +1,11 @@
 schemaVersion: 2.1.0
 metadata:
-  name: wazi-demo
+  name: wazi-code
 
 components:
   - name: wazi-terminal
     container:
-      image: icr.io/wazi-code/ibm-wazi-for-devspaces-codeready@sha256:0bf8460efac9db509eb1d0788077caea31cbaf0e5ac2208385403a35ca4757c2
+      image: icr.io/wazi-code/ibm-wazi-for-devspaces-sidecar:latest
       memoryLimit: 1024Mi
       mountSources: true
       volumeMounts:
