@@ -97,8 +97,8 @@ ansible_python_interpreter: "{{ pyz }}/bin/python3.9"
 zoau: "/usr/lpp/IBM/zoautil"
 go_home: "/usr/lpp/IBM/cvg/v1r18/go"
 rocket: "/rsusr/ported"
-java_home: "/usr/lpp/java/J8.0_64"
+java_home: "/usr/lpp/java/java8/J8.0_64"
 dbb_home: "/usr/lpp/IBM/dbb"
 dbb_conf: "/etc/dbb"
-dbb_version: 1
-dbb_settings: ""
+dbb_version: 2
+dbb_settings: "-DBB_PERSONAL_DAEMON"
