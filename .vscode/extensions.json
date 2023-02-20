@@ -2,6 +2,7 @@
     "recommendations": [
         "ibm.zopeneditor",
         "zowe.vscode-extension-for-zowe",
+        "redhat.ansible",
         "redhat.vscode-yaml"
     ]
 }
