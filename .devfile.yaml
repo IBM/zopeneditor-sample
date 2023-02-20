@@ -10,7 +10,7 @@ components:
       mountSources: true
       volumeMounts:
         - name: zowe
-          path: /home/wazi/.zowe
+          path: /home/user/.zowe
   - name: zowe
     volume:
-      size: 1G
+      size: 100Mi
