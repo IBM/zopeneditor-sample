@@ -1,9 +1,2 @@
 - id: ibm/wazi-code/latest
-  alias: wazi-code
-  preferences:
-    zowe.files.temporaryDownloadsFolder.path: /projects
-    zowe.security.secureCredentialsEnabled: false
-    zopeneditor.zapp.useDefaultOnlineZappSchema: true
-    zopeneditor.zcodeformat.useDefaultOnlineZCodeFormatSchema: true
 - id: ibm/wazi-debug/latest
-  alias: wazi-debug
