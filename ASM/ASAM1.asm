@@ -11,7 +11,7 @@ ASAM1    CSECT
 ****************************************************************
 *  SAMPLE PROGRAM ASAM1
 *     AUTHOR: DOUG STOUT
-*             IBM CORPORATION 1
+*             IBM CORPORATION 2
 *
 *  A SIMPLE PROGRAM THAT:
 *   - READS A QSAM FILE
