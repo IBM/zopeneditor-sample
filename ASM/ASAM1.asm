@@ -1,22 +1,22 @@
 ASAM1    AMODE 31
 ASAM1    CSECT
          USING ASAM1,R15
-**************************************************************** 
-* LICENSED MATERIALS - PROPERTY OF IBM                           
-* "RESTRICTED MATERIALS OF IBM"                                  
-* (C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED  
-* US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      
-* OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   
-* CONTRACT WITH IBM CORPORATION                                  
-**************************************************************** 
+****************************************************************
+* LICENSED MATERIALS - PROPERTY OF IBM
+* "RESTRICTED MATERIALS OF IBM"
+* (C) COPYRIGHT IBM CORPORATION 2020. ALL RIGHTS RESERVED
+* US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+* OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+* CONTRACT WITH IBM CORPORATION
+****************************************************************
 *  SAMPLE PROGRAM ASAM1
 *     AUTHOR: DOUG STOUT
-*             IBM CORPORATION
+*             IBM CORPORATION 1
 *
 *  A SIMPLE PROGRAM THAT:
 *   - READS A QSAM FILE
 *   - WRITES THE FIRST 80 BYTES OF EACH RECORD TO AN OUTPUT FILE
-*     IN CHARACTER 
+*     IN CHARACTER
 *
 *  PARAMETERS PASSED FROM CALLING PROGRAM:
 *    NONE
