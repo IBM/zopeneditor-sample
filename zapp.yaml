@@ -88,7 +88,7 @@ profiles:
     type: dbb
     settings:
       application: SAM
-      command: "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
+      command: "unset JAVA_OPTS; $DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
       buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
       buildScriptArgs:
         - "--userBuild"
