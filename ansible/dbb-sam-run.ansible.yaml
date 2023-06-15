@@ -1,6 +1,6 @@
 ###############################################################################
 # Licensed Materials - Property of IBM
-# (c) Copyright IBM Corporation 2021, 2022. All Rights Reserved.
+# (c) Copyright IBM Corporation 2021, 2023. All Rights Reserved.
 #
 # Note to U.S. Government Users Restricted Rights:
 # Use, duplication or disclosure restricted by GSA ADP Schedule
@@ -13,8 +13,8 @@
 ---
 - name: Run the SAM COBOL application
   hosts: "{{ host | default('sandbox1') }}"
-  collections:
-    - ibm.ibm_zos_core
+  # collections:
+  #  - ibm.ibm_zos_core
   gather_facts: false
   environment: "{{ environment_vars }}"
   tasks:
@@ -33,23 +33,25 @@
 
     # Uploading files
     - name: Copy test data TRANFILE
-      zos_copy:
+      ibm.ibm_zos_core.zos_copy:
         src: "{{ playbook_dir }}/../RESOURCES/SAMPLE.TRANFILE.txt"
         dest: "{{ tranfile }}"
+        force: true
 
     - name: Copy test data CUSTFILE
-      zos_copy:
+      ibm.ibm_zos_core.zos_copy:
         src: "{{ playbook_dir }}/../RESOURCES/SAMPLE.CUSTFILE.txt"
         dest: "{{ custfile }}"
+        force: true
 
     - name: Execute RUN JCL
-      zos_job_submit:
+      ibm.ibm_zos_core.zos_job_submit:
         src: "{{ jcl_pds }}(RUN)"
         location: DATA_SET
         wait: true
 
     - name: Get the SAM report file
-      zos_fetch:
+      ibm.ibm_zos_core.zos_fetch:
         src: "{{ custreport }}"
         dest: "/tmp/"
         flat: true
