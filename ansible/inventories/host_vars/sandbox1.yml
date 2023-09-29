@@ -46,7 +46,7 @@ zosmf_port: 32505                 # default: 10443
 cobol6_compiler_library: IGY640.SIGYCOMP
 
 link_library: CEE.SCEELKED
-debug_library: ISM332
+debug_library: ISM400
 
 # z/OS macro library. Example: SYS1.MACLIB
 hlasm_maclib: SYS1.MACLIB
@@ -85,10 +85,10 @@ sdfsresl: DFSF10.SDFSRESL
 referal: DFSF10.REFERAL
 
 # Optional IDz Load Library. Example: FEL.V14R0M0.SFELLOAD
-sfelload: ISM332.SFELLOAD
+sfelload: ISM400.SFELLOAD
 
 # Optional IDZ zUnit / WAZI VTP library containing necessary copybooks. Example : FEL.V14R2.SBZUSAMP
-sbzusamp: ISM332.SBZUSAMP
+sbzusamp: ISM400.SBZUSAMP
 
 ################################################################################
 # Description of the properties used in this configuration:
