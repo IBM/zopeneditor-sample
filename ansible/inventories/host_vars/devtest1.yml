@@ -92,8 +92,8 @@ sbzusamp: BZU.SBZUSAMP
 #    binary installation path, e.g, ansible_python_interpreter: "{{pyz}}/bin/python3.8"
 ################################################################################
 
-pyz: "/usr/lpp/IBM/cyp/v3r9/pyz"
-ansible_python_interpreter: "{{ pyz }}/bin/python3.9"
+pyz: "/usr/lpp/IBM/cyp/v3r11/pyz"
+ansible_python_interpreter: "{{ pyz }}/bin/python3"
 zoau: "/usr/lpp/IBM/zoautil"
 go_home: "/usr/lpp/IBM/cvg/v1r19/go"
 rocket: "/rsusr/ported"
