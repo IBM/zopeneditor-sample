@@ -1,0 +1,97 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "hostName",
+      "description": "Host name (defined in inventory.yml file)",
+      "default": "sandbox1"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "COBOL-1: Initialize local workspace",
+      "type": "shell",
+      "command": "ansible-playbook",
+      "args": [
+        "-i",
+        "inventories",
+        "--extra-vars",
+        "\"host=${input:hostName}\"",
+        "initialize-local-files.ansible.yaml"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ansible"
+      },
+      "presentation": {
+        "reveal": "always",
+        "revealProblems": "onProblem",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "COBOL-2: Prepare user build on USS",
+      "type": "shell",
+      "command": "ansible-playbook",
+      "args": [
+        "-i",
+        "inventories",
+        "--extra-vars",
+        "\"host=${input:hostName}\"",
+        "dbb-prepare-userbuild.ansible.yaml"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ansible"
+      },
+      "presentation": {
+        "reveal": "always",
+        "revealProblems": "onProblem",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "COBOL-3: Build the SAM COBOL app",
+      "type": "shell",
+      "command": "ansible-playbook",
+      "args": [
+        "-i",
+        "inventories",
+        "--extra-vars",
+        "\"host=${input:hostName}\"",
+        "dbb-sam-build.ansible.yaml"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ansible"
+      },
+      "presentation": {
+        "reveal": "always",
+        "revealProblems": "onProblem",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "COBOL-4: Run the SAM1 app",
+      "type": "shell",
+      "command": "ansible-playbook",
+      "args": [
+        "-i",
+        "inventories",
+        "--extra-vars",
+        "\"host=${input:hostName}\"",
+        "dbb-sam-run.ansible.yaml"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/ansible"
+      },
+      "presentation": {
+        "reveal": "always",
+        "revealProblems": "onProblem",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
