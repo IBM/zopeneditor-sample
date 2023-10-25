@@ -61,9 +61,9 @@ sdfhload: CICSTS.V6R1M0.CICS.SDFHLOAD
 sdfhcob: CICSTS.V6R1M0.CICS.SDFHCOB
 
 # MQ COBOL Library. Example: CSQ.V9R1M0.SCSQCOBC
-scsqcobc: ~
+scsqcobc: MQCD.V9R3M0.SCSQCOBC
 # MQ Load Library. Example: CSQ.V9R1M0.SCSQLOAD
-scsqload: ~
+scsqload: MQCD.V9R3M0.SCSQLOAD
 
 # DB2 Load Library. Example: DB2.V9R1M0.SDSNLOAD
 sdsnload: DB2.V13R1M0.SDSNLOAD
@@ -92,10 +92,10 @@ sbzusamp: BZU.SBZUSAMP
 #    binary installation path, e.g, ansible_python_interpreter: "{{pyz}}/bin/python3.8"
 ################################################################################
 
-pyz: "/usr/lpp/IBM/cyp/v3r9/pyz"
-ansible_python_interpreter: "{{ pyz }}/bin/python3.9"
+pyz: "/usr/lpp/IBM/cyp/v3r11/pyz"
+ansible_python_interpreter: "{{ pyz }}/bin/python3"
 zoau: "/usr/lpp/IBM/zoautil"
-go_home: "/usr/lpp/IBM/cvg/v1r18/go"
+go_home: "/usr/lpp/IBM/cvg/v1r19/go"
 rocket: "/rsusr/ported"
 java_home: "/usr/lpp/java/java8/J8.0_64"
 dbb_home: "/usr/lpp/IBM/dbb"
