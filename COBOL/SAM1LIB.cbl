@@ -284,8 +284,10 @@
       *
       *    Subroutine SAM2 will apply an update to a customer record
       *
-            CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
-               WS-TRAN-OK, WS-TRAN-MSG
+            CALL SAM2 USING CUST-REC,
+                            TRANSACTION-RECORD,
+                            WS-TRAN-OK,
+                            WS-TRAN-MSG
             IF WS-TRAN-OK NOT = 'Y'
              MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
              MOVE SPACES TO ERR-MSG-DATA2

@@ -61,13 +61,13 @@ R2    *     * Add logic to process Crunch transactions
 
        FD  CUSTOMER-FILE
            RECORDING MODE IS V
-           RECORD IS VARYING FROM 20 TO 596 CHARACTERS.
+           RECORD IS VARYING FROM 69 TO 387 CHARACTERS.
        COPY CUSTCOPY REPLACING ==:TAG:== BY ==CUST==.
 
        FD  CUSTOMER-FILE-OUT
            RECORDING MODE IS V
            BLOCK CONTAINS 0 RECORDS
-           RECORD IS VARYING FROM 20 TO 596 CHARACTERS.
+           RECORD IS VARYING FROM 69 TO 387 CHARACTERS.
        COPY CUSTCOPY REPLACING ==:TAG:== BY ==CSTOUT==.
 
        FD  TRANSACTION-FILE
@@ -162,7 +162,7 @@ R2     COPY SAM2PARM.
         05 FILLER                PIC X(41) VALUE SPACES.
        01 MSG-TRAN-SCALE-2.
         05 FILLER                PIC X(21) VALUE ' Transaction Record: '
-                                                                      .
+           .
         05 FILLER                PIC X(35)
            VALUE '....5....0....5....0....5....0....5'.
         05 FILLER                PIC X(35)
@@ -199,25 +199,25 @@ R2      05 FILLER                PIC X(25) VALUE SPACES.
 
        01 RPT-STATS-HDR1.
         05 FILLER                PIC X(26) VALUE
-                                           'Transaction Totals:       '.
+           'Transaction Totals:       '.
         05 FILLER                PIC X(107) VALUE SPACES.
        01 RPT-STATS-HDR2.
         05 FILLER                PIC X(26) VALUE
-                                           'Transaction      Number of'.
+           'Transaction      Number of'.
         05 FILLER                PIC X(28) VALUE
-                                         '        Number        Number'.
+           '        Number        Number'.
         05 FILLER                PIC X(79) VALUE SPACES.
        01 RPT-STATS-HDR3.
         05 FILLER                PIC X(26) VALUE
-                                           'Type          Transactions'.
+           'Type          Transactions'.
         05 FILLER                PIC X(28) VALUE
-                                         '     Processed      In Error'.
+           '     Processed      In Error'.
         05 FILLER                PIC X(79) VALUE SPACES.
        01 RPT-STATS-HDR4.
         05 FILLER                PIC X(26) VALUE
-                                           '-----------   ------------'.
+           '-----------   ------------'.
         05 FILLER                PIC X(28) VALUE
-                                         '   -----------   -----------'.
+           '   -----------   -----------'.
         05 FILLER                PIC X(79) VALUE SPACES.
        01 RPT-STATS-DETAIL.
         05 RPT-TRAN              PIC X(10).
@@ -230,7 +230,7 @@ R2      05 FILLER                PIC X(25) VALUE SPACES.
         05 FILLER                PIC X(80) VALUE SPACES.
 R2     01 RPT-STATS-HDR5.
 R2      05 FILLER                PIC X(26) VALUE
-                                           'Customer Acct Totals:     '.
+           'Customer Acct Totals:     '.
 R2      05 FILLER                PIC X(107) VALUE SPACES.
 R2     01 RPT-STATS-CUST-DETAIL.
 R2      05 CUST-CNT-NAME         PIC X(30).
@@ -335,9 +335,11 @@ R2         END-IF.
       *
       *        Subroutine SAM2 will apply an update to a customer record
       *
-            CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
-               WS-TRAN-OK, WS-TRAN-MSG,
-R2             SAM2-PARMS
+            CALL SAM2 USING CUST-REC,
+                            TRANSACTION-RECORD,
+                            WS-TRAN-OK,
+                            WS-TRAN-MSG,
+R2                          SAM2-PARMS
             IF WS-TRAN-OK NOT = 'Y'
              MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
              MOVE SPACES TO ERR-MSG-DATA2
