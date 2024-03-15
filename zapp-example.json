@@ -1,7 +1,7 @@
 {
   "name": "sam",
-  "description": "Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "3.0.0",
+  "description": "For IBM Z Open Editor 4.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
+  "version": "4.0.0",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -18,17 +18,17 @@
           ]
         },
         {
-          "name": "MYLIB",
+          "name": "syslib",
           "type": "mvs",
           "locations": [
-            "IBMUSER.SAMPLE.COPYLIB"
+            "${HLQ}.SAMPLE.COBCOPY"
           ]
         },
         {
-          "name": "MYFILE",
-          "type": "local",
+          "name": "MYLIB",
+          "type": "mvs",
           "locations": [
-            "**/COPYLIB"
+            "${HLQ}.SAMPLE.COPYLIB"
           ]
         },
         {
@@ -39,10 +39,10 @@
           ]
         },
         {
-          "name": "syslib",
-          "type": "mvs",
+          "name": "MYFILE",
+          "type": "local",
           "locations": [
-            "IBMUSER.SAMPLE.COBCOPY"
+            "**/COPYLIB"
           ]
         }
       ]
@@ -60,17 +60,17 @@
           ]
         },
         {
-          "name": "MYLIB",
+          "name": "syslib",
           "type": "mvs",
           "locations": [
-            "IBMUSER.SAMPLE.PLI.INCLLIB"
+            "${HLQ}.SAMPLE.PLINC"
           ]
         },
         {
-          "name": "MYFILE",
-          "type": "local",
+          "name": "MYLIB",
+          "type": "mvs",
           "locations": [
-            "**/INCLUDELIB"
+            "${HLQ}.SAMPLE.PLI.INCLLIB"
           ]
         },
         {
@@ -81,10 +81,10 @@
           ]
         },
         {
-          "name": "syslib",
-          "type": "mvs",
+          "name": "MYFILE",
+          "type": "local",
           "locations": [
-            "IBMUSER.SAMPLE.PLINC"
+            "**/INCLUDELIB"
           ]
         }
       ]
@@ -129,7 +129,7 @@
       "type": "dbb",
       "settings": {
         "application": "SAM",
-        "command": "$DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
+        "command": "unset JAVA_OPTS; $DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
         "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
         "buildScriptArgs": [
           "--userBuild",
@@ -140,8 +140,7 @@
           "--dependencyFile ${dependencyFile}"
         ],
         "additionalDependencies": [
-          "application-conf",
-          "zapp*"
+          "application-conf"
         ],
         "logFilePatterns": [
           "${buildFile.basename}.log",
@@ -175,6 +174,19 @@
           }
         ],
         "default.encoding": "IBM-037"
+      }
+    },
+    {
+      "name": "extended-cobol",
+      "type": "preprocessor",
+      "location": "local",
+      "settings": {
+        "command": "${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/my-preprocessor/target/my-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}",
+        "outputPath": "./preprocessor/output",
+        "fileExtension": "cee",
+        "environmentVariables": {
+          "some": "var"
+        }
       }
     }
   ]

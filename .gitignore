@@ -1,4 +1,6 @@
 logs
+target
 .project
 *.tgz
 *.zip
+*.cee

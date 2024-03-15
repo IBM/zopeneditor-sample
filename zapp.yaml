@@ -1,15 +1,15 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020, 2023. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2024. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 3.2.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 3.2.0
+description: For IBM Z Open Editor 4.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 4.0.0
 author:
   name: IBM CORPORATION
 
@@ -74,16 +74,17 @@ propertyGroups:
   - name: rexx-local
     language: rexx
     libraries:
-    - name: syslib
-      type: local
-      locations:
-        - "**/REXXINC"
-    - name: REXXLIB
-      type: local
-      locations:
-        - "**/REXXLIB"
+      - name: syslib
+        type: local
+        locations:
+          - "**/REXXINC"
+      - name: REXXLIB
+        type: local
+        locations:
+          - "**/REXXLIB"
 
 profiles:
+  # User build profile example, requires IBM Dependency-Based Build
   - name: dbb-userbuild
     type: dbb
     settings:
@@ -99,12 +100,11 @@ profiles:
         - "--dependencyFile ${dependencyFile}"
       additionalDependencies:
         - application-conf
-        - "zapp*"
       logFilePatterns:
         - "${buildFile.basename}.log"
         - "BuildReport.*"
 
-# Mappings example using US defaults. Adjust to your code pages.
+  # RSE API mappings profile example using US defaults. Adjust to your code pages.
   - name: RSE-Mappings
     type: rseapi
     settings:
@@ -122,3 +122,14 @@ profiles:
           transfer: text
           encoding: IBM-037
       default.encoding: IBM-037
+
+  # Preprocessor example. See file preprocessor/README.md and documentation.
+  - name: extended-cobol
+    type: preprocessor
+    location: local
+    settings:
+      command: ${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/my-preprocessor/target/my-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}
+      outputPath: ./preprocessor/output
+      fileExtension: cee
+      environmentVariables:
+        some: var
