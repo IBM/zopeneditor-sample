@@ -1,9 +1,12 @@
 {
   "recommendations": [
-    "ibm.zopeneditor",
-    "zowe.vscode-extension-for-zowe",
-    "redhat.vscode-yaml",
+    "Zowe.vscode-extension-for-zowe",
+    "IBM.zopeneditor",
+    "IBM.zopendebug",
     "redhat.ansible",
+    "redhat.vscode-yaml",
+    "redhat.java",
+    "ms-python.python",
     "vscjava.vscode-java-pack"
   ]
 }
