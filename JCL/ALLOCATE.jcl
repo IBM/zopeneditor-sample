@@ -77,9 +77,9 @@
 //            BLKSIZE=(32720)
 /*
 //DD6      DD DSN=&HLQ..SAMPLE.CUSTFILE,
-//            DISP=(NEW,CATLG),LRECL=600,RECFM=VB,DSORG=PS,
+//            DISP=(NEW,CATLG),LRECL=391,RECFM=VB,DSORG=PS,
 //            SPACE=(TRK,(100,10),RLSE),
-//            BLKSIZE=(604)
+//            BLKSIZE=(395)
 //*
 //DD7      DD DSN=&HLQ..SAMPLE.COPYLIB,
 //            DISP=(NEW,CATLG),LRECL=80,RECFM=FB,DSORG=PO,

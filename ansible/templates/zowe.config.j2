@@ -36,6 +36,16 @@
                     "properties": {
                         "port": {{ ssh_port }}
                     }
+                },
+                "zOpenDebug": {
+                    "type": "zOpenDebug",
+                    "properties": {
+                        "dpsPort": {{ debug_profile_service_port_ssl }},
+                        "rdsPort": {{ remote_debug_service_port }},
+                        "dpsContextRoot": "api/v1",
+                        "dpsSecured": true,
+                        "uuid": "a617f4e6-2959-450f-82fa-105c749f8dfd"
+                    }
                 }
             }
         }
@@ -43,7 +53,8 @@
     "defaults": {
         "zosmf": "{{ host }}.zosmf",
         "rse": "{{ host }}.rseapi",
-        "ssh": "{{ host }}.ssh"
+        "ssh": "{{ host }}.ssh",
+        "zOpenDebug": "{{ host }}.zOpenDebug"
     }
 {% if editor == 'vscode' %}
     ,"autoStore": true

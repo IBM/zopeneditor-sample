@@ -3,6 +3,7 @@
     "ibm.zopeneditor",
     "zowe.vscode-extension-for-zowe",
     "redhat.vscode-yaml",
-    "redhat.ansible"
+    "redhat.ansible",
+    "vscjava.vscode-java-pack"
   ]
 }
