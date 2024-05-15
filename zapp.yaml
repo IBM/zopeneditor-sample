@@ -70,6 +70,10 @@ propertyGroups:
         type: local
         locations:
           - "**/ASMCOPY"
+      - name: maclib
+        type: local
+        locations:
+          - "**/ASMMAC"
 
   - name: rexx-local
     language: rexx
