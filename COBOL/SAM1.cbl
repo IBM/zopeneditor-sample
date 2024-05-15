@@ -57,13 +57,13 @@
 
        FD  CUSTOMER-FILE
            RECORDING MODE IS V
-           RECORD IS VARYING FROM 20 TO 596 CHARACTERS.
+           RECORD IS VARYING FROM 69 TO 387 CHARACTERS.
        COPY CUSTCOPY REPLACING ==:TAG:== BY ==CUST==.
 
        FD  CUSTOMER-FILE-OUT
            RECORDING MODE IS V
            BLOCK CONTAINS 0 RECORDS
-           RECORD IS VARYING FROM 20 TO 596 CHARACTERS.
+           RECORD IS VARYING FROM 69 TO 387 CHARACTERS.
        COPY CUSTCOPY REPLACING ==:TAG:== BY ==CSTOUT==.
 
        FD  TRANSACTION-FILE
@@ -301,8 +301,10 @@
       *
       *        Subroutine SAM2 will apply an update to a customer record
       *
-            CALL SAM2 USING CUST-REC, TRANSACTION-RECORD,
-               WS-TRAN-OK, WS-TRAN-MSG
+            CALL SAM2 USING CUST-REC,
+                            TRANSACTION-RECORD,
+                            WS-TRAN-OK,
+                            WS-TRAN-MSG
             IF WS-TRAN-OK NOT = 'Y'
              MOVE WS-TRAN-MSG TO ERR-MSG-DATA1
              MOVE SPACES TO ERR-MSG-DATA2
