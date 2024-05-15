@@ -12,6 +12,7 @@
   "zowe.security.secureCredentialsEnabled": false,
   "files.autoSave": "off",
   "editor.formatOnSave": true,
+  "zopeneditor.watsonx.watsonxCodeAssistantForZ.enable": false,
   "zopeneditor.zapp.variables": {
     "HLQ": "IBMUSER",
     // Do not use spaces for preprocessor path names

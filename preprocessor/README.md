@@ -12,6 +12,8 @@ To use the sample preprocessor you need to build it using Java. The folder [prep
 
 Open this samples [ZAPP file](../zapp.yaml) and find the `preprocessor` profile define in there. It references two variables for executing the preprocessor: `${JAVA_HOME}` and `${WORKSPACE}`. You find placeholders for these two in this [samples workspace settings file](../.vscode/settings.json). Open that file and replace the two values with your absolute `$JAVA_HOME` path and the absolute path of this workspace, i.e. where you cloned this Git repository on your development machine.
 
+Note that if you are using Windows and have a space in the path (e.g. `Program Files`), you will need to replace the portion of the path that has spaces with the Windows shorthand. Generally, this will be the first 6 non-whitespace characters in the path followed by `~1`, for example, for `Program Files` this would be `Progra~1`, for a directory like `test files` this would be `testfi~1`. If the path is shorter than 6 non-whitespace characters, you will need to use `Cmd` to get the shorthand. To do this, open `Cmd`, go to the directory above the directory you need the shorthand for, e.g. `C:/` for `C:/Program Files`. Run `dir /x`, and the directories will be listed with their shorthands.
+
 Also note the location of the `outputPath` setting in the profile pointing to the directory [preprocessor/output](./output/). This is the folder were the preprocessed programs will be generated in.
 
 ## Running the preprocessor from Z Open Editor
