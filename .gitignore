@@ -1,5 +1,7 @@
 logs
 target
+ansible
+output
 .project
 *.tgz
 *.zip

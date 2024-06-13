@@ -15,7 +15,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class MyPreprocessor {
+public class LocalPreprocessor {
 	public static void main(String[] args) {
 		File in = new File(args[0]);
 		File out = new File(args[1]);
