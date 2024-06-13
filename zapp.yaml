@@ -8,8 +8,8 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 4.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 4.0.0
+description: For IBM Z Open Editor 4.3.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 4.3.0
 author:
   name: IBM CORPORATION
 
@@ -128,12 +128,19 @@ profiles:
       default.encoding: IBM-037
 
   # Preprocessor example. See file preprocessor/README.md and documentation.
-  - name: extended-cobol
+  - name: local-cobol
     type: preprocessor
     location: local
     settings:
-      command: ${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/my-preprocessor/target/my-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}
+      command: ${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/local-preprocessor/target/local-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}
       outputPath: ./preprocessor/output
       fileExtension: cee
       environmentVariables:
         some: var
+  - name: remote-cobol
+    type: preprocessor
+    location: mvs
+    settings:
+      commandDataSet: ${HLQ}.PREPROC(PREPROC)
+      tempDataHLQ: ${HLQ}
+      outputDataSet: ${HLQ}.PREPROC.OUTPUT()

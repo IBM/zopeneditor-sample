@@ -1,9 +1,12 @@
-*.log
 logs/*
 !logs/readme
-.project
+logs
 target
+ansible
+output
+.project
 *.tgz
 *.zip
 *.lst
 *.cee
+*.log
