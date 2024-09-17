@@ -5,7 +5,7 @@ metadata:
 components:
   - name: wazi-terminal
     container:
-      image: icr.io/wazi-code/ibm-wazi-for-devspaces-sidecar@sha256:db900a79c010bcea2886183d62f02f9fdca6ab382c0a06c536cba89b6bc0b5cf
+      image: icr.io/wazi-code/ibm-wazi-for-devspaces-sidecar@sha256:ba14c3e89595ca93d189869d2d118739c2d435f5d502ff46c39130b86968eb32
       memoryLimit: 3072Mi
       mountSources: true
       volumeMounts:
