@@ -1,0 +1,16 @@
+ /****************************************************************
+  * LICENSED MATERIALS - PROPERTY OF IBM
+  * "RESTRICTED MATERIALS OF IBM"
+  * (C) COPYRIGHT IBM CORPORATION 2024. ALL RIGHTS RESERVED
+  ****************************************************************/
+
+ ADD: PROC OPTIONS(MAIN) RETURNS(DEC(5, 2));
+ +DL AMT1 FIXED DECIMAL(5, 2) ;
+ +DL AMT2 FIXED DECIMAL(5, 2) ;
+ +DL SUM FIXED DECIMAL(5, 2) ;
+ AMT1 = 10.25 ;
+ AMT2 = 15.75 ;
+ SUM = AMT1 + AMT2 ;
+ +PT LIST('TOTAL AMT', AMT1, 'and', AMT2, 'IS', SUM) ;
+ RETURN(SUM);
+ END ;
