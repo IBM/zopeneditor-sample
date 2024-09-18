@@ -1,3 +1,9 @@
+      ****************************************************************
+      * LICENSED MATERIALS - PROPERTY OF IBM
+      * "RESTRICTED MATERIALS OF IBM"
+      * (C) COPYRIGHT IBM CORPORATION 2024. ALL RIGHTS RESERVED
+      ****************************************************************
+
        +ID.
        Program-ID.  PRINTAPP.
 

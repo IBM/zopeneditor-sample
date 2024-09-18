@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ibm.zopeneditor.preprocessor</groupId>
-    <artifactId>local-preprocessor</artifactId>
+    <artifactId>local-cobol-preprocessor</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -24,7 +24,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.ibm.zopeneditor.preprocessor.LocalPreprocessor</mainClass>
+                            <mainClass>com.ibm.zopeneditor.preprocessor.LocalCobolPreprocessor</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
