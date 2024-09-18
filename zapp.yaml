@@ -129,18 +129,40 @@ profiles:
 
   # Preprocessor example. See file preprocessor/README.md and documentation.
   - name: local-cobol
+    language: cobol
     type: preprocessor
     location: local
     settings:
-      command: ${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/local-preprocessor/target/local-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}
+      command: ${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/COBOL/local-preprocessor/target/local-cobol-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}
       outputPath: ./preprocessor/output
       fileExtension: cee
       environmentVariables:
         some: var
   - name: remote-cobol
+    language: cobol
     type: preprocessor
     location: mvs
     settings:
-      commandDataSet: ${HLQ}.PREPROC(PREPROC)
+      commandDataSet: ${HLQ}.PREPROC(CBLPRPC)
       tempDataHLQ: ${HLQ}
       outputDataSet: ${HLQ}.PREPROC.OUTPUT()
+      commandParameters: ""
+  - name: local-pli
+    language: pl1
+    type: preprocessor
+    location: local
+    settings:
+      command: ${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/PLI/local-preprocessor/target/local-pl1-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}
+      outputPath: ./preprocessor/output
+      fileExtension: pci
+      environmentVariables:
+        some: var
+  - name: remote-pli
+    language: pl1
+    type: preprocessor
+    location: mvs
+    settings:
+      commandDataSet: ${HLQ}.PREPROC(PLIPRPC)
+      tempDataHLQ: ${HLQ}
+      outputDataSet: ${HLQ}.PREPROC.OUTPUT()
+      commandParameters: ""

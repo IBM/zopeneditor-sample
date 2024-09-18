@@ -56,7 +56,7 @@
     - name: Execute allocate jcl
       ibm.ibm_zos_core.zos_job_submit:
         src: "{{ tempdir.path }}/ALLOCATE"
-        location: LOCAL
+        location: local
 
     # Uploading files for compilation
     - name: Copy cobol programs
