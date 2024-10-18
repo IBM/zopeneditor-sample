@@ -1,0 +1,38 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2020, 2024. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+
+version: 1.0.0
+
+application:
+  name: wazi-sample
+
+  tasks:
+    - task: Cobol
+      sources:
+        - "**/COBOL/*.cbl"
+
+      variables:
+        - name: dependencySearchPath
+          value: search:${WORKSPACE}/?path=${APP_DIR_NAME}/COPYBOOK/*.cpy
+
+    - task: PLI
+      sources:
+        - "**/PLI/*.pli"
+
+      variables:
+        - name: dependencySearchPath
+          value: search:${WORKSPACE}/?path=${APP_DIR_NAME}/INCLUDES/*.inc
+
+    - task: Assembler
+      sources:
+        - "**/ASM/*.asm"
+
+      variables:
+        - name: dependencySearchPath
+          value: search:${WORKSPACE}/?path=${APP_DIR_NAME}/ASMMAC/*.asm;${APP_DIR_NAME}/ASMCOPY/*.asm
