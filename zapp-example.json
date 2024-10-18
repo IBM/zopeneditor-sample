@@ -1,7 +1,7 @@
 {
   "name": "sam",
-  "description": "For IBM Z Open Editor 4.3.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "4.3.0",
+  "description": "For IBM Z Open Editor 5.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
+  "version": "5.0.0",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -13,37 +13,27 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/COPYBOOK"
-          ]
+          "locations": ["**/COPYBOOK"]
         },
         {
           "name": "syslib",
           "type": "mvs",
-          "locations": [
-            "${HLQ}.SAMPLE.COBCOPY"
-          ]
+          "locations": ["${HLQ}.SAMPLE.COBCOPY"]
         },
         {
           "name": "MYLIB",
           "type": "mvs",
-          "locations": [
-            "${HLQ}.SAMPLE.COPYLIB"
-          ]
+          "locations": ["${HLQ}.SAMPLE.COPYLIB"]
         },
         {
           "name": "MYLIB",
           "type": "local",
-          "locations": [
-            "**/COPYLIB-MVS"
-          ]
+          "locations": ["**/COPYLIB-MVS"]
         },
         {
           "name": "MYFILE",
           "type": "local",
-          "locations": [
-            "**/COPYLIB"
-          ]
+          "locations": ["**/COPYLIB"]
         }
       ]
     },
@@ -55,37 +45,27 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/INCLUDES"
-          ]
+          "locations": ["**/INCLUDES"]
         },
         {
           "name": "syslib",
           "type": "mvs",
-          "locations": [
-            "${HLQ}.SAMPLE.PLINC"
-          ]
+          "locations": ["${HLQ}.SAMPLE.PLINC"]
         },
         {
           "name": "MYLIB",
           "type": "mvs",
-          "locations": [
-            "${HLQ}.SAMPLE.PLI.INCLLIB"
-          ]
+          "locations": ["${HLQ}.SAMPLE.PLI.INCLLIB"]
         },
         {
           "name": "MYLIB",
           "type": "local",
-          "locations": [
-            "**/INCLUDELIB-MVS"
-          ]
+          "locations": ["**/INCLUDELIB-MVS"]
         },
         {
           "name": "MYFILE",
           "type": "local",
-          "locations": [
-            "**/INCLUDELIB"
-          ]
+          "locations": ["**/INCLUDELIB"]
         }
       ]
     },
@@ -96,9 +76,12 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/ASMCOPY"
-          ]
+          "locations": ["**/ASMCOPY"]
+        },
+        {
+          "name": "maclib",
+          "type": "local",
+          "locations": ["**/ASMMAC"]
         }
       ]
     },
@@ -109,27 +92,54 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/REXXINC"
-          ]
+          "locations": ["**/REXXINC"]
         },
         {
           "name": "REXXLIB",
           "type": "local",
-          "locations": [
-            "**/REXXLIB"
-          ]
+          "locations": ["**/REXXLIB"]
+        }
+      ]
+    },
+    {
+      "name": "jcl-local",
+      "language": "jcl",
+      "libraries": [
+        {
+          "name": "jcllib",
+          "type": "local",
+          "locations": ["JCLLIB"]
+        },
+        {
+          "name": "jcllib",
+          "type": "mvs"
+        },
+        {
+          "name": "syslib",
+          "type": "mvs",
+          "locations": ["SYS1.PROCLIB"]
         }
       ]
     }
   ],
   "profiles": [
     {
-      "name": "dbb-userbuild",
+      "name": "zBuilder-userbuild",
+      "type": "dbb",
+      "settings": {
+        "command": "$DBB_HOME/bin/dbb build",
+        "lifecycle": "user",
+        "lifecycleArgs": ["--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"],
+        "additionalDependencies": ["dbb-app.yaml"],
+        "logFilePatterns": ["${buildFile.basename}-*.log", "BuildReport.*"]
+      }
+    },
+    {
+      "name": "groovyz-userbuild",
       "type": "dbb",
       "settings": {
         "application": "SAM",
-        "command": "unset JAVA_OPTS; $DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON",
+        "command": "unset JAVA_OPTS; $DBB_HOME/bin/groovyz",
         "buildScriptPath": "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy",
         "buildScriptArgs": [
           "--userBuild",
@@ -139,13 +149,8 @@
           "--outDir ${zopeneditor.userbuild.userSettings.dbbLogDir}",
           "--dependencyFile ${dependencyFile}"
         ],
-        "additionalDependencies": [
-          "application-conf"
-        ],
-        "logFilePatterns": [
-          "${buildFile.basename}.log",
-          "BuildReport.*"
-        ]
+        "additionalDependencies": ["application-conf"],
+        "logFilePatterns": ["${buildFile.basename}.log", "BuildReport.*"]
       }
     },
     {
@@ -178,10 +183,11 @@
     },
     {
       "name": "local-cobol",
+      "language": "cobol",
       "type": "preprocessor",
       "location": "local",
       "settings": {
-        "command": "${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/local-preprocessor/target/local-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}",
+        "command": "${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/COBOL/local-preprocessor/target/local-cobol-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}",
         "outputPath": "./preprocessor/output",
         "fileExtension": "cee",
         "environmentVariables": {
@@ -191,12 +197,40 @@
     },
     {
       "name": "remote-cobol",
+      "language": "cobol",
       "type": "preprocessor",
       "location": "mvs",
       "settings": {
-        "commandDataSet": "${HLQ}.PREPROC(PREPROC)",
+        "commandDataSet": "${HLQ}.PREPROC(CBLPRPC)",
         "tempDataHLQ": "${HLQ}",
-        "outputDataSet": "${HLQ}.PREPROC.OUTPUT()"
+        "outputDataSet": "${HLQ}.PREPROC.OUTPUT()",
+        "commandParameters": ""
+      }
+    },
+    {
+      "name": "local-pli",
+      "language": "pl1",
+      "type": "preprocessor",
+      "location": "local",
+      "settings": {
+        "command": "${JAVA_HOME}/bin/java -jar ${WORKSPACE}/preprocessor/PLI/local-preprocessor/target/local-pl1-preprocessor-1.0-SNAPSHOT.jar ${input_file} ${output_file}",
+        "outputPath": "./preprocessor/output",
+        "fileExtension": "pci",
+        "environmentVariables": {
+          "some": "var"
+        }
+      }
+    },
+    {
+      "name": "remote-pli",
+      "language": "pl1",
+      "type": "preprocessor",
+      "location": "mvs",
+      "settings": {
+        "commandDataSet": "${HLQ}.PREPROC(PLIPRPC)",
+        "tempDataHLQ": "${HLQ}",
+        "outputDataSet": "${HLQ}.PREPROC.OUTPUT()",
+        "commandParameters": ""
       }
     }
   ]
