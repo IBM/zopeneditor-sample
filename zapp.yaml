@@ -8,8 +8,8 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 4.3.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 4.3.0
+description: For IBM Z Open Editor 5.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 5.0.0
 author:
   name: IBM CORPORATION
 
@@ -87,13 +87,41 @@ propertyGroups:
         locations:
           - "**/REXXLIB"
 
+  - name: jcl-includes
+    language: jcl
+    libraries:
+      - name: jcllib
+        type: local
+        locations:
+          - "JCLLIB"
+      - name: jcllib
+        type: mvs
+      - name: syslib
+        type: mvs
+        locations:
+          - "SYS1.PROCLIB"
+
+# User build profile example, requires IBM Dependency-Based Build v3.x
 profiles:
-  # User build profile example, requires IBM Dependency-Based Build
-  - name: dbb-userbuild
+  - name: zBuilder-userbuild
+    type: dbb
+    settings:
+      command: "$DBB_HOME/bin/dbb build"
+      lifecycle: user
+      lifecycleArgs:
+        - "--hlq ${zopeneditor.userbuild.userSettings.dbbHlq}"
+      additionalDependencies:
+        - "dbb-app.yaml"
+      logFilePatterns:
+        - "${buildFile.basename}-*.log"
+        - "BuildReport.*"
+
+  # User build profile example, requires IBM Dependency-Based Build v2.x
+  - name: groovyz-userbuild
     type: dbb
     settings:
       application: SAM
-      command: "unset JAVA_OPTS; $DBB_HOME/bin/groovyz -DBB_PERSONAL_DAEMON"
+      command: "unset JAVA_OPTS; $DBB_HOME/bin/groovyz"
       buildScriptPath: "${zopeneditor.userbuild.userSettings.dbbWorkspace}/dbb-zappbuild/build.groovy"
       buildScriptArgs:
         - "--userBuild"
