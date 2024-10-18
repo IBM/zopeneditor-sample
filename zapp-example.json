@@ -1,6 +1,6 @@
 {
   "name": "sam",
-  "description": "For IBM Z Open Editor 5.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
+  "description": "For IBM Z Open Editor 5.0.0 and IDz 17.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
   "version": "5.0.0",
   "author": {
     "name": "IBM CORPORATION"
@@ -21,14 +21,14 @@
           "name": "syslib",
           "type": "mvs",
           "locations": [
-            "${HLQ}.SAMPLE.COBCOPY"
+            "IBMUSER.SAMPLE.COBCOPY\""
           ]
         },
         {
           "name": "MYLIB",
           "type": "mvs",
           "locations": [
-            "${HLQ}.SAMPLE.COPYLIB"
+            "IBMUSER.SAMPLE.COPYLIB"
           ]
         },
         {
@@ -63,14 +63,14 @@
           "name": "syslib",
           "type": "mvs",
           "locations": [
-            "${HLQ}.SAMPLE.PLINC"
+            "IBMUSER.SAMPLE.PLINC"
           ]
         },
         {
           "name": "MYLIB",
           "type": "mvs",
           "locations": [
-            "${HLQ}.SAMPLE.PLI.INCLLIB"
+            "IBMUSER.SAMPLE.PLI.INCLLIB"
           ]
         },
         {
@@ -99,6 +99,13 @@
           "locations": [
             "**/ASMCOPY"
           ]
+        },
+        {
+          "name": "maclib",
+          "type": "local",
+          "locations": [
+            "**/ASMMAC"
+          ]
         }
       ]
     },
@@ -121,59 +128,24 @@
           ]
         }
       ]
-    },
-    {
-      "name": "jcl-local",
-      "language": "jcl",
-      "libraries": [
-        {
-          "name": "jcllib",
-          "type": "local",
-          "locations": [
-            "JCLLIB"
-          ]
-        },
-        {
-          "name": "jcllib",
-          "type": "mvs"
-        },
-        {
-          "name": "syslib",
-          "type": "mvs",
-          "locations": [
-            "SYS1.PROCLIB"
-          ]
-        }
-      ]
     }
   ],
   "profiles": [
     {
-      "name": "RSE-Mappings",
-      "type": "rseapi",
+      "name": "zBuilder-userbuild",
+      "type": "dbb",
       "settings": {
-        "mappings": [
-          {
-            "resource": "**.SAMPLE.COB**",
-            "extension": "cbl",
-            "transfer": "text",
-            "encoding": "IBM-037",
-            "memberMappings": [
-              {
-                "extension": "dat",
-                "transfer": "binary",
-                "resource": "*DAT"
-              }
-            ]
-          },
-          {
-            "resource": "**PLI*",
-            "extension": "pl1",
-            "transfer": "text",
-            "encoding": "IBM-037"
-          }
+        "command": "$DBB_HOME/bin/dbb build",
+        "lifecycle": "user",
+        "lifecycleArgs": [
+          "--hlq ${dbbHlq}"
         ],
-        "default.encoding": "IBM-037"
+        "additionalDependencies": [
+          "dbb-app.yaml"
+        ],
+        "logFilePatterns": [
+          "*.log"
+        ]
       }
     }
   ]
