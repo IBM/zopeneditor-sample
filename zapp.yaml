@@ -1,7 +1,7 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020, 2023. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2024. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
@@ -10,8 +10,8 @@
 # Rename this file to zapp.yaml. Currently, only supported with VS Code, not Eclipse Che.
 
 name: sam
-description: For IBM Z Open Editor 3.2.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 3.2.0
+description: For IBM Z Open Editor 5.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 5.0.0
 author:
   name: IBM CORPORATION
 
@@ -84,6 +84,20 @@ propertyGroups:
       type: local
       locations:
         - "**/REXXLIB"
+
+  - name: jcl-includes
+    language: jcl
+    libraries:
+    - name: jcllib
+      type: local
+      locations:
+        - "JCLLIB"
+    - name: jcllib
+      type: mvs
+    - name: syslib
+      type: mvs
+      locations:
+        - "SYS1.PROCLIB"
 
 # Mappings example using US defaults. Adjust to your code pages.
 profiles:

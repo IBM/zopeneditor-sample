@@ -1,20 +1,22 @@
-# Sample code for IBM Z Open Editor and IBM Wazi Developer
+# Sample code for IBM Z Open Editor
 
-Welcome to the sample repository, which provides sample code for you to explore the features of [IBM Z Open Editor](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities) and [IBM Wazi Developer for Red Hat CodeReady Workspaces (IBM Wazi Developer)](https://www.ibm.com/products/wazi-developer).
+Welcome to the sample repository, which provides sample code for you to explore the features of [IBM Z Open Editor](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities) and related offerings.
+
+Note, that content for different variants of the editor are organized in different Git branches as outlined below.
 
 ## Product introduction
 
-IBM Z Open Editor, a component of IBM Wazi Developer, is a free modern editing experience for IBM Z Enterprise languages. [Learn more](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities).
+IBM Z Open Editor is a modern editing experience for IBM Z Enterprise languages provided as an extension to VS Code. [Learn more](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities).
 
-IBM Wazi Developer is a single integrated solution, which delivers a cloud native development experience for z/OS. [Learn more](https://www.ibm.com/docs/en/wdfrhcw/1.3.0?topic=solution-overview).
+You can use it for free from the [Microsoft VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=IBM.zopeneditor) or you can purchase it with [IBM Developer for z/OS Enterprise Edition](https://www.ibm.com/products/developer-for-zos) with additional advanced features and full technical support.
 
 ## Content
 
-This repository provides sample COBOL, PL/I, HLASM, and REXX programs, along with JCL and data files to compile and run them. The JCL files have defaults that can be used with the IBM Wazi Sandbox default image out of box, but can be adjusted to fit your z/OS configuration.
+This repository provides sample COBOL, PL/I, HLASM, and REXX programs, along with JCL and data files to compile and run them. The JCL files have defaults that can be used with the [IBM Wazi as a Service](https://www.ibm.com/cloud/wazi-as-a-service) stock image out of box, but can be adjusted to fit your z/OS configuration.
 
 Depending on the product that you want to explore, choose the appropriate Git branch.
 
-### Branches for Z Open Editor only
+### Branches for the free Z Open Editor only
 
 The following branches provide code samples with editor configuration settings such as ZAPP, as well as JCL and Bash build scripts that use Zowe CLI and the IBM RSE API Plug-in for Zowe CLI to build and run the samples:
 
@@ -23,36 +25,39 @@ The following branches provide code samples with editor configuration settings s
 
 These two branches represent a before and after view of working sample applications for each language that were extended with a new capability as documented below.
 
-You can use these branches with IBM Z Open Editor and Zowe Explorer installations on MacOS or Windows, as well as on [Eclipse Che](https://github.com/IBM/zopeneditor-about/tree/master/che).
+You can use these branches with IBM Z Open Editor and Zowe Explorer installations on MacOS or Windows.
 
-### Branches for IBM Wazi for VS Code and IBM Wazi for Dev Spaces
+### Branches for IBM Developer for z/OS on VS Code (formerly Wazi)
 
 The following branches provide additional sample code for Wazi for VS Code and IBM Wazi for Dev Spaces and its integrations with other zDevOps products:
 
 - `wazi-main` branch:  sample applications
 - `wazi-tutorial-complete` branch: extended sample applications
-- `analyze-sidecar` branch: sample applications for Wazi Analyze
-- `analyze-sidecar-complete` branch: extended sample applications for Wazi Analyze
 
 These branches represent two different states of development in the same application, and include the following samples:
 
-- All samples, such as JCL file, that are pre-configured and tested to be used with the IBM Wazi Sandbox
+- All samples, such as JCL file, that are pre-configured and tested to be used with the IBM Wazi as a Service
 - IBM Debug for z/OS configuration settings, VS Code launches, and JCL
 - User Build configuration files to be used with IBM Dependency Based Build
-- Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi Sandbox or any other z/OS system
-- Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi Sandbox or any other z/OS system
-- Wazi Analyze configuration files that can be used to scan all source code files (except REXX) in the entire branch
+- Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system
+- Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system
 - A GitLab CI sample to build and run the application as part of a GitLab pipeline
 
-**Note:** The automation scripts currently cover the COBOL samples `SAM1` and `SAM2` only, but you can easily copy and adjust them for the PL/I and Assembler samples. To learn more about how to use these scripts, check the [Section "Building and running the COBOL example"](#building-and-running-the-cobol-example) in this file for the Bash with Zowe CLI scripts, and in the `wazi-main` branch for the Groovy and Ansible variants.
+**Note:** The automation scripts currently cover the COBOL samples `SAM1` and `SAM2` only, but you can easily copy and adjust them for the PL/I and Assembler samples. To learn more about how to use these scripts, check the [Section "Building and running the sample files"](#building-and-running-the-sample-files) in this file for the Bash with Zowe CLI scripts, and in the `wazi-main` branch for the Groovy and Ansible variants.
+
+### Branch for IBM Developer for z/OS on Eclipse
+
+IBM Developer for z/OS on VS Code and on Eclipse share common solution components such as the language parsers as well as to ability to configure property groups with include file locations via ZAPP configuration files. It can also use ZAPP files for running user builds utilizing IBM Dependency Based-Build 3.0.0 or newer. The branch provides examples for the capabilities IDz on Eclipse shares with Z Open Editor
+
+- `eclipse-main` branch: Language samples and ZAPP file that can be used in IBM Developer for z/OS 17.0.0 or newer.
 
 ## Prerequisites
 
 Before you run and use the sample code, ensure that the following prerequisites are met:
 
 - Set up IBM Z Open Editor by following the [procedure](https://ibm.github.io/zopeneditor-about/Docs/getting_started.html).
-- To use the user build function, IBM Dependency Based Build (DBB) is required to be set up.
-- To use the Z Open Debug function, IBM z/OS Debugger is required to be set up.
+- To use the user build function of the `wazi-main` or `eclipse-main` branches, IBM Dependency Based Build (DBB) is required to be set up.
+- To use the Z Open Debug functions referenced in the  `wazi-main` branch, IBM z/OS Debugger is required to be set up.
 
 ## Running COBOL sample files
 
@@ -243,14 +248,20 @@ The default sample programs, `SAM1`, `PSAM1`, and `ASAM1` all use include files 
 
 Sample programs `SAM1LIB` and `PSAM1LIB` are provided to demonstrate resolving library-based copybooks and includes from both a local file system and a remote Z host. To resolve copybooks from a local file system, the `zapp.yaml` file contains the **libraries** property below.  The **libraries: name** `MYFILE` matches the library name in the `COPY DATETIME IN MYFILE` statement in `SAM1LIB`.
 
-```ascii
+```yaml
   - name: cobol-local
     language: cobol
-    type: local
-    syslib:
-      - "**/COPYBOOK"
     libraries:
+      - name: syslib
+        type: local
+        locations:
+          - "**/COPYBOOK"
+      - name: MYLIB
+        type: local
+        locations:
+          - "**/COPYLIB-MVS"
       - name: MYFILE
+        type: local
         locations:
           - "**/COPYLIB"
 ```
@@ -275,17 +286,18 @@ To resolve library-based copybooks and includes on a remote Z host, take the fol
 
 1. Update the `zapp.yaml` file property, replacing the **system** ID and the **libraries: locations** data set name.
 
-    ```ascii
-      - name: zowe-mvs-cbl
-        language: cobol
-        type: mvs
-        system: zos1000.example.com
-        syslib:
-          - USER1.SAMPLE.COBCOPY
-        libraries:
-          - name: MYLIB
-            locations:
-              - USER1.SAMPLE.COPYLIB
+   ```yaml
+   - name: zowe-mvs-cbl
+     language: cobol
+     libraries:
+       - name: syslib
+         type: mvs
+         locations:
+           - IBMUSER.SAMPLE.COBCOPY"
+       - name: MYLIB
+         type: mvs
+         locations:
+           - IBMUSER.SAMPLE.COPYLIB
     ```
 
     **Note:** The **libraries: name** `MYLIB` matches the library name in the `SAM1LIB` copy statement `COPY REPTTOTL IN MYLIB`.
@@ -293,8 +305,3 @@ To resolve library-based copybooks and includes on a remote Z host, take the fol
 ## Support and Feedback
 
 If you encounter issues when running the sample code, or have feedback on the sample code, create a pull request or issue in this [GitHub repository](https://github.com/IBM/zopeneditor-sample).
-
-## Next steps
-
-- Learn more about [IBM Z Open Editor](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities) and [IBM Wazi Developer](https://www.ibm.com/docs/en/wdfrhcw/1.3.0?topic=solution-overview).
-- Try [IBM Wazi Developer (IBM Z Open Editor included)](https://www.ibm.com/account/reg/uk-en/signup?formid=urx-49545) that is hosted on IBM Z Trial at no cost.
