@@ -1,11 +1,11 @@
 schemaVersion: 2.2.0
 metadata:
-  name: wazi-demo
+  name: wazi-udi
 
 components:
   - name: wazi-terminal
     container:
-      image: icr.io/wazi-code/ibm-wazi-for-devspaces-sidecar@sha256:ba14c3e89595ca93d189869d2d118739c2d435f5d502ff46c39130b86968eb32
+      image: registry.redhat.io/devspaces/udi-rhel8:3.16
       memoryLimit: 3072Mi
       mountSources: true
       volumeMounts:
