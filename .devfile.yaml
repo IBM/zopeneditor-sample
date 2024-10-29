@@ -1,8 +1,11 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.3.0
 metadata:
   name: wazi-udi
 
 components:
+  - name: zowe
+    volume:
+      size: 100Mi
   - name: wazi-terminal
     container:
       image: registry.redhat.io/devspaces/udi-rhel8:3.16
@@ -10,7 +13,4 @@ components:
       mountSources: true
       volumeMounts:
         - name: zowe
-          path: /home/wazi/.zowe
-  - name: zowe
-    volume:
-      size: 100Mi
+          path: /home/user/.zowe
