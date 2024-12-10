@@ -102,7 +102,7 @@
       ]
     },
     {
-      "name": "jcl-local",
+      "name": "jcl-includes",
       "language": "jcl",
       "libraries": [
         {
