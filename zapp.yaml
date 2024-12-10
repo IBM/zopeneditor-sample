@@ -194,3 +194,12 @@ profiles:
       tempDataHLQ: ${HLQ}
       outputDataSet: ${HLQ}.PREPROC.OUTPUT()
       commandParameters: ""
+  # - name: pli-expand-macros
+  #   language: pl1
+  #   type: preprocessor
+  #   location: mvs
+  #   settings:
+  #     commandDataSet: ${HLQ}.PREPROC(PLIPRPC)
+  #     tempDataHLQ: ${HLQ}
+  #     outputDataSet: ${HLQ}.PREPROC.OUTPUT()
+  #     commandParameters: <SYSPRINT>${HLQ}.LOG.OUTPUT()</SYSPRINT>
