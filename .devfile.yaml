@@ -1,12 +1,12 @@
 schemaVersion: 2.3.0
 metadata:
-  name: idz-devspaces
+  name: idzee-devspaces
 
 components:
   - name: zowe
     volume:
       size: 100Mi
-  - name: idz-terminal
+  - name: idzee-terminal
     container:
       image: icr.io/wazi-code/ibm-wazi-for-devspaces-sidecar:latest
       memoryLimit: 3072Mi
