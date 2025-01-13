@@ -7,11 +7,5 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 {
-  "editor.formatOnSave": true,
-  "zopeneditor.zapp.variables": {
-    "HLQ": "IBMUSER",
-    // Do not use spaces for preprocessor path names
-    "JAVA_HOME": "C:/Progra~1/Semeru/jdk-17.0.10.7-openj9",
-    "WORKSPACE": "C:/Users/ibmuser/zopeneditor-sample"
-  }
+  "editor.formatOnSave": true
 }
