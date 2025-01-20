@@ -24,7 +24,7 @@ propertyGroups:
       - name: syslib
         type: mvs
         locations:
-          - "${HLQ}.SAMPLE.COBCOPY"
+          - "PHAUMER.SAMPLE.COBCOPY"
       - name: MYLIB
         type: mvs
         locations:
