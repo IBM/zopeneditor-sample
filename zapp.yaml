@@ -74,6 +74,10 @@ propertyGroups:
         type: local
         locations:
           - "**/ASMMAC"
+      - name: maclib
+        type: mvs
+        locations:
+          - "${HLQ}.SAMPLE.MACLIB"
 
   - name: rexx-local
     language: rexx
