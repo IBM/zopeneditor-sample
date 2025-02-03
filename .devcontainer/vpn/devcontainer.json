@@ -32,6 +32,12 @@
     "ghcr.io/hspaans/devcontainer-features/ansible-lint:1": {}
   },
 
+  // Workaround for podman (https://github.com/microsoft/vscode-remote-release/issues/7657)
+  "remoteEnv": {
+    "PODMAN_USERNS": "keep-id"
+  },
+  "containerUser": "vscode",
+
   // Install Zowe CLI and the RSE API Plugin for Zowe CLI
   "updateContentCommand": "sh .devcontainer/installZowe.sh",
 
