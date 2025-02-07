@@ -33,6 +33,8 @@ The following branches provide additional sample code for Wazi for VS Code and I
 
 - `wazi-main` branch:  sample applications
 - `wazi-tutorial-complete` branch: extended sample applications
+- `devfile` branch: for loading the samples in Red Hat OpenShift Dev Spaces
+- `devcontainer` branch: for loading the samples in GitHub Codespaces or VS Code Dev Containers
 
 These branches represent two different states of development in the same application, and include the following samples:
 
