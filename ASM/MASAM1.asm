@@ -183,5 +183,6 @@ FILEIN   DCB   DSORG=PS,RECFM=FB,MACRF=(GM),LRECL=80,                  X
                DDNAME=FILEIN,EODAD=READIEOF
 * Example using a macro nested in another program in our MACLIB:
          REGS
+         COPY REGISTRS
 *
          END
