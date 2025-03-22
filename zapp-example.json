@@ -1,7 +1,7 @@
 {
   "name": "sam",
-  "description": "For IBM Z Open Editor 5.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "5.0.0",
+  "description": "For IBM Z Open Editor 5.3.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
+  "version": "5.3.0",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "name": "jcl-local",
+      "name": "jcl-includes",
       "language": "jcl",
       "libraries": [
         {
@@ -136,6 +136,13 @@
         {
           "name": "jcllib",
           "type": "mvs"
+        },
+        {
+          "name": "proclib",
+          "type": "local",
+          "locations": [
+            "JCLPROC"
+          ]
         },
         {
           "name": "syslib",
