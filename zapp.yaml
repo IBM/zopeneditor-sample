@@ -1,15 +1,15 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020, 2024. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2025. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 5.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 5.0.0
+description: For IBM Z Open Editor 5.3.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 5.3.0
 author:
   name: IBM CORPORATION
 
@@ -100,6 +100,10 @@ propertyGroups:
           - "JCLLIB"
       - name: jcllib
         type: mvs
+      - name: proclib
+        type: local
+        locations:
+          - "JCLPROC"
       - name: syslib
         type: mvs
         locations:
