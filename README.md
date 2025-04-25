@@ -1,14 +1,14 @@
 # Sample code for IBM Z Open Editor
 
-Welcome to the sample repository, which provides sample code for you to explore the features of [IBM Z Open Editor](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities) and related offerings.
+Welcome to the sample repository, which provides sample code for you to explore the features of [IBM Z Open Editor](https://ibm.github.io/zopeneditor-about/Docs/introduction.html) and related offerings.
 
-Note, that content for different variants of the editor are organized in different Git branches as outlined below.
+Note, that content for different features of the editor are organized in different Git branches as outlined below.
 
 ## Product introduction
 
-IBM Z Open Editor is a modern editing experience for IBM Z Enterprise languages provided as an extension to VS Code. [Learn more](https://ibm.github.io/zopeneditor-about/Docs/introduction.html#key-capabilities).
+IBM Z Open Editor is a modern editing experience for IBM Z Enterprise languages provided as an extension to VS Code. [Learn more](https://ibm.github.io/zopeneditor-about/Docs/introduction.html).
 
-You can use it for free from the [Microsoft VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=IBM.zopeneditor) or you can purchase it with [IBM Developer for z/OS Enterprise Edition](https://www.ibm.com/products/developer-for-zos) with additional advanced features and full technical support.
+You can use it for free from the [Microsoft VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=IBM.zopeneditor) or you can purchase it with [IBM Developer for z/OS Enterprise Edition](https://www.ibm.com/products/developer-for-zos) or [IBM Application Delivery Foundation for z/OS](https://www.ibm.com/products/app-delivery-foundation-for-zos) with additional advanced features and full technical support.
 
 ## Content
 
@@ -25,7 +25,7 @@ The following branches provide code samples with editor configuration settings s
 
 These two branches represent a before and after view of working sample applications for each language that were extended with a new capability as documented below.
 
-You can use these branches with IBM Z Open Editor and Zowe Explorer installations on MacOS or Windows.
+You can use these branches with IBM Z Open Editor and Zowe Explorer installations on MacOS or Windows. All samples, such as JCL files, that are pre-configured and tested to be used with the IBM Wazi as a Service.
 
 ### Branches for IBM Developer for z/OS on VS Code (formerly Wazi)
 
@@ -35,21 +35,21 @@ The following branches provide additional sample code for Wazi for VS Code and I
 - `wazi-tutorial-complete` branch: extended sample applications
 - `devfile` branch: for loading the samples in Red Hat OpenShift Dev Spaces
 - `devcontainer` branch: for loading the samples in GitHub Codespaces or VS Code Dev Containers
+- `gitpod` branch: for loading the sample with a Gitpod workspace
 
-These branches represent two different states of development in the same application, and include the following samples:
+These branches include the following additional content that is not in the `main` or `tutorial-complete` branch:
 
-- All samples, such as JCL file, that are pre-configured and tested to be used with the IBM Wazi as a Service
-- IBM Debug for z/OS configuration settings, VS Code launches, and JCL
-- User Build configuration files to be used with IBM Dependency Based Build
-- Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system
-- Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system
-- A GitLab CI sample to build and run the application as part of a GitLab pipeline
+- IBM Debug for z/OS configuration settings, VS Code launches, and JCL.
+- User Build configuration files to be used with IBM Dependency Based Build.
+- Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system.
+- Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system.
+- A GitLab CI sample to build and run the application as part of a GitLab pipeline.
 
 **Note:** The automation scripts currently cover the COBOL samples `SAM1` and `SAM2` only, but you can easily copy and adjust them for the PL/I and Assembler samples. To learn more about how to use these scripts, check the [Section "Building and running the sample files"](#building-and-running-the-sample-files) in this file for the Bash with Zowe CLI scripts, and in the `wazi-main` branch for the Groovy and Ansible variants.
 
 ### Branch for IBM Developer for z/OS on Eclipse
 
-IBM Developer for z/OS on VS Code and on Eclipse share common solution components such as the language parsers as well as to ability to configure property groups with include file locations via ZAPP configuration files. It can also use ZAPP files for running user builds utilizing IBM Dependency Based-Build 3.0.0 or newer. The branch provides examples for the capabilities IDz on Eclipse shares with Z Open Editor
+IBM Developer for z/OS on VS Code and on Eclipse share common solution components such as the language parsers as well as to ability to configure property groups with include file locations via ZAPP configuration files. Both can also use ZAPP files for running user builds utilizing IBM Dependency Based-Build 3.0.0 or newer. The branch provides examples for the capabilities IDz on Eclipse shares with Z Open Editor:
 
 - `eclipse-main` branch: Language samples and ZAPP file that can be used in IBM Developer for z/OS 17.0.0 or newer.
 
