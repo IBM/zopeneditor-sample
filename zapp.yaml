@@ -183,6 +183,7 @@ profiles:
       tempDataHLQ: ${HLQ}
       outputDataSet: ${HLQ}.PREPROC.OUTPUT()
       commandParameters: ""
+      # programDataSet: ${HLQ}.PREPROC.COBOL()
   - name: local-pli
     language: pl1
     type: preprocessor
@@ -202,6 +203,8 @@ profiles:
       tempDataHLQ: ${HLQ}
       outputDataSet: ${HLQ}.PREPROC.OUTPUT()
       commandParameters: ""
+      # programDataSet: ${HLQ}.PREPROC.COBOL()
+
   # - name: pli-expand-macros
   #   language: pl1
   #   type: preprocessor
