@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corporation 2023, 2024. All Rights Reserved.
+ * (C) Copyright IBM Corporation 2023, 2025. All Rights Reserved.
  *
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
@@ -13,9 +13,6 @@
   "files.autoSave": "off",
   "editor.formatOnSave": true,
   "zopeneditor.zapp.variables": {
-    "HLQ": "IBMUSER",
-    // Do not use spaces for preprocessor path names
-    "JAVA_HOME": "C:/Progra~1/Semeru/jdk-17.0.10.7-openj9",
-    "WORKSPACE": "C:/Users/ibmuser/zopeneditor-sample"
+    "HLQ": "PHAUMER"
   }
 }
