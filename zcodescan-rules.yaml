@@ -1,0 +1,54 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2025. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+
+rules:
+  - id: zcodescan.cobol.rules.ProgramIdRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.CallSyntaxRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.SqlWhereRule
+    severity: HIGH
+    statements:
+      - name: "Select"
+        value: True
+      - name: "Delete"
+        value: True
+      - name: "Update"
+        value: true
+  - id: zcodescan.cobol.rules.RequireEndClauseRule
+    severity: INFO
+    statements:
+      - name: "If"
+        value: true
+      - name: "Evaluate"
+        value: true
+      - name: "Read"
+        value: true
+      - name: "Search"
+        value: true
+      - name: "Call"
+        value: True
+  - id: zcodescan.cobol.rules.AcceptRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.GotoRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.GotoParagraphRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UnprotectedAuthCredentialRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.BufferOverflowRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.UninitialzedVariablesRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.AcceptDateTimeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlInjectionRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.StopRunRule
+    severity: HIGH
