@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "zopeneditor-sample": {
+      "url": "http://localhost:3005/mcp",
+      "type": "streamable-http"
+    }
+  }
+}
