@@ -9,7 +9,7 @@
 ###############################################################################
 
 # You can use any debian based image you want
-FROM mcr.microsoft.com/devcontainers/java:1-17-bookworm
+FROM mcr.microsoft.com/devcontainers/java:1-21-bookworm
 
 # Install openvpn client
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update \

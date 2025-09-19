@@ -13,7 +13,7 @@
 {
   "name": "Z Open Editor container",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/java:1-17-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
 
   // Add Java LTS with Maven, Node.js LTS, and Ansible
   "features": {
@@ -53,8 +53,10 @@
         }
       },
       "extensions": [
-        "ibm.zopeneditor",
-        "zowe.vscode-extension-for-zowe",
+        "IBM.zopeneditor",
+        "IBM.zopendebug",
+        "Zowe.vscode-extension-for-zowe",
+        "Zowe.cics-extension-for-zowe",
         "redhat.vscode-yaml",
         "vscjava.vscode-java-pack",
         "redhat.ansible"

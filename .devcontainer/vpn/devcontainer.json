@@ -69,8 +69,10 @@
         }
       },
       "extensions": [
-        "ibm.zopeneditor",
-        "zowe.vscode-extension-for-zowe",
+        "IBM.zopeneditor",
+        "IBM.zopendebug",
+        "Zowe.vscode-extension-for-zowe",
+        "Zowe.cics-extension-for-zowe",
         "redhat.vscode-yaml",
         "vscjava.vscode-java-pack",
         "redhat.ansible"
