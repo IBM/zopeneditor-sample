@@ -1,0 +1,5 @@
+{
+  "servers": {
+    "zopeneditor-sample": { "url": "http://localhost:3005/mcp" }
+  }
+}
