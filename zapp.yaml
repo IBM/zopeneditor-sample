@@ -121,7 +121,7 @@ profiles:
       additionalDependencies:
         - "dbb-app.yaml"
       logFilePatterns:
-        - "${buildFile.basename}-*.log"
+        - "*.log"
         - "BuildReport.*"
 
   # User build profile example, requires IBM Dependency-Based Build v2.x
