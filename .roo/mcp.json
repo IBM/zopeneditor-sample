@@ -2,7 +2,9 @@
   "mcpServers": {
     "zopeneditor-sample": {
       "url": "http://localhost:3005/mcp",
-      "type": "streamable-http"
+      "type": "streamable-http",
+      "timeout": 600,
+      "alwaysAllow": []
     }
   }
 }
