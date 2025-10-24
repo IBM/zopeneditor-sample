@@ -1,3 +1,12 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2025. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+
 rules:
   # ZCodeScan Rules
   - id: zcodescan.cobol.rules.ProgramIdRule
@@ -67,7 +76,7 @@ rules:
   - id: zcodescan.cobol.rules.Level88Rule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.MultipleExitsRule
-    severity: MEDIUM    
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.NestedIfLimitRule
     severity: MEDIUM
     statements:
@@ -98,13 +107,13 @@ rules:
   - id: zcodescan.cobol.rules.AcceptFromConsoleRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.OccursDependingOnRule
-    severity: MEDIUM   
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.SqlAvoidSelectStarRule
-    severity: MEDIUM  
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.SqlDeclareCursorOrderByRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.NextSentenceRule
-    severity: MEDIUM  
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.XMLParseRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.BinarySubscriptRule
@@ -146,7 +155,7 @@ rules:
     severity: MEDIUM
     statements:
       - name: LOCATION
-        value: 0 
+        value: 0
   - id: zcodescan.cobol.rules.ParagraphCommentRule
     severity: MEDIUM
     statements:
@@ -161,7 +170,7 @@ rules:
     severity: MEDIUM
     statements:
       - name: CONDITION_NAME_PREFIX
-        value: TEST                               
+        value: TEST
   - id: zcodescan.cobol.rules.CompilerDirectivesRule
     severity: MEDIUM
     statements:
