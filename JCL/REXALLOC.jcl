@@ -46,20 +46,20 @@
 //DD1      DD DSN=&HLQ..SAMPLE.REXX,
 //            DISP=(NEW,CATLG),LRECL=80,RECFM=FB,DSORG=PO,
 //            SPACE=(TRK,(100,10),RLSE),
-//            BLKSIZE=32760,DSNTYPE=LIBRARY
+//            BLKSIZE=32720,DSNTYPE=LIBRARY
 /*
 //DD2      DD DSN=&HLQ..SAMPLE.REXX.FILEIN1,
 //            DISP=(NEW,CATLG),LRECL=80,RECFM=FB,DSORG=PS,
 //            SPACE=(TRK,(100,10),RLSE),
-//            BLKSIZE=32760
+//            BLKSIZE=32720
 /*
 //DD3      DD DSN=&HLQ..SAMPLE.REXX.FILEIN2,
 //            DISP=(NEW,CATLG),LRECL=80,RECFM=FB,DSORG=PS,
 //            SPACE=(TRK,(100,10),RLSE),
-//            BLKSIZE=32760
+//            BLKSIZE=32720
 //*
 //DD4      DD DSN=&HLQ..SAMPLE.REXX.FILEOUT,
 //            DISP=(NEW,CATLG),LRECL=80,RECFM=FB,DSORG=PS,
 //            SPACE=(TRK,(100,10),RLSE),
-//            BLKSIZE=32760
+//            BLKSIZE=32720
 /*
