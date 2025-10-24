@@ -8,8 +8,8 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 5.5.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.
-version: 5.5.0
+description: For IBM Z Open Editor 6.1.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.
+version: 6.1.0
 author:
   name: IBM CORPORATION
 
@@ -109,7 +109,7 @@ propertyGroups:
         locations:
           - "SYS1.PROCLIB"
 
-# User build profile example, requires IBM Dependency-Based Build v3.x
+# User build profile example, requires IBM Dependency-Based Build v3.0.3
 profiles:
   - name: zBuilder-userbuild
     type: dbb
@@ -122,7 +122,8 @@ profiles:
         - "dbb-app.yaml"
       logFilePatterns:
         - "*.log"
-        - "BuildReport.*"
+        - "BuildReport.html"
+        - "*.json"
 
   # User build profile example, requires IBM Dependency-Based Build v2.x
   - name: groovyz-userbuild
