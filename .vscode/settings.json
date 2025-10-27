@@ -14,5 +14,10 @@
   "editor.formatOnSave": true,
   "zopeneditor.zapp.variables": {
     "HLQ": "IBMUSER"
+  },
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/IBM/zopeneditor-about/refs/heads/main/zcodescan/zcodescan-rules-1.0.1.json": [
+      "zcodescan-rules.yaml"
+    ]
   }
 }
