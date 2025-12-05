@@ -26,7 +26,7 @@ propertyGroups:
       - name: syslib
         type: mvs
         locations:
-          - "${HLQ}.SAMPLE.COBCOPY"
+          - "${HLQ}.SAMPLE.COPY"
       - name: MYLIB
         type: mvs
         locations:
@@ -76,32 +76,32 @@ propertyGroups:
   - name: rexx-local
     language: rexx
     libraries:
-    - name: syslib
-      type: local
-      locations:
-        - "**/REXXINC"
-    - name: REXXLIB
-      type: local
-      locations:
-        - "**/REXXLIB"
+      - name: syslib
+        type: local
+        locations:
+          - "**/REXXINC"
+      - name: REXXLIB
+        type: local
+        locations:
+          - "**/REXXLIB"
 
   - name: jcl-includes
     language: jcl
     libraries:
-    - name: jcllib
-      type: local
-      locations:
-        - "JCLLIB"
-    - name: jcllib
-      type: mvs
-    - name: proclib
-      type: local
-      locations:
-        - "JCLPROC"
-    - name: syslib
-      type: mvs
-      locations:
-        - "SYS1.PROCLIB"
+      - name: jcllib
+        type: local
+        locations:
+          - "JCLLIB"
+      - name: jcllib
+        type: mvs
+      - name: proclib
+        type: local
+        locations:
+          - "JCLPROC"
+      - name: syslib
+        type: mvs
+        locations:
+          - "SYS1.PROCLIB"
 
 # Mappings example using US defaults. Adjust to your code pages.
 profiles:

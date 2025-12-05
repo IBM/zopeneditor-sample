@@ -19,7 +19,7 @@ sleep 3s
 
 echo "Copy my app to the created PDS.."
 zowe ${FILES_CMD} upload dir-to-pds COBOL ${HLQ}.SAMPLE.COBOL $PROFILE
-zowe ${FILES_CMD} upload dir-to-pds COPYBOOK ${HLQ}.SAMPLE.COBCOPY $PROFILE
+zowe ${FILES_CMD} upload dir-to-pds COPYBOOK ${HLQ}.SAMPLE.COPY $PROFILE
 zowe ${FILES_CMD} upload dir-to-pds COPYLIB ${HLQ}.SAMPLE.COPYLIB $PROFILE
 zowe ${FILES_CMD} upload dir-to-pds COPYLIB-MVS ${HLQ}.SAMPLE.COPYLIB $PROFILE
 zowe ${FILES_CMD} upload file-to-data-set RESOURCES/SAMPLE.CUSTFILE.txt ${HLQ}.SAMPLE.CUSTFILE $PROFILE
