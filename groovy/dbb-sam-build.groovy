@@ -35,7 +35,7 @@ sam2link   = """
 def srcPDS = "${hlq}.SAMPLE.COBOL" // src dataset
 def objPDS = "${hlq}.SAMPLE.OBJ" // obj dataset
 def loadPDS = "${hlq}.SAMPLE.LOAD" //load dataset (will contain the executables)
-def copyPDS = "${hlq}.SAMPLE.COBCOPY"
+def copyPDS = "${hlq}.SAMPLE.COPY"
 def member1 = "SAM1"
 def member2 = "SAM2"
 

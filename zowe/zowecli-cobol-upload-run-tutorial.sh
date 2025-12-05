@@ -30,7 +30,7 @@ done;
 # Upload local files into the data sets created by the ALLOCATE.jcl
 echo Uploading files to MVS
 zowe $FILES_CMD upload dir-to-pds "./COBOL" "$HLQ.SAMPLE.COBOL" $PROFILE
-zowe $FILES_CMD upload dir-to-pds "./COPYBOOK" "$HLQ.SAMPLE.COBCOPY"  $PROFILE
+zowe $FILES_CMD upload dir-to-pds "./COPYBOOK" "$HLQ.SAMPLE.COPY"  $PROFILE
 zowe $FILES_CMD upload dir-to-pds "./COPYLIB-MVS" "$HLQ.SAMPLE.COPYLIB"  $PROFILE
 zowe $FILES_CMD upload dir-to-pds "./COPYLIB" "$HLQ.SAMPLE.COPYLIB"  $PROFILE
 zowe $FILES_CMD upload file-to-data-set "./RESOURCES/SAMPLE.CUSTFILE.txt" "$HLQ.SAMPLE.CUSTFILE" $PROFILE

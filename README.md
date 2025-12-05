@@ -39,9 +39,11 @@ The following branches provide additional sample code for Wazi for VS Code and I
 
 These branches include the following additional content that is not in the `main` or `tutorial-complete` branch:
 
+- IBM ZCodeScan samples that show the usage of application specific rule selection, using all built-in rules, as well as custom rule creation.
 - IBM Debug for z/OS configuration settings, VS Code launches, and JCL.
 - User Build configuration files to be used with IBM Dependency Based Build.
 - Groovy-based set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system.
+- Examples for using Z Open Editor preprocessor feature showing how to use a local preprocessor as well as remote preprocessor executed as REXX on z/OS.
 - Ansible set-up scripts that build and deploy the COBOL sample application to a fresh Wazi as a Service or any other z/OS system.
 - A GitLab CI sample to build and run the application as part of a GitLab pipeline.
 
@@ -89,7 +91,7 @@ The files created with the `ALLOCATE.jcl` are:
 
 ```ascii
 USER1.SAMPLE.COBOL
-USER1.SAMPLE.COBCOPY
+USER1.SAMPLE.COPY
 USER1.SAMPLE.COPYLIB
 USER1.SAMPLE.OBJ
 USER1.SAMPLE.LOAD
@@ -138,6 +140,7 @@ Instead of Zowe CLI, it uses the [Ansible framework](https://docs.ansible.com/an
 ##### Prerequisites
 
 To run these scripts, ensure that the following requirements are met:
+
 - Install Ansible on your local machine.
 - Install the IBM z/OS collections on your local machine.
 - [Prerequisites for Ansible](https://ibm.github.io/z_ansible_collections_doc/requirements/requirements.html) are available on z/OS USS.
@@ -348,7 +351,7 @@ To resolve library-based copybooks and includes on a remote Z host, take the fol
        - name: syslib
          type: mvs
          locations:
-           - IBMUSER.SAMPLE.COBCOPY"
+           - IBMUSER.SAMPLE.COPY"
        - name: MYLIB
          type: mvs
          locations:
@@ -401,7 +404,7 @@ If you run into problems with your Debug profile showing you a connection error,
 A blue checkmark with a `Connected` label should appear after the connection setting.
 - IBM Wazi Developer for Workspaces workaround:
   1. Open another tab in the same browser
-  1. Paste this url: https://zos.mycompany.com:30858/api/v1/profile/dtcn/, replace `30858` with your "debug-profile-service" port.
+  1. Paste this url: <https://zos.mycompany.com:30858/api/v1/profile/dtcn/>, replace `30858` with your "debug-profile-service" port.
   1. The browser will show a security error.
   1. Click `Advanced`.
   1. Click `Proceed to unsafe`.

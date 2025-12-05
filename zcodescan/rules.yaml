@@ -6,19 +6,18 @@
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
 ################################################################
-
-## Note, that several default rules were commented out in this file
-## so they work well with the SAM programs in this repository.
-## Enable/disable rules as you see fit by modifying this file.
-
+---
 rules:
-  # ZCodeScan Rules
+  # ZCodeScan built-in rules
   - id: zcodescan.cobol.rules.ProgramIdRule
-    severity: MEDIUM
+    severity: INFO
+    parameters:
+      - name: "Test"
+        value: "Test"
   - id: zcodescan.cobol.rules.CallSyntaxRule
-    severity: MEDIUM
+    severity: INFO
   - id: zcodescan.cobol.rules.SqlWhereRule
-    severity: MEDIUM
+    severity: HIGH
     statements:
       - name: "Select"
         value: true
@@ -27,7 +26,7 @@ rules:
       - name: "Update"
         value: true
   - id: zcodescan.cobol.rules.RequireEndClauseRule
-    severity: MEDIUM
+    severity: HIGH
     statements:
       - name: "If"
         value: true
@@ -42,7 +41,7 @@ rules:
   - id: zcodescan.cobol.rules.AcceptRule
     severity: INFO
   - id: zcodescan.cobol.rules.GotoRule
-    severity: MEDIUM
+    severity: INFO
   - id: zcodescan.cobol.rules.GotoParagraphRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.UnprotectedAuthCredentialRule
@@ -59,16 +58,16 @@ rules:
     severity: MEDIUM
   - id: zcodescan.cobol.rules.EvaluateWhenOtherRule
     severity: MEDIUM
-  # - id: zcodescan.cobol.rules.PerformWithoutThroughRule
-  #   severity: MEDIUM
-  # - id: zcodescan.cobol.rules.PerformWithThroughRule
-  #   severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformWithoutThroughRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformWithThroughRule
+    severity: MEDIUM
   - id: "zcodescan.cobol.rules.InitializeRule"
-    severity: INFO
+    severity: MEDIUM
   - id: "zcodescan.cobol.rules.EvaluateNotIfRule"
-    severity: INFO
-  # - id: "zcodescan.cobol.rules.IfElseRule"
-  #   severity: MEDIUM
+    severity: MEDIUM
+  - id: "zcodescan.cobol.rules.IfElseRule"
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.CancelRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.ExitParagraphRule
@@ -90,14 +89,14 @@ rules:
     severity: MEDIUM
     statements:
       - name: "ConventionMask"
-        value: "SAM.*"
+        value: "ACT.*"
   - id: zcodescan.cobol.rules.FiveBasedLevelNumbersRule
     severity: MEDIUM
-  # - id: zcodescan.cobol.rules.ProcedureRule
-  #   severity: MEDIUM
-  #   statements:
-  #     - name: "LineLimit"
-  #       value: 100
+  - id: zcodescan.cobol.rules.ProcedureRule
+    severity: MEDIUM
+    statements:
+      - name: "LineLimit"
+        value: 100
   - id: zcodescan.cobol.rules.AlterRule
     severity: HIGH
   - id: zcodescan.cobol.rules.AvoidSectionInProcedureDivisionRule
@@ -109,17 +108,17 @@ rules:
   - id: zcodescan.cobol.rules.Comp3PictureClauseRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.AcceptFromConsoleRule
-    severity: HIGH
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.OccursDependingOnRule
-    severity: HIGH
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.SqlAvoidSelectStarRule
-    severity: HIGH
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.SqlDeclareCursorOrderByRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.NextSentenceRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.XMLParseRule
-    severity: HIGH
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.BinarySubscriptRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.CorrespondingRule
@@ -132,12 +131,12 @@ rules:
     severity: MEDIUM
   - id: zcodescan.cobol.rules.EntryRule
     severity: MEDIUM
-  # - id: zcodescan.cobol.rules.PerformExceptPerformSectionRule
-  #   severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformExceptPerformSectionRule
+    severity: MEDIUM
   - id: zcodescan.cobol.rules.NextSentenceInScopedRangeRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.CopybookRule
-    severity: HIGH
+    severity: MEDIUM
     statements:
       - name: CopybookName
         value: lgpolicy
@@ -146,27 +145,27 @@ rules:
     statements:
       - name: RoutineName
         value: LGADBC
-  # - id: zcodescan.cobol.rules.InlinePerformLineLimitRule
-  #   severity: MEDIUM
-  #   statements:
-  #     - name: LineLimit
-  #       value: 30
+  - id: zcodescan.cobol.rules.InlinePerformLineLimitRule
+    severity: MEDIUM
+    statements:
+      - name: LineLimit
+        value: 30
   - id: zcodescan.cobol.rules.CheckSqlcodeAfterExecSqlRule
     severity: HIGH
   - id: zcodescan.cobol.rules.CopySuppressRule
     severity: MEDIUM
   - id: zcodescan.cobol.rules.SectionCommentRule
-    severity: LOW
+    severity: MEDIUM
     statements:
       - name: LOCATION
         value: 0
-  # - id: zcodescan.cobol.rules.ParagraphCommentRule
-  #   severity: LOW
-  #   statements:
-  #     - name: LOCATION
-  #       value: 0
+  - id: zcodescan.cobol.rules.ParagraphCommentRule
+    severity: MEDIUM
+    statements:
+      - name: LOCATION
+        value: 0
   - id: zcodescan.cobol.rules.StaticCallNameRule
-    severity: HIGH
+    severity: MEDIUM
     statements:
       - name: PROGRAM_NAME
         value: TEST
@@ -183,7 +182,7 @@ rules:
       - name: ProcessDirective
         value: true
       - name: CopyDirective
-        value: false
+        value: true
       - name: ReplaceDirective
         value: true
       - name: ServicelabelDirective
