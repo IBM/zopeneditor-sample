@@ -14,6 +14,14 @@ author:
   name: IBM CORPORATION
 
 profiles:
+  - name: zcodescan-sam
+    type: zcodescan
+    settings:
+      rules:
+        - type: local
+          locations:
+            - "zcodescan/sam-rules.yaml"
+
   # User build profile example, requires IBM Dependency-Based Build v3.x
   - name: zBuilder-userbuild
     type: dbb

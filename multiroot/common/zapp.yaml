@@ -1,0 +1,13 @@
+name: global
+description: Wazi's multi-root workspace code sample for COBOL
+version: 6.2.0
+author:
+  name: IBM CORPORATION
+profiles:
+  - name: zcodescan
+    type: zcodescan
+    settings:
+      customRuleModels:
+        - type: local
+          locations:
+            - "zcodescan/rules-domains.yaml"

@@ -11,7 +11,7 @@
 - name: Build the SAM COBOL application
   hosts: "{{ host | default('sandbox1') }}"
   # collections:
-    # - ibm.ibm_zos_core
+  # - ibm.ibm_zos_core
   gather_facts: false
   environment: "{{ environment_vars }}"
 
@@ -21,7 +21,6 @@
       default: "vscode"
 
   tasks:
-
     # Variables and template prep
     - name: Defining variables
       ansible.builtin.set_fact:
@@ -32,7 +31,7 @@
       ansible.builtin.set_fact:
         jcl_pds: "{{ hlq }}.SAMPLE.JCL"
         src_pds: "{{ hlq }}.SAMPLE.COBOL"
-        copy_pds: "{{ hlq }}.SAMPLE.COBCOPY"
+        copy_pds: "{{ hlq }}.SAMPLE.COPY"
 
     - name: Create local temp directory
       ansible.builtin.tempfile:
@@ -46,10 +45,13 @@
         dest: "{{ item.dest }}"
         mode: u+rw
       with_items:
-        - {src: "templates/ALLOCATE.j2", dest: "{{ tempdir.path }}/ALLOCATE"}
-        - {src: "templates/DEBUG.j2", dest: "{{ tempdir.path }}/DEBUG"}
-        - {src: "templates/RUN.j2", dest: "{{ tempdir.path }}/RUN"}
-        - {src: "templates/dbb-sam-build.j2", dest: "{{ tempdir.path }}/dbb-sam-build.groovy"}
+        - { src: "templates/ALLOCATE.j2", dest: "{{ tempdir.path }}/ALLOCATE" }
+        - { src: "templates/DEBUG.j2", dest: "{{ tempdir.path }}/DEBUG" }
+        - { src: "templates/RUN.j2", dest: "{{ tempdir.path }}/RUN" }
+        - {
+            src: "templates/dbb-sam-build.j2",
+            dest: "{{ tempdir.path }}/dbb-sam-build.groovy",
+          }
       delegate_to: localhost
 
     # Preparing Data Sets
