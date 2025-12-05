@@ -1,0 +1,38 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2025. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+---
+domains:
+  - name: "Custom Cobol Code Review"
+    categories:
+      - name: "Custom Naming Conventions"
+        rules:
+          - id: "custom.cobol.rules.regex.ProgramIdRule"
+            name: "(RegEx) The maximal length of the PROGRAM-ID is ${length}"
+            description: |
+              The maximal length of the PROGRAM-ID is ${length}
+            severity: MEDIUM
+            software_quality: MAINTAINABILITY
+            cleancode_attribute: DISTINCT
+            parameters:
+              - name: "length"
+                value: "6"
+                description: |
+                  The maximal length of the PROGRAM-ID.
+              - name: "xxxx"
+                value: "10"
+                description: |
+                  The maximal length of the PROGRAM-ID.
+            implementation:
+              language: REGEX
+              extensions:
+                - ".cbl"
+              regex:
+                line: True
+                excludes:
+                  - 'PROGRAM-ID.\s+([A-Z0-9]){${length}}[A-Z0-9]+'

@@ -8,8 +8,8 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 6.1.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.
-version: 6.1.0
+description: For IBM Z Open Editor 6.2.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.
+version: 6.2.0
 author:
   name: IBM CORPORATION
 
@@ -109,8 +109,21 @@ propertyGroups:
         locations:
           - "SYS1.PROCLIB"
 
-# User build profile example, requires IBM Dependency-Based Build v3.0.3
 profiles:
+  # Custom ZCodeScan rules example
+  - name: zcodescan
+    type: zcodescan
+    settings:
+      rules:
+        - type: local
+          locations:
+            - "zcodescan/sam-rules.yaml"
+      customRuleModels:
+        - type: local
+          locations:
+            - "zcodescan/rules-domains.yaml"
+
+  # User build profile example, requires IBM Dependency-Based Build v3.0.3
   - name: zBuilder-userbuild
     type: dbb
     settings:
@@ -138,7 +151,7 @@ profiles:
         - "--application ${application}"
         - "--hlq ${dbbHlq}"
         - "--outDir ${dbbLogDir}"
-        - "--dependencyFile ${dependencyFile}"
+        # - "--dependencyFile ${dependencyFile}" # use with older versions of dbb-zappbuild
       additionalDependencies:
         - application-conf
       logFilePatterns:

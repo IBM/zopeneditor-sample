@@ -1,14 +1,17 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../sam"
-		},
-		{
-			"path": "../copybooks"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../common"
+    },
+    {
+      "path": "../sam"
+    },
+    {
+      "path": "../copybooks"
+    }
+  ],
+  "settings": {}
 }
