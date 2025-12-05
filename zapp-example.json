@@ -1,7 +1,7 @@
 {
   "name": "sam",
-  "description": "For IBM Z Open Editor 5.5.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.",
-  "version": "5.5.0",
+  "description": "For IBM Z Open Editor 6.2.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.",
+  "version": "6.2.0",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -18,7 +18,7 @@
         {
           "name": "syslib",
           "type": "mvs",
-          "locations": ["${HLQ}.SAMPLE.COBCOPY"]
+          "locations": ["${HLQ}.SAMPLE.COPY"]
         },
         {
           "name": "MYLIB",
@@ -134,6 +134,24 @@
   ],
   "profiles": [
     {
+      "name": "zcodescan",
+      "type": "zcodescan",
+      "settings": {
+        "rules": [
+          {
+            "type": "local",
+            "locations": ["zcodescan/sam-rules.yaml"]
+          }
+        ],
+        "customRuleModels": [
+          {
+            "type": "local",
+            "locations": ["zcodescan/rules-domains.yaml"]
+          }
+        ]
+      }
+    },
+    {
       "name": "zBuilder-userbuild",
       "type": "dbb",
       "settings": {
@@ -141,7 +159,7 @@
         "lifecycle": "user",
         "lifecycleArgs": ["--hlq ${dbbHlq}"],
         "additionalDependencies": ["dbb-app.yaml"],
-        "logFilePatterns": ["${buildFile.basename}-*.log", "BuildReport.*"]
+        "logFilePatterns": ["*.log", "BuildReport.html", "*.json"]
       }
     },
     {
@@ -156,8 +174,7 @@
           "--workspace ${dbbWorkspace}",
           "--application ${application}",
           "--hlq ${dbbHlq}",
-          "--outDir ${dbbLogDir}",
-          "--dependencyFile ${dependencyFile}"
+          "--outDir ${dbbLogDir}"
         ],
         "additionalDependencies": ["application-conf"],
         "logFilePatterns": ["${buildFile.basename}.log", "BuildReport.*"]

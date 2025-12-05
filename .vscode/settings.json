@@ -7,13 +7,17 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 {
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": true, // To demonstrate COBOL code formatting on save.
   "zopeneditor.zapp.variables": {
-    "HLQ": "IBMUSER"
+    "HLQ": "IBMUSER" // Only for demonstration purposes. Remove and set your own value in your user settings.
   },
+  // ZCodeScan YAML schema associations for editing rules files.
   "yaml.schemas": {
-    "https://raw.githubusercontent.com/IBM/zopeneditor-about/refs/heads/main/zcodescan/zcodescan-rules-1.0.1.json": [
-      "zcodescan-rules.yaml"
+    "https://raw.githubusercontent.com/IBM/zopeneditor-about/refs/heads/main/zcodescan/zcodescan-rules-1.1.0.json": [
+      "*rules.yaml"
+    ],
+    "https://raw.githubusercontent.com/IBM/zopeneditor-about/refs/heads/main/zcodescan-rules-domains-1.1.0.json": [
+      "zcodescan/rules-domains.yaml"
     ]
   }
 }

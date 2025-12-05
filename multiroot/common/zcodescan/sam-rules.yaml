@@ -1,0 +1,43 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2025. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+---
+rules:
+  # Selection of ZCodeScan built-in rules for the SAM application
+  - id: zcodescan.cobol.rules.AcceptDateTimeRule
+    severity: MEDIUM
+  - id: "zcodescan.cobol.rules.EvaluateNotIfRule"
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.RequireEndClauseRule
+    severity: HIGH
+    statements:
+      - name: "If"
+        value: true
+      - name: "Evaluate"
+        value: true
+      - name: "Read"
+        value: true
+      - name: "Search"
+        value: true
+      - name: "Call"
+        value: true
+  - id: zcodescan.cobol.rules.ProgramIdRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.FileNameConventionRule
+    severity: HIGH
+    statements:
+      - name: "ConventionMask"
+        value: "SA.*"
+
+  # Custom rule defined in ./rules-domain.yaml
+  # Require that PROGRAM-ID be at least 4 characters long
+  - id: custom.cobol.rules.regex.ProgramIdRule
+    severity: INFO
+    parameters:
+      - name: "length"
+        value: 4

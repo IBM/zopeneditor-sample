@@ -115,7 +115,7 @@ def compileProgram(String srcDS, String member, String compilerDS, String copyDS
 	def compile = new MVSExec().pgm("IGYCRCTL").parm("LIST,MAP,NODYN")
 	compile.dd(new DDStatement().name("TASKLIB").dsn("${compilerDS}").options("shr"))
 	compile.dd(new DDStatement().name("SYSIN").dsn("${srcDS}($member)").options("shr"))
-	compile.dd(new DDStatement().name("SYSLIB").dsn("${copyDS}").options("shr")) //copybook .COBCOPY
+	compile.dd(new DDStatement().name("SYSLIB").dsn("${copyDS}").options("shr")) //copybook .COPY
 	compile.dd(new DDStatement().name("SYSLIN").dsn("${objectDS}($member)").options("shr"))
 	(1..17).toList().each { num ->
 		compile.dd(new DDStatement().name("SYSUT$num").options(tempOptions))
