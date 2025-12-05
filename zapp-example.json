@@ -18,7 +18,7 @@
         {
           "name": "syslib",
           "type": "mvs",
-          "locations": ["${HLQ}.SAMPLE.COBCOPY"]
+          "locations": ["${HLQ}.SAMPLE.COPY"]
         },
         {
           "name": "MYLIB",

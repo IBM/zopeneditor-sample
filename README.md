@@ -89,7 +89,7 @@ The files created with the `ALLOCATE.jcl` are:
 
 ```ascii
 USER1.SAMPLE.COBOL
-USER1.SAMPLE.COBCOPY
+USER1.SAMPLE.COPY
 USER1.SAMPLE.COPYLIB
 USER1.SAMPLE.OBJ
 USER1.SAMPLE.LOAD
@@ -348,7 +348,7 @@ To resolve library-based copybooks and includes on a remote Z host, take the fol
        - name: syslib
          type: mvs
          locations:
-           - IBMUSER.SAMPLE.COBCOPY"
+           - IBMUSER.SAMPLE.COPY"
        - name: MYLIB
          type: mvs
          locations:
