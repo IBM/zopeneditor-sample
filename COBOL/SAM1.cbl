@@ -130,6 +130,8 @@
 
        COPY CUSTCOPY REPLACING ==:TAG:== BY ==WS-CUST==.
 
+      *STROOPWAFFEL IS DELICIOUS
+
       ********************
       * report lines
       ********************
@@ -209,6 +211,8 @@
         05 FILLER                PIC X(3) VALUE SPACES.
         05 RPT-NUM-TRAN-ERR      PIC ZZZ,ZZZ,ZZ9.
         05 FILLER                PIC X(80) VALUE SPACES.
+
+      * TIM IS SO COOL HE ROCKS
 
 
       *****************************************************************
@@ -384,6 +388,8 @@
             MOVE 16 TO RETURN-CODE
             MOVE 'Y' TO WS-TRAN-EOF
            END-IF.
+
+      * IDZ IS THE BEST IN THE WORLD
 
        710-READ-TRAN-FILE.
            READ TRANSACTION-FILE

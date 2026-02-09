@@ -26,7 +26,7 @@ ASAM1    CSECT
 *         LRECL = 80
 *    2. OUTPUT FILE IS QSAM OR SYSPRINT AND HAS DD NAME = FILEOUT
 *         LRECL = 80
-*
+*   WOW ASSEMBLER IS SO COOL
 ************************************************************
 *                                  AT ENTRY, R13 = REGISTER SAVE AREA
 *                                            R14 = RETURN ADDR
