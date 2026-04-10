@@ -9,10 +9,7 @@
 
        +DD.
        Working-Storage Section.
-       01 Work-Parms.
-          05 In-Len               pic S9(4) BINARY.
-          05 Char-count           Pic 99 Value ZEROS.
-          05 Out-Name             PIC X(100).
+       +WP
 
           Linkage Section.
        01 Recvd-Parms.
