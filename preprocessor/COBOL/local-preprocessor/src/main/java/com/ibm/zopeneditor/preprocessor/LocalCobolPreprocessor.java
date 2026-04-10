@@ -34,6 +34,8 @@ public class LocalCobolPreprocessor {
 					line = line.replace("+DD", "DATA DIVISION");
 					line = line.replace("+PD", "PROCEDURE DIVISION");
 					line = line.replace("+MV", "MOVE");
+					line = line.replace("+WP",
+							"01 Work-Parms.\n          05 In-Len               pic S9(4) BINARY.\n          05 Char-count           Pic 99 Value ZEROS.\n          05 Out-Name             PIC X(100).");
 
 					writer.write(line);
 					writer.write("\n");
