@@ -421,7 +421,30 @@ A blue checkmark with a `Connected` label should appear after the connection set
 - The `Debug Console` is opened with a list of parked sessions. It might take about a minute to show the sessions `SAM1` or `ASAM1` will display in the Debug Console.
 - Return to the Debug view, select `Connect to parked IBM Z Open Debug Sessions` and click the green arrow to run.
 - Enter the password for `IBMUSER`.
-- `SAM1` or `ASAM1` should appear in the editor window in debug mode.  Use the various debug buttons to control your session.
+- `SAM1` or `ASAM1` should appear in the editor window in debug mode. Use the various debug buttons to control your session.
+
+## Running with code coverage
+
+Take the following main steps to run a code coverage session with Z Open Debug and Compiled Code Coverage in VS Code. For more details on code coverage, refer to the [Compiled Code Coverage documentation](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=dvc-determining-code-coverage-zos-compiled-code-coverage-vs-code).
+
+### Configure Z Open Debug
+
+1. Specify a Z Open Debug connection profile in the Zowe team configuration file. For more information, refer to the [Setting up for IBM Z Open Debug](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=code-setting-up-z-open-debug#opendebug_connection__define_zowe_connection).
+1. Open Command Palette.
+1. Run **Zowe Explorer: Focus on z/OS Debugger Profiles View**.
+1. Click the **+** icon to add the connection profile.
+1. Right click on the connection profile and select **Manage Profile** context menu item.
+1. Select the **Log In** option in the quick-pick to connect to the connection profile. If connected successfully, the connection profile will show **CONNECTED** status.
+1. Open Command Palette.
+1. Run **IBM Compiled Code Coverage: Focus on Coverage Results View**.
+1. The Code Coverage Service location is automatically added to the **Coverage Results** view. If not added automatically, manually add it by following the [Working with results locations](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=results-working-locations) instructions.
+
+### Run the sample with code coverage
+
+1. Open [`COVERAGE.jcl`](JCL/COVERAGE.jcl) and adjust it for your system.
+1. Ensure that the line `//   SET CCOPT='ENVAR("EQA_STARTUP_KEY=CC")'` is available in the JCL to enable code coverage.
+1. Submit `COVERAGE.jcl` to run `SAM1` with code coverage.
+1. Once the job completes, the IBM Compiled Code Coverage extension will automatically open the code coverage result. For more information on the result, refer to the [Viewing Results](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=results-viewing).
 
 ## Running a DBB user build on Wazi Sandbox
 
