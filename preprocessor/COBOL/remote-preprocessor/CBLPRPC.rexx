@@ -31,9 +31,16 @@ XmlFileStr=''
 do i=1 to Lines.0
   XmlFileStr=XmlFileStr || Lines.i
 end    /* loop i */
-
 /*
- * substitute keywords in source file
+ * +WP Replacement content
+ */
+ WPReplacement = "01 Work-Parms." || '0A'x ||,
+                 "          05 In-Len               Pic S9(4) BINARY.",
+                 || '0A'x ||,
+                 "          05 Char-count           Pic 99 Value ZEROS.",
+                 || '0A'x ||,
+                 "          05 Out-Name             Pic x(100)."
+ /* substitute keywords in source file
  */
 if _read(_parseXml('PROGRAM'))
 then do
@@ -44,8 +51,12 @@ then do
     Lines.i=_substitute('+DD','DATA DIVISION',Lines.i)
     Lines.i=_substitute('+PD','PROCEDURE DIVISION',Lines.i)
     Lines.i=_substitute('+MV','MOVE',Lines.i)
+    Lines.i=_substitute('+WP',WPReplacement,Lines.i)
   end    /* loop i */
   say '>' Count 'substitutions done'
+
+/* Expand lines containing newline characters into multiple lines */
+  call _expandLines
 
   if _write(_parseXml('OUTPUT')) then ExitRC=0
 end    /* read successful */
@@ -178,4 +189,47 @@ do while Start > 0
   Start=pos(Old,Line,Start + length(New))
 end    /* while */
 return Line    /* _substitute */
- 
+
+/*===================================================================
+ * --- Expand lines containing newline characters into multiple lines
+ * Updates Lines. stem by splitting any line containing '0A'x into
+ * multiple separate lines
+ */
+_expandLines: PROCEDURE EXPOSE Lines.
+NewLines.0=0
+do i=1 to Lines.0
+  CurrentLine=Lines.i
+  /* Check if line contains newline character */
+  if pos('0A'x, CurrentLine) > 0
+  then do
+    /* Split line by newline character */
+    do while pos('0A'x, CurrentLine) > 0
+      parse var CurrentLine Part '0A'x CurrentLine
+      NewLines.0=NewLines.0+1
+      idx=NewLines.0
+      NewLines.idx=Part
+    end    /* while */
+    /* Add remaining part if any */
+    if CurrentLine \= ''
+    then do
+      NewLines.0=NewLines.0+1
+      idx=NewLines.0
+      NewLines.idx=CurrentLine
+    end    /* */
+  end    /* contains newline */
+  else do
+    /* No newline, just copy the line */
+    NewLines.0=NewLines.0+1
+    idx=NewLines.0
+    NewLines.idx=CurrentLine
+  end    /* no newline */
+end    /* loop i */
+
+/* Replace Lines. with NewLines. */
+Lines.0=NewLines.0
+do i=1 to NewLines.0
+  Lines.i=NewLines.i
+end    /* loop i */
+
+say '> _expandLines expanded to' Lines.0 'lines'
+return    /* _expandLines */
