@@ -1,15 +1,15 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020, 2024. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2026. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 5.0.0 and IDz 17.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 5.0.0
+description: For IBM Z Open Editor 6.6.0 and IDz 17.0.5 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 6.6.0
 author:
   name: IBM CORPORATION
 
@@ -102,3 +102,21 @@ profiles:
         - "*.log"
         - "BuildReport.html"
         - "*.json"
+
+  # Custom ZCodeScan rules example
+  - name: zcodescan
+    type: zcodescan
+    settings:
+      rules:
+        - type: local
+          locations:
+            - "zcodescan/sam-rules.yaml"
+            - "zcodescan/psam-rules.yaml"
+      customRuleModels:
+        - type: local
+          locations:
+            - "zcodescan/rules-domains.yaml"
+      baselines:
+        - type: local
+          locations:
+            - "zcodescan/baseline.json"

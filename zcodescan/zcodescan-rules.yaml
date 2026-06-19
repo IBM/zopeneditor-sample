@@ -1,0 +1,417 @@
+################################################################
+# LICENSED MATERIALS - PROPERTY OF IBM
+# "RESTRICTED MATERIALS OF IBM"
+# (C) COPYRIGHT IBM CORPORATION 2026. ALL RIGHTS RESERVED
+# US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
+# OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
+# CONTRACT WITH IBM CORPORATION
+################################################################
+---
+rules:
+  # ZCodeScan Cobol Rules
+  - id: zcodescan.cobol.rules.AcceptDateTimeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.AcceptFromConsoleRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.AcceptRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.AlphaToNumericMoveRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.AlterRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.AvoidSectionInProcedureDivisionRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.AvoidSqlLikeRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.BinarySubscriptRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.BlockContainsRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.BufferOverflowRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.CallSyntaxRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CancelRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CheckSqlcodeAfterExecSqlRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.CheckSqlstateAfterExecSqlRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CicsCommareaLengthRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CicsNoHandleRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CommentRegexRule
+    severity: LOW
+    parameters:
+      - name: Regex
+        value: "TEMP"
+  - id: zcodescan.cobol.rules.Comp3PictureClauseRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CompilerDirectivesRule
+    severity: MEDIUM
+    statements:
+      - name: BasisDirective
+        value: true
+      - name: ProcessDirective
+        value: true
+      - name: CopyDirective
+        value: false
+      - name: ReplaceDirective
+        value: true
+      - name: ServicelabelDirective
+        value: true
+      - name: ServiceloadDirective
+        value: true
+      - name: TitleDirective
+        value: true
+  - id: zcodescan.cobol.rules.ConditionNamePrefixRule
+    severity: MEDIUM
+    parameters:
+      - name: CONDITION_NAME_PREFIX
+        value: TEST
+  - id: zcodescan.cobol.rules.CondTooManyDataItemsRule
+    severity: LOW
+    parameters:
+      - name: OperandsLimit
+        value: 3
+  - id: zcodescan.cobol.rules.CondVarNoLiteralCompareRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CopybookRule
+    severity: HIGH
+    parameters:
+      - name: CopybookName
+        value: lgpolicy
+  - id: zcodescan.cobol.rules.CopyLimitRule
+    severity: LOW
+    parameters:
+      - name: CopyLimit
+        value: 5
+  - id: zcodescan.cobol.rules.CopySuppressRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CorrespondingRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorCloseExplicitRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorCloseInLoopRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorDeclarationScopeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorDeclareInLoopRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorGroupByRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorOpenInLoopRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CursorReadUpdateRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.DataOccursOneRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.DebugFeaturesInProdRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.DisplayUponConsoleRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.DuplicateBranchImplementationRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.EntryRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.EvaluateNotIfRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.EvaluateWhenOtherRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.ExcessiveParagraphsRule
+    severity: MEDIUM
+    parameters:
+      - name: ParagraphLimit
+        value: 5
+  - id: zcodescan.cobol.rules.ExitParagraphRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.ExitProgramRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.FileCloseExplicitRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.FileMergeAvoidRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.FileNameConventionRule
+    severity: MEDIUM
+    parameters:
+      - name: "ConventionMask"
+        value: "SAM.*"
+  - id: zcodescan.cobol.rules.FileOpenInLoopRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.FileSortAvoidRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.FileStatusCheckRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.FiveBasedLevelNumbersRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.GotoDependingOnRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.GotoParagraphRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.GotoRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.IfElseRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.IndexSubscriptRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.InitializeRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.InlinePerformLineLimitRule
+    severity: MEDIUM
+    parameters:
+      - name: LineLimit
+        value: 30
+  - id: zcodescan.cobol.rules.Level01NamingRule
+    severity: MEDIUM
+    parameters:
+      - name: Level01Prefix
+        value: WS
+  - id: zcodescan.cobol.rules.Level88Rule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.LimitSubprogramCallsRule
+    severity: MEDIUM
+    parameters:
+      - name: SubprogramLimit
+        value: 5
+  - id: zcodescan.cobol.rules.LogicalFileNamingRule
+    severity: MEDIUM
+    parameters:
+      - name: FilenamePrefix
+        value: LF
+  - id: zcodescan.cobol.rules.MagicNumberRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.MultipleExitsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.NestedIfLimitRule
+    severity: MEDIUM
+    parameters:
+      - name: "NestingLimit"
+        value: 6
+  - id: zcodescan.cobol.rules.NextSentenceInScopedRangeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.NextSentenceRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.NoDisplayRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.NoEmptyParagraphsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.NoEmptySectionsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.NoLevel77Rule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.OccursDependingOnRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.ParagraphCommentRule
+    severity: LOW
+    parameters:
+      - name: LOCATION
+        value: 0
+  - id: zcodescan.cobol.rules.ParagraphRedefinitionRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformExceptPerformSectionRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformParagraphRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.PerformWithoutThroughRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformWithThroughRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.ProcedureRule
+    severity: MEDIUM
+    parameters:
+      - name: "LineLimit"
+        value: 100
+  - id: zcodescan.cobol.rules.ProgramIdRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.RedefinesAvoidRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.RemoveUnusedConditionNamesRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.RequireEndClauseRule
+    severity: MEDIUM
+    statements:
+      - name: "If"
+        value: true
+      - name: "Evaluate"
+        value: true
+      - name: "Read"
+        value: true
+      - name: "Search"
+        value: true
+      - name: "Call"
+        value: true
+  - id: zcodescan.cobol.rules.ReserveRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.RespOptionRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.RestrictedRoutineRule
+    severity: HIGH
+    parameters:
+      - name: RoutineName
+        value: LGADBC
+  - id: zcodescan.cobol.rules.SearchAllRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SectionCommentRule
+    severity: LOW
+    parameters:
+      - name: LOCATION
+        value: 0
+  - id: zcodescan.cobol.rules.SqlAnsiWhereOperatorsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlAvoidSelectStarRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.SqlDeclareCursorOrderByRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlFetchAllColumnsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlFetchFirstOrderByRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlFetchIntoExcessColumnsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlInjectionRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.SqlJoinCountRule
+    severity: MEDIUM
+    parameters:
+      - name: JoinCount
+        value: 2
+  - id: zcodescan.cobol.rules.SqlLikeWithoutWildcardRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.SqlNoCastToCharRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoDdlInAppRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoDirectNullCompareRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoDistinctRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoFuncInWhereRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.SqlNoLeadingWildcardLikeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoLockTableRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoNestedSelectRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlNoUnionRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlOrderByUseColumnNamesRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.SqlUseJoinKeywordRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SqlWhereRule
+    severity: MEDIUM
+    statements:
+      - name: "Select"
+        value: true
+      - name: "Delete"
+        value: true
+      - name: "Update"
+        value: true
+  - id: zcodescan.cobol.rules.StaticCallNameRule
+    severity: HIGH
+    parameters:
+      - name: PROGRAM_NAME
+        value: TEST
+  - id: zcodescan.cobol.rules.StopRunRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.StringNoTruncationRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.TrackFixMeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.TrackTodoRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.TypedInitializationRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UninitialzedVariablesRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.UniqueSectionNamesRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UnprotectedAuthCredentialRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.XMLParseRule
+    severity: HIGH
+
+  # ZCodeScan PL/1 Rules
+  - id: zcodescan.pli.rules.ArithmeticExprWithoutBitTypeRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.ArithmeticExprWithoutCharacterTypeRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.AssignValueToParmRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.AvoidProcessDirectiveRule
+    severity: LOW
+  - id: zcodescan.pli.rules.CompareBitStringsWithSameLength
+    severity: HIGH
+  - id: zcodescan.pli.rules.CompareEntryRule1
+    severity: HIGH
+  - id: zcodescan.pli.rules.CompareEntryRule2
+    severity: HIGH
+  - id: zcodescan.pli.rules.DfhrespRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.DoEndRule
+    severity: MEDIUM
+    statements:
+      - name: "Then"
+        value: true
+      - name: "When"
+        value: true
+      - name: "Else"
+        value: true
+      - name: "Otherwise"
+        value: true
+  - id: zcodescan.pli.rules.DotQualRefsRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.EndProcedureWithLabelRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.FactorAttribRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.FilenameConventionRule
+    severity: MEDIUM
+    parameters:
+      - name: "FileMask"
+        value: "PSAM.*"
+  - id: zcodescan.pli.rules.FixedDecimalPrecisionRule
+    severity: INFO
+  - id: zcodescan.pli.rules.GoToLabelBlockRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.GoToLabelVariableRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.GoToRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.ImplicitDeclarationRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.InitPointerVarsRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.InitialStaticRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.LevelNumberWithDeclaredVarsRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.LoopControlRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.NoCommentsAfterCol72Rule
+    severity: LOW
+  - id: zcodescan.pli.rules.ProcedureFilenameMatchRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.RespRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.SelectNotNestedIfRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.SelectWithoutOtherwiseRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.SequenceNumbersOnlyAfterCol72Rule
+    severity: LOW
+  - id: zcodescan.pli.rules.SingleVariableRule
+    severity: MEDIUM
+  - id: zcodescan.pli.rules.SpecifiedIncludeRule
+    severity: HIGH
+    parameters:
+      - name: "IncludeFile"
+        value: "CUSTPLI"
+  - id: zcodescan.pli.rules.SqlSelectRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.StopRule
+    severity: HIGH
+  - id: zcodescan.pli.rules.UnqualifiedTablenamesRule
+    severity: HIGH

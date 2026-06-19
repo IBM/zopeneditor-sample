@@ -1,7 +1,7 @@
 {
   "name": "sam",
-  "description": "For IBM Z Open Editor 5.0.0 and IDz 17.0.0 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
-  "version": "5.0.0",
+  "description": "For IBM Z Open Editor 6.6.0 and IDz 17.0.5 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications",
+  "version": "6.6.0",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -13,37 +13,27 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/COPYBOOK"
-          ]
+          "locations": ["**/COPYBOOK"]
         },
         {
           "name": "syslib",
           "type": "mvs",
-          "locations": [
-            "IBMUSER.SAMPLE.COBCOPY\""
-          ]
+          "locations": ["IBMUSER.SAMPLE.COBCOPY\""]
         },
         {
           "name": "MYLIB",
           "type": "mvs",
-          "locations": [
-            "IBMUSER.SAMPLE.COPYLIB"
-          ]
+          "locations": ["IBMUSER.SAMPLE.COPYLIB"]
         },
         {
           "name": "MYLIB",
           "type": "local",
-          "locations": [
-            "**/COPYLIB-MVS"
-          ]
+          "locations": ["**/COPYLIB-MVS"]
         },
         {
           "name": "MYFILE",
           "type": "local",
-          "locations": [
-            "**/COPYLIB"
-          ]
+          "locations": ["**/COPYLIB"]
         }
       ]
     },
@@ -55,37 +45,27 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/INCLUDES"
-          ]
+          "locations": ["**/INCLUDES"]
         },
         {
           "name": "syslib",
           "type": "mvs",
-          "locations": [
-            "IBMUSER.SAMPLE.PLINC"
-          ]
+          "locations": ["IBMUSER.SAMPLE.PLINC"]
         },
         {
           "name": "MYLIB",
           "type": "mvs",
-          "locations": [
-            "IBMUSER.SAMPLE.PLI.INCLLIB"
-          ]
+          "locations": ["IBMUSER.SAMPLE.PLI.INCLLIB"]
         },
         {
           "name": "MYLIB",
           "type": "local",
-          "locations": [
-            "**/INCLUDELIB-MVS"
-          ]
+          "locations": ["**/INCLUDELIB-MVS"]
         },
         {
           "name": "MYFILE",
           "type": "local",
-          "locations": [
-            "**/INCLUDELIB"
-          ]
+          "locations": ["**/INCLUDELIB"]
         }
       ]
     },
@@ -96,16 +76,12 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/ASMCOPY"
-          ]
+          "locations": ["**/ASMCOPY"]
         },
         {
           "name": "maclib",
           "type": "local",
-          "locations": [
-            "**/ASMMAC"
-          ]
+          "locations": ["**/ASMMAC"]
         }
       ]
     },
@@ -116,16 +92,12 @@
         {
           "name": "syslib",
           "type": "local",
-          "locations": [
-            "**/REXXINC"
-          ]
+          "locations": ["**/REXXINC"]
         },
         {
           "name": "REXXLIB",
           "type": "local",
-          "locations": [
-            "**/REXXLIB"
-          ]
+          "locations": ["**/REXXLIB"]
         }
       ]
     }
@@ -137,14 +109,35 @@
       "settings": {
         "command": "$DBB_HOME/bin/dbb build",
         "lifecycle": "user",
-        "lifecycleArgs": [
-          "--hlq ${dbbHlq}"
+        "lifecycleArgs": ["--hlq ${dbbHlq}", "--errPrefix ${errPrefix}"],
+        "additionalDependencies": ["dbb-app.yaml"],
+        "logFilePatterns": ["*.log", "BuildReport.html", "*.json"]
+      }
+    },
+    {
+      "name": "zcodescan",
+      "type": "zcodescan",
+      "settings": {
+        "rules": [
+          {
+            "type": "local",
+            "locations": [
+              "zcodescan/sam-rules.yaml",
+              "zcodescan/psam-rules.yaml"
+            ]
+          }
         ],
-        "additionalDependencies": [
-          "dbb-app.yaml"
+        "customRuleModels": [
+          {
+            "type": "local",
+            "locations": ["zcodescan/rules-domains.yaml"]
+          }
         ],
-        "logFilePatterns": [
-          "*.log"
+        "baselines": [
+          {
+            "type": "local",
+            "locations": ["zcodescan/baseline.json"]
+          }
         ]
       }
     }
