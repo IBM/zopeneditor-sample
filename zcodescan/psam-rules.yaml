@@ -15,3 +15,16 @@ rules:
     severity: INFO
   - id: zcodescan.pli.rules.SingleVariableRule
     severity: MEDIUM
+
+  # The following rules were used during baseline creation.
+  - id: zcodescan.pli.rules.DoEndRule
+    severity: MEDIUM
+    statements:
+      - name: "Then"
+        value: true
+      - name: "When"
+        value: true
+      - name: "Else"
+        value: true
+      - name: "Otherwise"
+        value: true
