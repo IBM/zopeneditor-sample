@@ -1,0 +1,474 @@
+{
+  "created_at": "2026-06-09T10:58:47.222534Z",
+  "findings": [
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "cba0259b9612c121b98c8c31e5e9c79ca94463eca1d1b319a769e739f8cee3ff",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "cba0259b9612c121b98c8c31e5e9c79ca94463eca1d1b319a769e739f8cee3ff",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "9e1b60fd6fc846d57879a88b4252a955bec725340146962da9c9f5a13b5f94a4",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "cba0259b9612c121b98c8c31e5e9c79ca94463eca1d1b319a769e739f8cee3ff",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "f761f603d358488d6113a753718de960fc87dcd0159f1d5799d317015150407a",
+      "rule_id": "zcodescan.cobol.rules.TrackTodoRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1.cbl",
+      "message": "Monitor TODO tags"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "145831293e893543346d9a90cb85cba260882d655b89c5cab398e40d381d9038",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "145831293e893543346d9a90cb85cba260882d655b89c5cab398e40d381d9038",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "eaef50eec9255d9786aeb53a1873c2ee756e331150c40c7253e9987076bf68a3",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "145831293e893543346d9a90cb85cba260882d655b89c5cab398e40d381d9038",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "116ff7ca7c48a03e98c534bde3423b86518670750f505cb95b4b08b6d77bcee5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "bba352b44b04cf3efad97819df00a0031e1b66b5e9130b080d8b2dc38d21f166",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "e3db459ab9e108ce028f7ed7dbc3043b7c9bee296e0271aebadee685c19729b4",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "e3db459ab9e108ce028f7ed7dbc3043b7c9bee296e0271aebadee685c19729b4",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "e3db459ab9e108ce028f7ed7dbc3043b7c9bee296e0271aebadee685c19729b4",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "e3db459ab9e108ce028f7ed7dbc3043b7c9bee296e0271aebadee685c19729b4",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "bba352b44b04cf3efad97819df00a0031e1b66b5e9130b080d8b2dc38d21f166",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "bba352b44b04cf3efad97819df00a0031e1b66b5e9130b080d8b2dc38d21f166",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "2fffdb9e187b170aee28d5e1b2815a58fd964795d93431b26984447b9a26b4d6",
+      "rule_id": "zcodescan.cobol.rules.TrackTodoRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM1LIB.cbl",
+      "message": "Monitor TODO tags"
+    },
+    {
+      "fingerprint": "668826e7eb90afb1c38c1ac7ecd073b68bf20ea233fb2eb0ae8fada77099db6e",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM2.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "668826e7eb90afb1c38c1ac7ecd073b68bf20ea233fb2eb0ae8fada77099db6e",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/COBOL/SAM2.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "cba0259b9612c121b98c8c31e5e9c79ca94463eca1d1b319a769e739f8cee3ff",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "cba0259b9612c121b98c8c31e5e9c79ca94463eca1d1b319a769e739f8cee3ff",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "9e1b60fd6fc846d57879a88b4252a955bec725340146962da9c9f5a13b5f94a4",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "cba0259b9612c121b98c8c31e5e9c79ca94463eca1d1b319a769e739f8cee3ff",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "15a8d233fa7cd013338a15aa6ede0d84a17cb27807957b61b4946d214dd382e8",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "90dd817374ad46f02f5f0ebd8d542b2e1c27b849bf7c8a82b898bce754d4390b",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "1e76a9c851c7e180da74a30dc8e00e646ce2caa05812b62b11a65bcb542319c5",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "3b0a7bfa494090299bb4688b7fb259c7d22bc589423fa372cd9c464d542f160d",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "f761f603d358488d6113a753718de960fc87dcd0159f1d5799d317015150407a",
+      "rule_id": "zcodescan.cobol.rules.TrackTodoRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM1.cbl",
+      "message": "Monitor TODO tags"
+    },
+    {
+      "fingerprint": "668826e7eb90afb1c38c1ac7ecd073b68bf20ea233fb2eb0ae8fada77099db6e",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM2.cbl",
+      "message": "Avoid magic numbers"
+    },
+    {
+      "fingerprint": "668826e7eb90afb1c38c1ac7ecd073b68bf20ea233fb2eb0ae8fada77099db6e",
+      "rule_id": "zcodescan.cobol.rules.MagicNumberRule",
+      "severity": "MEDIUM",
+      "file": "/Users/pratima/git/wazi-sample/multiroot/sam/SAM2.cbl",
+      "message": "Avoid magic numbers"
+    }
+  ]
+}

@@ -30,7 +30,7 @@ rules:
     severity: INFO
   - id: zcodescan.cobol.rules.FileNameConventionRule
     severity: HIGH
-    statements:
+    parameters:
       - name: "ConventionMask"
         value: "SA.*"
 
@@ -40,4 +40,12 @@ rules:
     severity: INFO
     parameters:
       - name: "length"
-        value: 4
+        value: "4"
+
+  # The following rules were used during baseline creation.
+  - id: zcodescan.cobol.rules.MagicNumberRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.TrackFixMeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.TrackTodoRule
+    severity: MEDIUM

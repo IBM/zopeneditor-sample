@@ -123,6 +123,10 @@ profiles:
         - type: local
           locations:
             - "zcodescan/rules-domains.yaml"
+      baselines:
+        - type: local
+          locations:
+            - "zcodescan/baseline.json"
 
   # User build profile example, requires IBM Dependency-Based Build v3.0.3
   - name: zBuilder-userbuild
