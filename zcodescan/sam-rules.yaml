@@ -42,6 +42,14 @@ rules:
       - name: "length"
         value: "4"
 
+  # Java custom rule defined in ./rules-domains.yaml
+  # Require that PROGRAM-ID be at most 3 characters long
+  - id: custom.cobol.rules.java.ProgramIdLengthRule
+    severity: BLOCKER
+    parameters:
+      - name: "length"
+        value: 3
+
   # The following rules were used during baseline creation.
   - id: zcodescan.cobol.rules.MagicNumberRule
     severity: MEDIUM

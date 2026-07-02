@@ -36,3 +36,23 @@ domains:
                 line: True
                 excludes:
                   - 'PROGRAM-ID.\s+([A-Z0-9]){${length}}[A-Z0-9]+'
+  - name: "Cobol Code Review"
+    categories:
+      - name: "Naming Conventions"
+        rules:
+          - id: "custom.cobol.rules.java.ProgramIdLengthRule"
+            name: "(Java COBOL) The maximal length of the PROGRAM-ID must be fixed"
+            description: |
+              The maximal length of the PROGRAM-ID must be fixed
+            severity: MEDIUM # Can be BLOCKER|HIGH|MEDIUM|LOW|INFO
+            software_quality: MAINTAINABILITY # Can be MAINTAINABILITY|RELIABILITY|SECURITY
+            cleancode_attribute: DISTINCT
+            parameters:
+              - name: "length"
+                value: "6"
+                description: |
+                  The maximal length of the PROGRAM-ID.
+            implementation:
+              language: JAR
+              class_name: "com.ibm.zcodescan.cobol.api.impl.JavaProgramIdRule"
+              path: "zcodescan-1.0-SNAPSHOT.jar"
