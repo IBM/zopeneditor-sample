@@ -41,6 +41,11 @@ rules:
     parameters:
       - name: "length"
         value: "4"
+  - id: custom.cobol.rules.java.ProgramIdLengthRule
+    severity: BLOCKER
+    parameters:
+      - name: "length"
+        value: 1
 
   # The following rules were used during baseline creation.
   - id: zcodescan.cobol.rules.MagicNumberRule

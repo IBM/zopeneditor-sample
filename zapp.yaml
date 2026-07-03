@@ -110,13 +110,17 @@ profiles:
       rules:
         - type: local
           locations:
-            - "zcodescan/sam-rules.yaml"
-            - "zcodescan/psam-rules.yaml"
+            - "**/zcodescan/sam-rules.yaml"
+            - "**/zcodescan/psam-rules.yaml"
       customRuleModels:
         - type: local
           locations:
-            - "zcodescan/rules-domains.yaml"
+            - "**/zcodescan/rules-domains.yaml"
+      customRuleJars:
+        - type: local
+          locations:
+            - "**/JAVA/zcodescan/target/zcodescan-1.0-SNAPSHOT.jar"
       baselines:
         - type: local
           locations:
-            - "zcodescan/baseline.json"
+            - "**/zcodescan/baseline.json"

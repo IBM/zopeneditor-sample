@@ -1,0 +1,6 @@
+/target/
+/.github/
+/.settings/
+/.classpath
+/dependency-reduced-pom.xml
+/bin/
