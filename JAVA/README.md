@@ -2,6 +2,8 @@
 
 This directory contains a Maven project demonstrating how to create custom ZCodeScan rules for COBOL analysis. PROGRAM-ID length violations.
 
+**Reference**: [ZCodeScan Java Custom Rules Overview](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=overview-zcodescan-java-custom-rules)
+
 ---
 
 ## Table of Contents
@@ -27,8 +29,7 @@ Select the `JAVA/zcodescan` folder in this project and import the selected Maven
 
 You will see a new Maven project named `zcodescan`.
 
-Right-click on the `zcodescan` project and select ** Run As >> Maven install** 
-
+Right-click on the `zcodescan` project and select **Run As >> Maven install**
 
 This creates the ZCodeScan Custom rule jar file:
 
@@ -51,8 +52,8 @@ profiles:
 
 ### 3. Test the Rule
 
-2. Open [../COBOL/SAM1.cbl](../COBOL/SAM1.cbl)
-3. Check the Problems panel for violations (PROGRAM-ID length check)
+1. Open [../COBOL/SAM1.cbl](../COBOL/SAM1.cbl)
+2. Check the Problems panel for violations (PROGRAM-ID length check)
 
 **Expected Result**: If PROGRAM-ID exceeds the configured length (default: 3 characters), you'll see a BLOCKER severity issue in the Problems panel.
 
@@ -94,7 +95,7 @@ The included `JavaProgramIdRule` demonstrates:
 
 **Key Implementation:**
 
-See the Java class: [JavaProgramIdRule.java](zcodescan/src/main/java/com/ibm/zcodescan/cobol/api/impl/JavaProgramIdRule.java) 
+See the Java class: [JavaProgramIdRule.java](zcodescan/src/main/java/com/ibm/zcodescan/cobol/api/impl/JavaProgramIdRule.java)
 
 ---
 
