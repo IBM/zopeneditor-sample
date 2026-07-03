@@ -2,7 +2,7 @@
 
 This directory contains a Maven project demonstrating how to create custom ZCodeScan rules for COBOL analysis. PROGRAM-ID length violations.
 
-**Reference**: [ZCodeScan Java Custom Rules Overview](https://ibmdocs-test.dcs.ibm.com/docs/en/developer-for-zos/17.0.x?topic=overview-zcodescan-java-custom-rules)
+**Reference**: [ZCodeScan Java Custom Rules Overview](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=overview-zcodescan-java-custom-rules)
 
 ---
 
