@@ -10,7 +10,7 @@
 rules:
   # Selection of ZCodeScan built-in rules for the SAM COBOL application
   - id: zcodescan.cobol.rules.AcceptDateTimeRule
-    severity: MEDIUM
+    severity: "OFF"
   - id: "zcodescan.cobol.rules.EvaluateNotIfRule"
     severity: MEDIUM
   - id: zcodescan.cobol.rules.RequireEndClauseRule
