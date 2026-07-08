@@ -19,6 +19,25 @@ This directory contains a Maven project demonstrating how to create custom ZCode
 
 ## Quick Start
 
+### 0. Setup JAR Dependencies
+
+Before building the custom rule, you need to obtain the required ZCodeScan JAR dependencies.
+
+**How to get JARs:** See [IBM ZCodeScan Generic API Documentation](https://community.ibm.com/community/user/groupz?CommunityKey=f461c55d-159c-4a94-b708-9f7fe11d972b)
+
+**Destination:** `JAVA/zcodescan/lib/`
+
+**Required JAR files:**
+
+1. `com.ibm.etools.cobol.application.model_2.5.3.jar`
+2. `com.ibm.etools.cobol.application.model.cobol.ast_1.4.33.jar`
+3. `com.ibm.etools.pli.application.model_1.1.8.jar`
+4. `com.ibm.zcodescan.lsp.cobol.core_6.6.0.jar`
+5. `com.ibm.zcodescan.lsp.common.core_6.6.0.jar`
+6. `com.ibm.zcodescan.lsp.pli.core_6.6.0.jar`
+
+Place these files in the `JAVA/zcodescan/lib/` directory before building.
+
 ### 1. Build the Custom Rule JAR
 
 In IDz switch to the Java perspective.
