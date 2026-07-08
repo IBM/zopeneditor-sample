@@ -23,7 +23,7 @@ This directory contains a Maven project demonstrating how to create custom ZCode
 
 Before building the custom rule, you need to obtain the required ZCodeScan JAR dependencies.
 
-**How to get JARs:** See [IBM ZCodeScan Generic API Documentation](https://community.ibm.com/community/user/groupz?CommunityKey=f461c55d-159c-4a94-b708-9f7fe11d972b)
+**How to get JARs:** See [IBM ZCodeScan Generic API Documentation](https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=rules-zcodescan-generic-api-documentation)
 
 **Destination:** `JAVA/zcodescan/lib/`
 
