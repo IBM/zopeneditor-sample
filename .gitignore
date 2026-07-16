@@ -2,7 +2,13 @@ logs
 target
 output
 .project
+target/
+.classpath
+.settings/
+dependency-reduced-pom.xml
+.DS_Store
 *.tgz
 *.zip
 *.cee
 *.pci
+*.jar
