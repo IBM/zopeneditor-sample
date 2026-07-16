@@ -3,7 +3,7 @@
     "zopeneditor-sample": {
       "url": "http://localhost:3005/mcp",
       "type": "streamable-http",
-      "timeout": 600,
+      "timeout": 5000,
       "alwaysAllow": []
     }
   }
