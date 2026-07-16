@@ -3,3 +3,13 @@ ansible
 .project
 target
 output
+.DS_Store
+target/
+.classpath
+.settings/
+dependency-reduced-pom.xml
+*.tgz
+*.zip
+*.cee
+*.pci
+*.jar

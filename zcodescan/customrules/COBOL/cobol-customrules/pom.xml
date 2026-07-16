@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ibm.zcodescan.cobol.api.impl</groupId>
+	<artifactId>zcodescan</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<!-- Eclipse EMF Core - Required by COBOL Model -->
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+			<version>2.35.0</version>
+			 <scope>provided</scope>
+		</dependency>
+
+		<!-- ZCodeScan API -->
+
+
+		<!-- COBOL Model - Contains ASTNode, Program, IdentificationDivision -->
+		<dependency>
+			<groupId>com.ibm.etools.cobol</groupId>
+			<artifactId>cobol-model</artifactId>
+			<version>2.5.3</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/com.ibm.etools.cobol.application.model_2.5.3.jar</systemPath>
+		</dependency>
+
+		<!-- COBOL AST Factory Classes -->
+		<dependency>
+			<groupId>com.ibm.etools.cobol</groupId>
+			<artifactId>cobol-ast</artifactId>
+			<version>1.4.33</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/com.ibm.etools.cobol.application.model.cobol.ast_1.4.33.jar</systemPath>
+		</dependency>
+
+		<!-- PLI Application Model -->
+		<dependency>
+			<groupId>com.ibm.etools.pli</groupId>
+			<artifactId>pli-model</artifactId>
+			<version>1.1.8</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/com.ibm.etools.pli.application.model_1.1.8.jar</systemPath>
+		</dependency>
+
+		<!-- ZCodeScan LSP COBOL Core -->
+		<dependency>
+			<groupId>com.ibm.zcodescan.lsp</groupId>
+			<artifactId>cobol-core</artifactId>
+			<version>6.6.0</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/com.ibm.zcodescan.lsp.cobol.core_6.6.0.jar</systemPath>
+		</dependency>
+
+		<!-- ZCodeScan LSP Common Core -->
+		<dependency>
+			<groupId>com.ibm.zcodescan.lsp</groupId>
+			<artifactId>common-core</artifactId>
+			<version>6.6.0</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/com.ibm.zcodescan.lsp.common.core_6.6.0.jar</systemPath>
+		</dependency>
+
+		<!-- ZCodeScan LSP PLI Core -->
+		<dependency>
+			<groupId>com.ibm.zcodescan.lsp</groupId>
+			<artifactId>pli-core</artifactId>
+			<version>6.6.0</version>
+			<scope>system</scope>
+			<systemPath>
+				${project.basedir}/lib/com.ibm.zcodescan.lsp.pli.core_6.6.0.jar</systemPath>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.15.0</version>
+				<configuration>
+					<source>21</source>
+					<target>21</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.5.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<includeSystemScope>false</includeSystemScope>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Built-By>IBM ZCodeScan Custom Rules</Built-By>
+									</manifestEntries>
+								</transformer>
+							</transformers>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
