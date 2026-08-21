@@ -19,3 +19,6 @@
 *.properties zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.rexx zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.config zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.C zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.h zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+makefile zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
