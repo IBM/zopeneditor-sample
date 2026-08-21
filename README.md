@@ -8,7 +8,7 @@ Note, check the Readme in the `main` branch for an overview to all the branches 
 
 This branch repository provides sample COBOL, PL/I, HLASM, and REXX programs, along with JCL and data files to compile and run them. The JCL files have defaults that can be used with the [IBM Wazi as a Service](https://www.ibm.com/cloud/wazi-as-a-service) stock image out of box, but can be adjusted to fit your z/OS configuration.
 
-IBM Developer for z/OS on VS Code and on Eclipse share common solution components such as the language parsers as well as to ability to configure property groups with include file locations via ZAPP configuration files. It can also use ZAPP files for running user builds utilizing IBM Dependency Based-Build 3.0.0 or newer. The branch provides examples for the capabilities IDz on Eclipse shares with Z Open Editor
+IBM Developer for z/OS on VS Code and on Eclipse share common solution components such as the language parsers as well as to ability to configure property groups with include file locations via ZAPP configuration files. Both can also use ZAPP files for running user builds utilizing IBM Dependency Based-Build 3.0.0 or newer. The branch provides examples for the capabilities IDz on Eclipse shares with Z Open Editor:
 
 - `eclipse-main` branch: Language samples and ZAPP file that can be used in IBM Developer for z/OS 17.0.0 or newer.
 
