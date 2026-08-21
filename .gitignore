@@ -1,5 +1,8 @@
 logs
 ansible
+.zopeneditor
 .project
 target
 output
+*.jar
+*.xml
