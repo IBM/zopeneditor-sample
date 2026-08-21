@@ -8,8 +8,8 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 6.3.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL.
-version: 6.3.0
+description: For IBM Z Open Editor 6.7.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL, C++.
+version: 6.7.0
 author:
   name: IBM CORPORATION
 
@@ -132,7 +132,86 @@ profiles:
           locations:
             - "zcodescan/baseline.json"
 
-  # User build profile example, requires IBM Dependency-Based Build v3.0.3
+  # User build v2 example 1: Regular Zowe-based DBB build
+  - name: zowe-upload-userbuild2
+    type: userbuild
+    settings:
+      tasks:
+        - dependencies:
+            additionalDependencies:
+              - dbb-app.yaml
+        - build:
+            remoteCommandShell: >
+              $DBB_HOME/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}
+        - results:
+            logFilePatterns:
+              - "${application}/logs/*.log"
+              - "${application}/logs/*.json"
+              - "${application}/logs/BuildReport.html"
+
+  # User build v2 example 2: GRUB-based build using Zowe CLI
+  # To use define ZAPP vars DBB_HOME, DBB_JAVA_HOME, and DBB_BUILD in your user settings
+  - name: grub-zowe-userbuild2
+    type: userbuild
+    settings:
+      tasks:
+        - upload:
+            dependenciesUpload: false
+            localCommand: >
+              .zopeneditor/grub_client gitBundle --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose
+        - build:
+            localCommand: >
+              .zopeneditor/grub_client execute --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace}/${application} --command "DBB_HOME=${DBB_HOME} DBB_BUILD=${DBB_BUILD} DBB_JAVA_HOME=${DBB_JAVA_HOME} $DBB_HOME/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}" --verbose
+        - results:
+            logFilePatterns:
+              - "${application}/logs/*.log"
+              - "${application}/logs/*.json"
+              - "${application}/logs/BuildReport.html"
+
+  # User build v2 example 3: GRUB-based build using ssh and git push
+  # To use define ZAPP vars HLQ, ZOSHOST, DBB_HOME, and DBB_BUILD in your user settings
+  - name: grub-ssh-userbuild2
+    type: userbuild
+    settings:
+      tasks:
+        - prerequisites:
+            localCommand: >
+              .zopeneditor/grub_client prerequisites --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace} --verbose
+        - upload:
+            dependenciesUpload: false
+            localCommand: >
+              .zopeneditor/grub_client gitPush --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace} --verbose
+        - build:
+            localCommand: >
+              .zopeneditor/grub_client execute --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace}/${application} --command "export DBB_HOME=${DBB_HOME} DBB_BUILD=${DBB_BUILD} DBB_JAVA_HOME=${DBB_JAVA_HOME} && ${DBB_HOME}/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}" --verbose
+            # Alternative remoteCommand that will use the current Zowe Profile's SSH or RSE API Command capability
+            #remoteCommandShell: >
+            #  $DBB_HOME/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram} --verbose
+        - results:
+            logFilePatterns:
+              - "${application}/logs/*.log"
+              - "${application}/logs/*.json"
+              - "${application}/logs/BuildReport.html"
+
+  # User build v2 example 4: GRUB-based C++ build using Zowe CLI (use with CPP/ccnubrc.C sample)
+  - name: grub-cpp-zowe-userbuild2
+    type: userbuild
+    settings:
+      tasks:
+        - upload:
+            localCommand: >
+              .zopeneditor/grub_client gitBundle --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose
+        - build:
+            localCommand: >
+              .zopeneditor/grub_client execute --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace}/${application}/CPP --command "make > build.log 2>&1" --verbose
+        - results:
+            logFilePatterns:
+              - "${application}/CPP/*.log"
+        - post:
+            localCommand: >
+              .zopeneditor/grub_client execute --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace}/${application}/CPP --command "./bio 1970/01/01" --verbose
+
+  # User build v1 profile zBuilder example, requires IBM Dependency-Based Build v3.0.3 or newer
   - name: zBuilder-userbuild
     type: dbb
     settings:
@@ -148,7 +227,7 @@ profiles:
         - "BuildReport.html"
         - "*.json"
 
-  # User build profile example, requires IBM Dependency-Based Build v2.x
+  # User build v1 profile Groovy example, requires IBM Dependency-Based Build v2.x or newer and dbb_zappbuild GitHub repo
   - name: groovyz-userbuild
     type: dbb
     settings:
@@ -209,7 +288,7 @@ profiles:
       tempDataHLQ: ${HLQ}
       outputDataSet: ${HLQ}.SAMPLE.CBL2()
       commandParameters: ""
-      # programDataSet: ${HLQ}.PREPROC.COBOL()
+      # programDataSet: ${HLQ}.SAMPLE.CBL2()
   - name: local-pli
     language: pl1
     type: preprocessor

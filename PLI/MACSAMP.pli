@@ -1,0 +1,155 @@
+*PROCESS PP(MACRO);
+ /**********************************************************************
+  * SAMPLE: MACSAMP.pli
+  *
+  * A showcase of the IBM Z Open Editor native PL/I macro preprocessor
+  * support (available from IBM Z Open Editor 6.7.0). This is not a
+  * test harness — it is meant to be opened, hovered over, and stepped
+  * through to see how Z Open Editor understands PL/I macro directives
+  * without invoking the PL/I compiler.
+  *
+  * Try this:
+  *   - Hover over PLATFORM and COUNT to see their resolved
+  *     macro-variable values.
+  *   - Hover over SCORES to see its declared dimensions and its
+  *     current element values.
+  *   - Notice the grayed-out (inactive) DCL statements below the
+  *     %ELSE and %OTHERWISE branches, and inside the %DO SKIP block.
+  *   - Hover over the %DO WHILE loop in Section 6 to see the PL/I
+  *     source text emitted by all of its iterations.
+  *   - Hover over a call to DOUBLE(...) to see its resolved value,
+  *     and over a call to BANNER to see the PL/I text it emits.
+  *
+  * IBM Z Open Editor 6.7.0
+  *********************************************************************/
+
+ /*--- Section 1 - Top-level macro variables -------------------------*/
+ %DECLARE PLATFORM CHARACTER;
+ %PLATFORM = 'MVS';
+
+ %DECLARE COUNT FIXED;
+ %COUNT = 3;
+
+ /*--- Section 2 - Array macro variable with a RETURNS accessor ------*/
+ /* Macro array elements are not directly visible to regular PL/I     */
+ /* code, so a RETURNS procedure exposes an element by index.         */
+ %DECLARE SCORES(1:5) FIXED;
+ %SCORES(1) = 10;
+ %SCORES(2) = 20;
+ %SCORES(3) = 30;
+ %SCORES(4) = 40;
+ %SCORES(5) = 50;
+
+ %SCOREGET: PROCEDURE(IDX) RETURNS(FIXED);
+   DECLARE IDX FIXED;
+   RETURN(SCORES(IDX));
+ %END SCOREGET;
+ %ACTIVATE SCOREGET;
+
+ MACROFEATURES: PROC OPTIONS(MAIN);
+
+ DCL (ABABAB, WORLD, PADDED, YEOOO) CHAR;
+
+ /*--- Section 3 - %IF / %ELSE: active vs inactive branches ----------*/
+ %IF PLATFORM = 'MVS' %THEN %DO;
+   DCL ACTIVE_PLATFORM CHAR(3) INIT('MVS');   /* ACTIVE   */
+ %END;
+ %ELSE %DO;
+   DCL OTHER_PLATFORM CHAR(4) INIT('N/A');    /* INACTIVE */
+ %END;
+
+ /*--- Section 4 - %SELECT / %WHEN / %OTHERWISE ----------------------*/
+ %DECLARE REGION FIXED;
+ %REGION = 2;
+ %SELECT (REGION);
+   %WHEN (1) %DO;
+     DCL REGION_ONE FIXED;                    /* INACTIVE */
+   %END;
+   %WHEN (2) %DO;
+     DCL REGION_TWO FIXED;                    /* ACTIVE   */
+   %END;
+   %OTHERWISE %DO;
+     DCL REGION_OTHER FIXED;                  /* INACTIVE */
+   %END;
+ %END;
+
+ /*--- Section 5 - %DO counter loop with %; concatenation ------------*/
+ /* Generates DCL FIELD1, FIELD2, FIELD3 in the expanded source       */
+ %DECLARE I FIXED;
+ %DECLARE J CHARACTER;
+ %DO I = 1 TO COUNT;
+   %J = TRIM(I);
+   DCL FIELD%;J FIXED BIN(31);
+   FIELD%;J = I;
+ %END;
+
+ /*--- Section 6 - iterative %DO-group with %ITERATE and %LEAVE ------*/
+ /* %ITERATE skips K=3; %LEAVE exits when K=6. Output: 1,2,4,5        */
+ %DECLARE K FIXED;
+ %DO K = 1 TO 10;
+   %IF K = 3 %THEN
+     %ITERATE;
+   %IF K = 6 %THEN %LEAVE;
+   PUT SKIP LIST(K);
+ %END;
+
+ /*--- Section 7 - %DO SKIP (body suppressed) ------------------------*/
+ %DO SKIP;
+   DCL SKIPPED_VAR FIXED;                     /* NEVER EMITTED */
+ %END;
+ DCL AFTER_SKIP FIXED;                        /* ACTIVE */
+
+ /*--- Section 8 - RETURNS procedure: function-style macro -----------*/
+ /* Hovering DOUBLE(5) shows the resolved value "10"                  */
+ %DOUBLE: PROCEDURE(N) RETURNS(FIXED);
+   DECLARE N FIXED;
+   RETURN(N * 2);
+ %END DOUBLE;
+ %ACTIVATE DOUBLE;
+
+ DCL DBLRESULT FIXED BIN(31);
+ DBLRESULT = DOUBLE(SCOREGET(3));
+
+ /*--- Section 9 - Statement-invoked procedure with ANSWER -----------*/
+ /* Hovering the BANNER call shows the PL/I text it emits             */
+ %BANNER: PROCEDURE(TXT) STATEMENT;
+   DECLARE TXT CHARACTER;
+   ANSWER ('PUT SKIP LIST(' || QUOTE(TXT) || ');');
+ %END BANNER;
+ %ACTIVATE BANNER;
+ BANNER('MACRO PREPROCESSOR DEMO');
+
+ /*--- Section 10 - Built-in functions -------------------------------*/
+ %DECLARE SUB CHARACTER;
+ %SUB = SUBSTR('HELLO WORLD', 7, 5);          /* 'WORLD' */
+
+ %DECLARE LEN FIXED;
+ %LEN = LENGTH(SUB);                          /* 5 */
+
+ %DECLARE COPIED CHARACTER;
+ %COPIED = COPY('AB', 3);                     /* 'ABABAB' */
+
+ %DECLARE QUOTED CHARACTER;
+ %QUOTED = QUOTE('it''s');                    /* '''it''''s''' */
+
+ %DECLARE TRIMMED CHARACTER;
+ %TRIMMED = TRIM('  padded  ');                /* 'padded' */
+
+ %DECLARE UPPER CHARACTER;
+ %UPPER = TRANSLATE('hello', 'yowza', 'hl');
+ %UPPER = UPPERCASE(UPPER);                    /* 'YEOOO' */
+
+ DCL SUBOUT   CHAR(5)  INIT(SUB);
+ DCL LENOUT   FIXED    INIT(LEN);
+ DCL COPYOUT  CHAR(6)  INIT(COPIED);
+ DCL QUOTEOUT CHAR(12) INIT(QUOTED);
+ DCL TRIMOUT  CHAR(6)  INIT(TRIMMED);
+ DCL UPPEROUT CHAR(5)  INIT(UPPER);
+
+ /*--- Section 11 - Type coercion: FIXED <-> CHARACTER ---------------*/
+ /* TRIM(COUNT) converts the numeric value 3 to the string '3'        */
+ %DECLARE COUNTASCHAR CHARACTER;
+ %COUNTASCHAR = TRIM(COUNT);
+ DCL COERCEOUT CHAR(2) INIT(COUNTASCHAR);
+
+ END MACROFEATURES;
