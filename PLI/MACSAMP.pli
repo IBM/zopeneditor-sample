@@ -4,7 +4,7 @@
   *
   * A showcase of the IBM Z Open Editor native PL/I macro preprocessor
   * support (available from IBM Z Open Editor 6.7.0). This is not a
-  * test harness — it is meant to be opened, hovered over, and stepped
+  * test harness. It is meant to be opened, hovered over, and stepped
   * through to see how Z Open Editor understands PL/I macro directives
   * without invoking the PL/I compiler.
   *
