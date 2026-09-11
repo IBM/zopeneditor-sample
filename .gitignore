@@ -3,6 +3,8 @@ target
 output
 .project
 .zopeneditor
+.bobz
+bobz
 target/
 .classpath
 .settings/
