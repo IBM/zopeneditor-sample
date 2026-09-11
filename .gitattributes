@@ -22,3 +22,6 @@
 *.C zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.h zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 makefile zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
+*.json zos-working-tree-encoding=utf-8 git-encoding=utf-8
+*.html zos-working-tree-encoding=utf-8 git-encoding=utf-8
+*.log zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
