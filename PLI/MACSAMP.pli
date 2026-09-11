@@ -19,6 +19,9 @@
   *     source text emitted by all of its iterations.
   *   - Hover over a call to DOUBLE(...) to see its resolved value,
   *     and over a call to BANNER to see the PL/I text it emits.
+  *   - In Section 12, hover over SYSPARM() to see the value supplied
+  *     by the zapp.yaml compilerOptions (PRODUCTION), and notice how
+  *     the %IF branch selects the active DCL accordingly.
   *
   * IBM Z Open Editor 6.7.0
   *********************************************************************/
@@ -151,5 +154,21 @@
  %DECLARE COUNTASCHAR CHARACTER;
  %COUNTASCHAR = TRIM(COUNT);
  DCL COERCEOUT CHAR(2) INIT(COUNTASCHAR);
+
+ /*--- Section 12 - SYSPARM(): build-time parameter from zapp.yaml --*/
+ /* The SYSPARM compiler option is set to 'PRODUCTION' in zapp.yaml. */
+ /* SYSPARM() returns that string at macro-preprocessor time, so the */
+ /* %IF below resolves to the ACTIVE branch without invoking the      */
+ /* compiler.  Change sysparm('PRODUCTION') to sysparm('DEBUG') in   */
+ /* zapp.yaml and the branches flip.                                  */
+ %DECLARE BUILDENV CHARACTER;
+ %BUILDENV = SYSPARM();
+
+ %IF BUILDENV = 'PRODUCTION' %THEN %DO;
+   DCL ENV_LABEL CHAR(10) INIT('PRODUCTION');  /* ACTIVE  */
+ %END;
+ %ELSE %DO;
+   DCL ENV_LABEL CHAR(5)  INIT('DEBUG');       /* INACTIVE */
+ %END;
 
  END MACROFEATURES;
