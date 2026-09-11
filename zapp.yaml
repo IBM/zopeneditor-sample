@@ -40,7 +40,7 @@ propertyGroups:
 
   - name: pl1-includes
     language: pl1
-    compilerOptions: not(!)
+    compilerOptions: not(!),sysparm('PRODUCTION')
     libraries:
       - name: syslib
         type: local
