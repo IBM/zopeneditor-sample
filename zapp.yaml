@@ -8,8 +8,8 @@
 ################################################################
 
 name: sam
-description: For IBM Z Open Editor 6.6.0 and IDz 17.0.5 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
-version: 6.6.0
+description: For IBM Z Open Editor 6.7.1 and IDz 17.0.5 or newer. Wazi's code samples with COBOL, PL/I, and HLASM applications
+version: 6.7.1
 author:
   name: IBM CORPORATION
 
@@ -40,7 +40,7 @@ propertyGroups:
 
   - name: pl1-includes
     language: pl1
-    compilerOptions: not(!)
+    compilerOptions: not(!),sysparm('PRODUCTION')
     libraries:
       - name: syslib
         type: local
