@@ -8,9 +8,9 @@
  *******************************************************************************/
 {
   "editor.formatOnSave": true, // To demonstrate COBOL code formatting on save.
-  "zopeneditor.zapp.variables": {
-    "HLQ": "IBMUSER" // Only for demonstration purposes. Remove and set your own value in your user settings.
-  },
+  // "zopeneditor.zapp.variables": {
+  //   "HLQ": "IBMUSER" // Only for demonstration purposes. Remove and set your own value in your user settings.
+  // },
   // ZCodeScan YAML schema associations for editing rules files.
   "yaml.schemas": {
     "https://raw.githubusercontent.com/IBM/zopeneditor-about/refs/heads/main/zcodescan/zcodescan-rules-1.4.0.json": [

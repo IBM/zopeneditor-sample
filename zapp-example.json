@@ -1,7 +1,7 @@
 {
   "name": "sam",
-  "description": "For IBM Z Open Editor 6.7.0 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL, C++.",
-  "version": "6.7.0",
+  "description": "For IBM Z Open Editor 6.7.1 or newer. Wazi's code samples in COBOL, PL/I, HLASM, REXX, JCL, C++.",
+  "version": "6.7.1",
   "author": {
     "name": "IBM CORPORATION"
   },
@@ -175,7 +175,7 @@
         "tasks": [
           {
             "dependencies": {
-              "additionalDependencies": ["dbb-app.yaml", "resources"]
+              "additionalDependencies": ["dbb-app.yaml"]
             }
           },
           {
@@ -202,12 +202,13 @@
         "tasks": [
           {
             "upload": {
+              "dependenciesUpload": false,
               "localCommand": ".zopeneditor/grub_client gitBundle --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose\n"
             }
           },
           {
             "build": {
-              "localCommand": ".zopeneditor/grub_client execute --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace}/${application} --command \"$DBB_HOME/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}\" --verbose\n"
+              "localCommand": ".zopeneditor/grub_client execute --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace}/${application} --command \"DBB_HOME=${DBB_HOME} DBB_BUILD=${DBB_BUILD} DBB_JAVA_HOME=${DBB_JAVA_HOME} $DBB_HOME/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}\" --verbose\n"
             }
           },
           {
@@ -234,22 +235,17 @@
           },
           {
             "upload": {
-              "dependenciesUpload": false,
               "localCommand": ".zopeneditor/grub_client gitPush --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace} --verbose\n"
             }
           },
           {
             "build": {
-              "localCommand": ".zopeneditor/grub_client execute --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace}/${application} --command \"DBB_HOME=${DBB_HOME} DBB_BUILD=${DBB_BUILD} $DBB_HOME/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}\" --verbose\n"
+              "localCommand": ".zopeneditor/grub_client execute --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace}/${application} --command \"export DBB_HOME=${DBB_HOME} DBB_BUILD=${DBB_BUILD} DBB_JAVA_HOME=${DBB_JAVA_HOME} && ${DBB_HOME}/bin/dbb build user --hlq ${dbbHlq} --errPrefix ${errPrefix} ${currentProgram}\" --verbose\n"
             }
           },
           {
             "results": {
-              "logFilePatterns": [
-                "${application}/logs/*.log",
-                "${application}/logs/*.json",
-                "${application}/logs/BuildReport.html"
-              ]
+              "localCommand": ".zopeneditor/grub_client fetch --hostname ${HLQ}@${ZOSHOST} --remoteWorkspace ${dbbWorkspace}/${application} --files \"logs/*.log logs/*.json logs/*.html\" --gitattributes --localDir logs --verbose\n"
             }
           }
         ]
@@ -289,7 +285,7 @@
       "settings": {
         "command": "$DBB_HOME/bin/dbb build",
         "lifecycle": "user",
-        "lifecycleArgs": ["--hlq ${dbbHlq}", "--errPrefix ${errPrefix}"],
+        "lifecycleArgs": ["--hlq ${dbbHlq}", "--errPrefix UB.${errPrefix}"],
         "additionalDependencies": ["dbb-app.yaml"],
         "logFilePatterns": ["*.log", "BuildReport.html", "*.json"]
       }
@@ -307,7 +303,7 @@
           "--application ${application}",
           "--hlq ${dbbHlq}",
           "--outDir ${dbbLogDir}",
-          "--errPrefix ${errPrefix}"
+          "--errPrefix UB.${errPrefix}"
         ],
         "additionalDependencies": ["application-conf"],
         "logFilePatterns": ["${buildFile.basename}.log", "BuildReport.*"]
