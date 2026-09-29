@@ -158,6 +158,12 @@ profiles:
     type: userbuild
     settings:
       tasks:
+        - prerequisites:
+            localCommand: >
+              .zopeneditor/grub_client prerequisites
+              --zoweProfile ${defaultZoweProfile}
+              --remoteWorkspace ${dbbWorkspace}
+              --verbose
         - upload:
             dependenciesUpload: false
             localCommand: >
@@ -220,6 +226,12 @@ profiles:
     type: userbuild
     settings:
       tasks:
+        - prerequisites:
+            localCommand: >
+              .zopeneditor/grub_client prerequisites
+              --zoweProfile ${defaultZoweProfile}
+              --remoteWorkspace ${dbbWorkspace}
+              --verbose
         - upload:
             localCommand: >
               .zopeneditor/grub_client gitBundle
