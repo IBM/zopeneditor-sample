@@ -201,6 +201,11 @@
       "settings": {
         "tasks": [
           {
+            "prerequisites": {
+              "localCommand": ".zopeneditor/grub_client prerequisites --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose\n"
+            }
+          },
+          {
             "upload": {
               "dependenciesUpload": false,
               "localCommand": ".zopeneditor/grub_client gitBundle --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose\n"
@@ -256,6 +261,11 @@
       "type": "userbuild",
       "settings": {
         "tasks": [
+          {
+            "prerequisites": {
+              "localCommand": ".zopeneditor/grub_client prerequisites --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose\n"
+            }
+          },
           {
             "upload": {
               "localCommand": ".zopeneditor/grub_client gitBundle --zoweProfile ${defaultZoweProfile} --remoteWorkspace ${dbbWorkspace} --verbose\n"
