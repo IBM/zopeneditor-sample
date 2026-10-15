@@ -334,6 +334,84 @@ rules:
     severity: HIGH
   - id: zcodescan.cobol.rules.XMLParseRule
     severity: HIGH
+  - id: zcodescan.cobol.rules.RedundantParenthesesRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.ProgramTitleRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.NoParagraphsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.ParagraphLineLimitRule
+    severity: MEDIUM
+    parameters:
+      - name: ParagraphLineLimit
+        value: 3
+  - id: zcodescan.cobol.rules.ParagraphNamingConventionRule
+    severity: MEDIUM
+    parameters:
+      - name: ParagraphNamingPattern
+        value: "^\\d{3}-[A-Z0-9]([A-Z0-9-]*[A-Z0-9])?$"
+  - id: zcodescan.cobol.rules.ModuleLineLimitRule
+    severity: MEDIUM
+    parameters:
+      - name: ModuleLineLimit
+        value: 500
+  - id: zcodescan.cobol.rules.SectionLineLimitRule
+    severity: MEDIUM
+    parameters:
+      - name: SectionLineLimit
+        value: 50
+  - id: zcodescan.cobol.rules.GoToOutsideModuleRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.PerformThruOrderRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.SectionCountLimitRule
+    severity: MEDIUM
+    parameters:
+      - name: SectionCountLimit
+        value: 5
+  - id: zcodescan.cobol.rules.CommentedOutCodeRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.StopRunLastStatementRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.ReadAtEndClauseRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.DataValueInLinkageRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.TypesInCopybooksRule
+    severity: LOW
+  - id: zcodescan.cobol.rules.LinkageInCopybookRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UnusedDataItemBlockRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UnusedParagraphsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.CopybookProceduralLogicRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.SingleSqlPerParagraphRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UnreachableCodeRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.TrackSqlUsageRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.TrackCopyrightRule
+    severity: INFO
+  - id: zcodescan.cobol.rules.DeclaredFilesUsedRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.UnusedSectionsRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformRecursiveRule
+    severity: HIGH
+  - id: zcodescan.cobol.rules.PerformParagraphGoToRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformNestingDepthRule
+    severity: MEDIUM
+    parameters:
+      - name: PerformNestingDepth
+        value: 3
+  - id: zcodescan.cobol.rules.PerformThruLastExitRule
+    severity: MEDIUM
+  - id: zcodescan.cobol.rules.PerformThruNamingRule
+    severity: MEDIUM
 
   # ZCodeScan PL/1 Rules
   - id: zcodescan.pli.rules.ArithmeticExprWithoutBitTypeRule
@@ -417,3 +495,13 @@ rules:
     severity: HIGH
   - id: zcodescan.pli.rules.UnqualifiedTablenamesRule
     severity: HIGH
+  - id: zcodescan.pli.rules.DataItemNameLengthRule
+    severity: MEDIUM
+    parameters:
+      - name: DataLen
+        value: 8
+  - id: zcodescan.pli.rules.ProcedureLinesRule
+    severity: MEDIUM
+    parameters:
+      - name: ProcLines
+        value: 7
