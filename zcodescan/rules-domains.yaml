@@ -14,18 +14,31 @@ domains:
         rules:
           - id: "custom.cobol.rules.regex.ProgramIdRule"
             name: "(RegEx) The maximal length of the PROGRAM-ID is ${length}"
-            description: |
-              The maximal length of the PROGRAM-ID is ${length}
+            description:
+              detail: |
+                The PROGRAM-ID paragraph identifies a COBOL program.
+                Its name must comply with a predefined maximum length to
+                ensure consistency, readability, and compatibility with
+                COBOL compilers and development tools.
+              ruleViolation: |
+                A PROGRAM-ID is declared with a name that exceeds the
+                configured maximum length.
+              recommendedFix: |
+                Define a maximum permitted length for PROGRAM-ID names
+                and ensure that every program identifier complies with
+                this limit. Rename identifiers that exceed the limit.
+              nonCompliant: |
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. CUSTOMER-ACCOUNT-PROCESSING-SERVICE.
+              compliant: |
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. CUSTACCT.
             severity: MEDIUM
             software_quality: MAINTAINABILITY
             cleancode_attribute: DISTINCT
             parameters:
               - name: "length"
-                value: "6"
-                description: |
-                  The maximal length of the PROGRAM-ID.
-              - name: "xxxx"
-                value: "10"
+                value: "8"
                 description: |
                   The maximal length of the PROGRAM-ID.
             implementation:
@@ -42,14 +55,31 @@ domains:
         rules:
           - id: "custom.cobol.rules.java.ProgramIdLengthRule"
             name: "(Custom Rule) The maximal length of the PROGRAM-ID must be fixed"
-            description: |
-              The maximal length of the PROGRAM-ID must be fixed
+            description:
+              detail: |
+                The PROGRAM-ID paragraph identifies a COBOL program.
+                Its name must comply with a predefined maximum length to
+                ensure consistency, readability, and compatibility with
+                COBOL compilers and development tools.
+              ruleViolation: |
+                A PROGRAM-ID is declared with a name that exceeds the
+                configured maximum length.
+              recommendedFix: |
+                Define a maximum permitted length for PROGRAM-ID names
+                and ensure that every program identifier complies with
+                this limit. Rename identifiers that exceed the limit.
+              nonCompliant: |
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. CUSTOMER-ACCOUNT-PROCESSING-SERVICE.
+              compliant: |
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. CUSTACCT.
             severity: MEDIUM # Can be BLOCKER|HIGH|MEDIUM|LOW|INFO
             software_quality: MAINTAINABILITY # Can be MAINTAINABILITY|RELIABILITY|SECURITY
             cleancode_attribute: DISTINCT
             parameters:
               - name: "length"
-                value: "6"
+                value: "8"
                 description: |
                   The maximal length of the PROGRAM-ID.
             implementation:
