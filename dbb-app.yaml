@@ -1,7 +1,7 @@
 ################################################################
 # LICENSED MATERIALS - PROPERTY OF IBM
 # "RESTRICTED MATERIALS OF IBM"
-# (C) COPYRIGHT IBM CORPORATION 2020, 2025. ALL RIGHTS RESERVED
+# (C) COPYRIGHT IBM CORPORATION 2020, 2026. ALL RIGHTS RESERVED
 # US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 # OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 # CONTRACT WITH IBM CORPORATION
@@ -36,3 +36,11 @@ application:
       variables:
         - name: dependencySearchPath
           value: search:${WORKSPACE}/?path=${APP_DIR_NAME}/ASMMAC/*.asm;${APP_DIR_NAME}/ASMCOPY/*.asm
+
+    - task: CPP
+      sources:
+        - "**/CPP/*.cpp"
+
+      variables:
+        - name: dependencySearchPath
+          value: search:${WORKSPACE}/?path=${APP_DIR_NAME}/CPP/*.h
