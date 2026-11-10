@@ -7,7 +7,7 @@
 //
 // LICENSED MATERIALS - PROPERTY OF IBM
 // "RESTRICTED MATERIALS OF IBM"
-// (C) COPYRIGHT IBM CORPORATION 2022. ALL RIGHTS RESERVED
+// (C) COPYRIGHT IBM CORPORATION 2022, 2026. ALL RIGHTS RESERVED
 // US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,
 // OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE
 // CONTRACT WITH IBM CORPORATION
@@ -22,7 +22,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "ccnubrh.h" //BioRhythm class and Date class
+#include "ccnubrh.hpp" //BioRhythm class and Date class
 using namespace std;
 static ostream &operator<<(ostream &, BioRhythm &);
 
